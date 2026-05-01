@@ -102,8 +102,8 @@
   var TITLE = 'Exp 6 — Statistical Visualization Lab';
 
   var labChecks = [
-  {id:"check-1",name:"Histogram (Bar)",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasMarkType(xml,"Bar"))},
-  {id:"check-2",name:"Box Plot (Circle)",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasMarkType(xml,"Circle"))},
+  {id:"check-1",name:"Histogram (Bar)",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasMarkType(xml,"Bar",xmlString))},
+  {id:"check-2",name:"Box Plot (Circle)",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasMarkType(xml,"Circle",xmlString))},
   {id:"check-3",name:"Size Encoding",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasNode(xml,"size"))},
   {id:"check-4",name:"Treemap (Square)",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasMarkType(xml,"Square"))},
   {id:"check-5",name:"Second Datasource",marks:20,evalFn:(xml, xmlString)=>!!(xml.getElementsByTagName("datasource").length >= 2)}
