@@ -477,7 +477,7 @@
     /* ── greetings ── */
     if (/^(hi|hey|hello|sup|yo|hiya|good\s*(morning|afternoon|evening))/.test(input)) {
       const done = countCompleted();
-      if (isHub) return `Hey! 👋 You've completed **${done}/15 labs**. ${done === 0 ? 'Start with **Lab 0** — it's the foundation.' : done < 8 ? 'Great pace! Keep moving through the units.' : done < 15 ? 'Almost there — push through!' : '🎉 All 15 done! You're a DataViz pro.'
+      if (isHub) return `Hey! 👋 You've completed **${done}/15 labs**. ${done === 0 ? "Start with **Lab 0** — it's the foundation." : done < 8 ? "Great pace! Keep moving through the units." : done < 15 ? "Almost there — push through!" : "🎉 All 15 done! You're a DataViz pro."
     } `;
       const rp = getRubricProgress(labId);
       return `Hi! I'm your tutor for **${lab.title}** (Lab ${labId}). You've checked ** ${ rp.checked }/${rp.total}** rubric items. ${rp.checked === 0 ? 'Jump in and interact with the main visualization, then say **"hint"** when you need direction.' : rp.checked < 4 ? 'Good progress! Say **"hint"** for your next nudge.' : '🎉 Rubric complete! Write your reflection and mark it done.'}`;
