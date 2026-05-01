@@ -109,20 +109,25 @@ ${rows}
     const target = cls.toLowerCase();
     const content = (xmlString || new XMLSerializer().serializeToString(xml)).toLowerCase();
     
-    // 1. Check for explicit mark class
-    if (content.includes(`class='${target}'`)) return true;
-    if (content.includes(`class="${target}"`)) return true;
+    // Split into worksheet blocks to avoid cross-talk between sheets
+    const sheets = content.split('<worksheet');
     
-    // 2. Check for Automatic mark heuristics
-    if (target === 'bar') {
-       // Look for Category/Sales and marks that aren't circles or lines
-       return (content.includes('category') || content.includes('sales')) && !content.includes('mark-class=\'line\'');
-    }
-    if (target === 'line') {
-       return content.includes('order date') && content.includes('profit');
-    }
-    if (target === 'circle' || target === 'scatter') {
-       return content.includes('value=\'circle\'') || content.includes('value="circle"') || content.includes('class=\'circle\'');
+    for (let s of sheets) {
+      if (target === 'bar') {
+        // Bar: Category + Sales OR mark-color + Sales
+        if ((s.includes('category') && s.includes('sales')) || (s.includes('mark-color') && s.includes('sales'))) {
+           // Ensure it's not the line chart (which has order date) or scatter (which has circle)
+           if (!s.includes('order date') && !s.includes('circle')) return true;
+        }
+      }
+      if (target === 'line') {
+        // Line: Order Date + Profit
+        if (s.includes('order date') && s.includes('profit')) return true;
+      }
+      if (target === 'circle' || target === 'scatter') {
+        // Scatter: Sales + Profit + Circle shape
+        if (s.includes('sales') && s.includes('profit') && (s.includes('circle') || s.includes('shape'))) return true;
+      }
     }
     return false;
   }
@@ -169,7 +174,8 @@ ${rows}
     const content = (xmlString || new XMLSerializer().serializeToString(xml)).toLowerCase();
     
     if (target === 'label' || target === 'mark-labels') {
-       return content.includes('mark-labels-show') || content.includes('mark-labels') || content.includes('<label');
+       // Labels are specific to marks
+       return content.includes('mark-labels-show="true"') || content.includes('mark-labels-show=\'true\'');
     }
     if (target === 'color') {
        return content.includes('mark-color') || content.includes('<color');
