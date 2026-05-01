@@ -46,7 +46,7 @@
             <div class="score-left">Auto-Evaluation Score</div>
             <div class="score-bar" style="width:160px;margin-top:.4rem"><div class="score-bar-fill" id="score-bar" style="width:0%"></div></div>
           </div>
-          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;10</div>
+          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
         </div>
         <div class="eval-error" id="eval-error"></div>
         <div class="upload-zone" id="uploadZone">
@@ -67,11 +67,11 @@
           <input type="file" id="ssInput" style="display:none" accept="image/*">
         </div>
         <div class="check-list" id="resultsList" style="margin-top:1rem">
-<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">FIXED LOD Expression</div></div><div class="check-marks">2 marks</div></div>
-<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">INCLUDE LOD Expression</div></div><div class="check-marks">2 marks</div></div>
-<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">EXCLUDE LOD Expression</div></div><div class="check-marks">2 marks</div></div>
-<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Extract in After Version</div></div><div class="check-marks">2 marks</div></div>
-<div class="check-item" id="check-5"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Optimization Notes Dashboard</div></div><div class="check-marks">2 marks</div></div>
+<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">FIXED LOD Expression</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">INCLUDE LOD Expression</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">EXCLUDE LOD Expression</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Extract in After Version</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-5"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Optimization Notes Dashboard</div></div><div class="check-marks">20 marks</div></div>
         </div>
         <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
           <button class="btn export" id="export-btn">&#128229; Export Report</button>
@@ -99,11 +99,11 @@
   var TITLE = 'Exp 12 — Performance Optimization Lab';
 
   var labChecks = [
-  {id:"check-1",name:"FIXED LOD Expression",marks:2,evalFn:(xml)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"FIXED"))},
-  {id:"check-2",name:"INCLUDE LOD Expression",marks:2,evalFn:(xml)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"INCLUDE"))},
-  {id:"check-3",name:"EXCLUDE LOD Expression",marks:2,evalFn:(xml)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"EXCLUDE"))},
-  {id:"check-4",name:"Extract in After Version",marks:2,evalFn:(xml)=>!!(TableauEvaluator.hasConnectionType(xml,"hyper"))},
-  {id:"check-5",name:"Optimization Notes Dashboard",marks:2,evalFn:(xml)=>!!(TableauEvaluator.hasTextObject(xml))}
+  {id:"check-1",name:"FIXED LOD Expression",marks:20,evalFn:(xml)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"FIXED"))},
+  {id:"check-2",name:"INCLUDE LOD Expression",marks:20,evalFn:(xml)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"INCLUDE"))},
+  {id:"check-3",name:"EXCLUDE LOD Expression",marks:20,evalFn:(xml)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"EXCLUDE"))},
+  {id:"check-4",name:"Extract in After Version",marks:20,evalFn:(xml)=>!!(TableauEvaluator.hasConnectionType(xml,"hyper"))},
+  {id:"check-5",name:"Optimization Notes Dashboard",marks:20,evalFn:(xml)=>!!(TableauEvaluator.hasTextObject(xml))}
   ];
 
   function showToast(m, type) {

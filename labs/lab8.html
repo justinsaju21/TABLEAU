@@ -46,7 +46,7 @@
             <div class="score-left">Auto-Evaluation Score</div>
             <div class="score-bar" style="width:160px;margin-top:.4rem"><div class="score-bar-fill" id="score-bar" style="width:0%"></div></div>
           </div>
-          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;10</div>
+          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
         </div>
         <div class="eval-error" id="eval-error"></div>
         <div class="upload-zone" id="uploadZone">
@@ -67,10 +67,10 @@
           <input type="file" id="ssInput" style="display:none" accept="image/*">
         </div>
         <div class="check-list" id="resultsList" style="margin-top:1rem">
-<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Trend Lines</div></div><div class="check-marks">3 marks</div></div>
-<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Forecast Node</div></div><div class="check-marks">3 marks</div></div>
-<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Cluster/Groups</div></div><div class="check-marks">3 marks</div></div>
-<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Annotation Text</div></div><div class="check-marks">1 marks</div></div>
+<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Trend Lines</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Forecast Node</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Cluster/Groups</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Annotation Text</div></div><div class="check-marks">25 marks</div></div>
         </div>
         <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
           <button class="btn export" id="export-btn">&#128229; Export Report</button>
@@ -98,10 +98,10 @@
   var TITLE = 'Exp 8 — Predictive Analytics and Forecasting';
 
   var labChecks = [
-  {id:"check-1",name:"Trend Lines",marks:3,evalFn:(xml)=>!!(TableauEvaluator.hasNode(xml,"trend-lines"))},
-  {id:"check-2",name:"Forecast Node",marks:3,evalFn:(xml)=>!!(TableauEvaluator.hasNode(xml,"forecast"))},
-  {id:"check-3",name:"Cluster/Groups",marks:3,evalFn:(xml)=>!!(xml.getElementsByTagName("group").length > 0)},
-  {id:"check-4",name:"Annotation Text",marks:1,evalFn:(xml)=>!!(TableauEvaluator.hasTextObject(xml))}
+  {id:"check-1",name:"Trend Lines",marks:25,evalFn:(xml)=>!!(TableauEvaluator.hasNode(xml,"trend-lines"))},
+  {id:"check-2",name:"Forecast Node",marks:25,evalFn:(xml)=>!!(TableauEvaluator.hasNode(xml,"forecast"))},
+  {id:"check-3",name:"Cluster/Groups",marks:25,evalFn:(xml)=>!!(xml.getElementsByTagName("group").length > 0)},
+  {id:"check-4",name:"Annotation Text",marks:25,evalFn:(xml)=>!!(TableauEvaluator.hasTextObject(xml))}
   ];
 
   function showToast(m, type) {

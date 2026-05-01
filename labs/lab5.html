@@ -46,7 +46,7 @@
             <div class="score-left">Auto-Evaluation Score</div>
             <div class="score-bar" style="width:160px;margin-top:.4rem"><div class="score-bar-fill" id="score-bar" style="width:0%"></div></div>
           </div>
-          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;10</div>
+          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
         </div>
         <div class="eval-error" id="eval-error"></div>
         <div class="upload-zone" id="uploadZone">
@@ -67,10 +67,10 @@
           <input type="file" id="ssInput" style="display:none" accept="image/*">
         </div>
         <div class="check-list" id="resultsList" style="margin-top:1rem">
-<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Parameter Node</div></div><div class="check-marks">3 marks</div></div>
-<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">RANK Calculated Field</div></div><div class="check-marks">3 marks</div></div>
-<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Filter Present</div></div><div class="check-marks">2 marks</div></div>
-<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Dashboard Exists</div></div><div class="check-marks">2 marks</div></div>
+<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Parameter Node</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">RANK Calculated Field</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Filter Present</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Dashboard Exists</div></div><div class="check-marks">25 marks</div></div>
         </div>
         <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
           <button class="btn export" id="export-btn">&#128229; Export Report</button>
@@ -98,10 +98,10 @@
   var TITLE = 'Exp 5 — Filtering and Parameter Analytics';
 
   var labChecks = [
-  {id:"check-1",name:"Parameter Node",marks:3,evalFn:(xml)=>!!(TableauEvaluator.hasParameter(xml))},
-  {id:"check-2",name:"RANK Calculated Field",marks:3,evalFn:(xml)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"RANK"))},
-  {id:"check-3",name:"Filter Present",marks:2,evalFn:(xml)=>!!(TableauEvaluator.hasNode(xml,"filter"))},
-  {id:"check-4",name:"Dashboard Exists",marks:2,evalFn:(xml)=>!!(TableauEvaluator.dashboardCount(xml) > 0)}
+  {id:"check-1",name:"Parameter Node",marks:25,evalFn:(xml)=>!!(TableauEvaluator.hasParameter(xml))},
+  {id:"check-2",name:"RANK Calculated Field",marks:25,evalFn:(xml)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"RANK"))},
+  {id:"check-3",name:"Filter Present",marks:25,evalFn:(xml)=>!!(TableauEvaluator.hasNode(xml,"filter"))},
+  {id:"check-4",name:"Dashboard Exists",marks:25,evalFn:(xml)=>!!(TableauEvaluator.dashboardCount(xml) > 0)}
   ];
 
   function showToast(m, type) {

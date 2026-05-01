@@ -46,7 +46,7 @@
             <div class="score-left">Auto-Evaluation Score</div>
             <div class="score-bar" style="width:160px;margin-top:.4rem"><div class="score-bar-fill" id="score-bar" style="width:0%"></div></div>
           </div>
-          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;10</div>
+          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
         </div>
         <div class="eval-error" id="eval-error"></div>
         <div class="upload-zone" id="uploadZone">
@@ -67,11 +67,11 @@
           <input type="file" id="ssInput" style="display:none" accept="image/*">
         </div>
         <div class="check-list" id="resultsList" style="margin-top:1rem">
-<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Dual Axis (Pareto)</div></div><div class="check-marks">2 marks</div></div>
-<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">RUNNING_SUM (Waterfall)</div></div><div class="check-marks">2 marks</div></div>
-<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Funnel IF/ELSEIF</div></div><div class="check-marks">2 marks</div></div>
-<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">RANK (Bump Chart)</div></div><div class="check-marks">2 marks</div></div>
-<div class="check-item" id="check-5"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Caption Text Objects</div></div><div class="check-marks">2 marks</div></div>
+<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Dual Axis (Pareto)</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">RUNNING_SUM (Waterfall)</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Funnel IF/ELSEIF</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">RANK (Bump Chart)</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-5"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Caption Text Objects</div></div><div class="check-marks">20 marks</div></div>
         </div>
         <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
           <button class="btn export" id="export-btn">&#128229; Export Report</button>
@@ -99,11 +99,11 @@
   var TITLE = 'Exp 7 — Business Intelligence Chart Lab';
 
   var labChecks = [
-  {id:"check-1",name:"Dual Axis (Pareto)",marks:2,evalFn:(xml)=>!!(xml.getElementsByTagName("pane").length >= 2)},
-  {id:"check-2",name:"RUNNING_SUM (Waterfall)",marks:2,evalFn:(xml)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"RUNNING_SUM"))},
-  {id:"check-3",name:"Funnel IF/ELSEIF",marks:2,evalFn:(xml)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"ELSEIF"))},
-  {id:"check-4",name:"RANK (Bump Chart)",marks:2,evalFn:(xml)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"RANK"))},
-  {id:"check-5",name:"Caption Text Objects",marks:2,evalFn:(xml)=>!!(TableauEvaluator.hasTextObject(xml))}
+  {id:"check-1",name:"Dual Axis (Pareto)",marks:20,evalFn:(xml)=>!!(xml.getElementsByTagName("pane").length >= 2)},
+  {id:"check-2",name:"RUNNING_SUM (Waterfall)",marks:20,evalFn:(xml)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"RUNNING_SUM"))},
+  {id:"check-3",name:"Funnel IF/ELSEIF",marks:20,evalFn:(xml)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"ELSEIF"))},
+  {id:"check-4",name:"RANK (Bump Chart)",marks:20,evalFn:(xml)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"RANK"))},
+  {id:"check-5",name:"Caption Text Objects",marks:20,evalFn:(xml)=>!!(TableauEvaluator.hasTextObject(xml))}
   ];
 
   function showToast(m, type) {

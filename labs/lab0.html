@@ -46,7 +46,7 @@
             <div class="score-left">Auto-Evaluation Score</div>
             <div class="score-bar" style="width:160px;margin-top:.4rem"><div class="score-bar-fill" id="score-bar" style="width:0%"></div></div>
           </div>
-          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;10</div>
+          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
         </div>
         <div class="eval-error" id="eval-error"></div>
         <div class="upload-zone" id="uploadZone">
@@ -67,9 +67,9 @@
           <input type="file" id="ssInput" style="display:none" accept="image/*">
         </div>
         <div class="check-list" id="resultsList" style="margin-top:1rem">
-<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Valid Workbook Submitted</div></div><div class="check-marks">4 marks</div></div>
-<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Superstore Datasource</div></div><div class="check-marks">3 marks</div></div>
-<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Workbook Metadata Present</div></div><div class="check-marks">3 marks</div></div>
+<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Valid Workbook Submitted</div></div><div class="check-marks">34 marks</div></div>
+<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Superstore Datasource</div></div><div class="check-marks">33 marks</div></div>
+<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Workbook Metadata Present</div></div><div class="check-marks">33 marks</div></div>
         </div>
         <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
           <button class="btn export" id="export-btn">&#128229; Export Report</button>
@@ -97,9 +97,9 @@
   var TITLE = 'Exp 0 — Orientation & Setup';
 
   var labChecks = [
-  {id:"check-1",name:"Valid Workbook Submitted",marks:4,evalFn:(xml)=>!!(xml !== null)},
-  {id:"check-2",name:"Superstore Datasource",marks:3,evalFn:(xml)=>!!(TableauEvaluator.hasNode(xml,"datasource"))},
-  {id:"check-3",name:"Workbook Metadata Present",marks:3,evalFn:(xml)=>!!(TableauEvaluator.hasNode(xml,"workbook"))}
+  {id:"check-1",name:"Valid Workbook Submitted",marks:34,evalFn:(xml)=>!!(xml !== null)},
+  {id:"check-2",name:"Superstore Datasource",marks:33,evalFn:(xml)=>!!(TableauEvaluator.hasNode(xml,"datasource"))},
+  {id:"check-3",name:"Workbook Metadata Present",marks:33,evalFn:(xml)=>!!(TableauEvaluator.hasNode(xml,"workbook"))}
   ];
 
   function showToast(m, type) {

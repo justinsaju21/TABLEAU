@@ -50,7 +50,7 @@
             <div class="score-left">Auto-Evaluation Score</div>
             <div class="score-bar" style="width:160px;margin-top:.4rem"><div class="score-bar-fill" id="score-bar" style="width:0%"></div></div>
           </div>
-          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;90</div>
+          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
         </div>
         <div class="eval-error" id="eval-error"></div>
         <div class="upload-zone" id="uploadZone">
@@ -71,14 +71,14 @@
           <input type="file" id="ssInput" style="display:none" accept="image/*">
         </div>
         <div class="check-list" id="resultsList" style="margin-top:1rem">
-<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">3+ Dashboards</div></div><div class="check-marks">15 marks</div></div>
-<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Parameter Control</div></div><div class="check-marks">10 marks</div></div>
-<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Forecast Node</div></div><div class="check-marks">10 marks</div></div>
-<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Trend Lines Node</div></div><div class="check-marks">10 marks</div></div>
-<div class="check-item" id="check-5"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Geographic Map</div></div><div class="check-marks">10 marks</div></div>
-<div class="check-item" id="check-6"><div class="check-icon">&#x23F3;</div><div><div class="check-title">LOD Expression</div></div><div class="check-marks">10 marks</div></div>
-<div class="check-item" id="check-7"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Storytelling Captions</div></div><div class="check-marks">10 marks</div></div>
-<div class="check-item" id="check-8"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Tableau Public URL</div></div><div class="check-marks">15 marks</div></div>
+<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">3+ Dashboards</div></div><div class="check-marks">13 marks</div></div>
+<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Parameter Control</div></div><div class="check-marks">13 marks</div></div>
+<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Forecast Node</div></div><div class="check-marks">13 marks</div></div>
+<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Trend Lines Node</div></div><div class="check-marks">13 marks</div></div>
+<div class="check-item" id="check-5"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Geographic Map</div></div><div class="check-marks">12 marks</div></div>
+<div class="check-item" id="check-6"><div class="check-icon">&#x23F3;</div><div><div class="check-title">LOD Expression</div></div><div class="check-marks">12 marks</div></div>
+<div class="check-item" id="check-7"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Storytelling Captions</div></div><div class="check-marks">12 marks</div></div>
+<div class="check-item" id="check-8"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Tableau Public URL</div></div><div class="check-marks">12 marks</div></div>
         </div>
         <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
           <button class="btn export" id="export-btn">&#128229; Export Report</button>
@@ -106,14 +106,14 @@
   var TITLE = 'Exp Cap — Complete BI Solution — Capstone';
 
   var labChecks = [
-  {id:"check-1",name:"3+ Dashboards",marks:15,evalFn:(xml)=>!!(TableauEvaluator.dashboardCount(xml) >= 3)},
-  {id:"check-2",name:"Parameter Control",marks:10,evalFn:(xml)=>!!(TableauEvaluator.hasParameter(xml))},
-  {id:"check-3",name:"Forecast Node",marks:10,evalFn:(xml)=>!!(TableauEvaluator.hasNode(xml,"forecast"))},
-  {id:"check-4",name:"Trend Lines Node",marks:10,evalFn:(xml)=>!!(TableauEvaluator.hasNode(xml,"trend-lines"))},
-  {id:"check-5",name:"Geographic Map",marks:10,evalFn:(xml)=>!!(TableauEvaluator.hasMarkType(xml,"Map"))},
-  {id:"check-6",name:"LOD Expression",marks:10,evalFn:(xml)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"FIXED") || TableauEvaluator.hasFormulaKeyword(xml,"INCLUDE"))},
-  {id:"check-7",name:"Storytelling Captions",marks:10,evalFn:(xml)=>!!(TableauEvaluator.hasTextObject(xml))},
-  {id:"check-8",name:"Tableau Public URL",marks:15,evalFn:(xml)=>!!((document.getElementById("urlInput")&&document.getElementById("urlInput").value.includes("public.tableau.com")))}
+  {id:"check-1",name:"3+ Dashboards",marks:13,evalFn:(xml)=>!!(TableauEvaluator.dashboardCount(xml) >= 3)},
+  {id:"check-2",name:"Parameter Control",marks:13,evalFn:(xml)=>!!(TableauEvaluator.hasParameter(xml))},
+  {id:"check-3",name:"Forecast Node",marks:13,evalFn:(xml)=>!!(TableauEvaluator.hasNode(xml,"forecast"))},
+  {id:"check-4",name:"Trend Lines Node",marks:13,evalFn:(xml)=>!!(TableauEvaluator.hasNode(xml,"trend-lines"))},
+  {id:"check-5",name:"Geographic Map",marks:12,evalFn:(xml)=>!!(TableauEvaluator.hasMarkType(xml,"Map"))},
+  {id:"check-6",name:"LOD Expression",marks:12,evalFn:(xml)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"FIXED") || TableauEvaluator.hasFormulaKeyword(xml,"INCLUDE"))},
+  {id:"check-7",name:"Storytelling Captions",marks:12,evalFn:(xml)=>!!(TableauEvaluator.hasTextObject(xml))},
+  {id:"check-8",name:"Tableau Public URL",marks:12,evalFn:(xml)=>!!((document.getElementById("urlInput")&&document.getElementById("urlInput").value.includes("public.tableau.com")))}
   ];
 
   function showToast(m, type) {

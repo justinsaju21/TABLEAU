@@ -46,7 +46,7 @@
             <div class="score-left">Auto-Evaluation Score</div>
             <div class="score-bar" style="width:160px;margin-top:.4rem"><div class="score-bar-fill" id="score-bar" style="width:0%"></div></div>
           </div>
-          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;10</div>
+          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
         </div>
         <div class="eval-error" id="eval-error"></div>
         <div class="upload-zone" id="uploadZone">
@@ -67,11 +67,11 @@
           <input type="file" id="ssInput" style="display:none" accept="image/*">
         </div>
         <div class="check-list" id="resultsList" style="margin-top:1rem">
-<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Dashboard Exists</div></div><div class="check-marks">2 marks</div></div>
-<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">3 Worksheets in Dashboard</div></div><div class="check-marks">3 marks</div></div>
-<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Category Filter</div></div><div class="check-marks">2 marks</div></div>
-<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Region Filter</div></div><div class="check-marks">2 marks</div></div>
-<div class="check-item" id="check-5"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Title Text Object</div></div><div class="check-marks">1 marks</div></div>
+<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Dashboard Exists</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">3 Worksheets in Dashboard</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Category Filter</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Region Filter</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-5"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Title Text Object</div></div><div class="check-marks">20 marks</div></div>
         </div>
         <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
           <button class="btn export" id="export-btn">&#128229; Export Report</button>
@@ -99,11 +99,11 @@
   var TITLE = 'Exp 4 — Dashboard Development Studio';
 
   var labChecks = [
-  {id:"check-1",name:"Dashboard Exists",marks:2,evalFn:(xml)=>!!(TableauEvaluator.dashboardCount(xml) > 0)},
-  {id:"check-2",name:"3 Worksheets in Dashboard",marks:3,evalFn:(xml)=>!!(TableauEvaluator.hasDashboardZones(xml,3))},
-  {id:"check-3",name:"Category Filter",marks:2,evalFn:(xml)=>!!(xml.getElementsByTagName("datasource-filter").length >= 1)},
-  {id:"check-4",name:"Region Filter",marks:2,evalFn:(xml)=>!!(xml.getElementsByTagName("datasource-filter").length >= 2)},
-  {id:"check-5",name:"Title Text Object",marks:1,evalFn:(xml)=>!!(TableauEvaluator.hasTextObject(xml))}
+  {id:"check-1",name:"Dashboard Exists",marks:20,evalFn:(xml)=>!!(TableauEvaluator.dashboardCount(xml) > 0)},
+  {id:"check-2",name:"3 Worksheets in Dashboard",marks:20,evalFn:(xml)=>!!(TableauEvaluator.hasDashboardZones(xml,3))},
+  {id:"check-3",name:"Category Filter",marks:20,evalFn:(xml)=>!!(xml.getElementsByTagName("datasource-filter").length >= 1)},
+  {id:"check-4",name:"Region Filter",marks:20,evalFn:(xml)=>!!(xml.getElementsByTagName("datasource-filter").length >= 2)},
+  {id:"check-5",name:"Title Text Object",marks:20,evalFn:(xml)=>!!(TableauEvaluator.hasTextObject(xml))}
   ];
 
   function showToast(m, type) {
