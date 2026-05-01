@@ -1089,12 +1089,13 @@ async function generateReport(labId) {
   const rubricHtml = `
   <div class="section-title">Rubric Validation (${rp.checked}/${rp.total})</div>
   <div style="margin-bottom: 2rem;">
-    ${rubricTexts.slice(0, rp.total).map((text, i) =>
-    `<div class="rubric-item">
-        <span class="box ${checksList[i] ? 'checked' : ''}">[${checksList[i] ? 'X' : ' '}]</span>
+    ${rubricTexts.slice(0, rp.total).map((text, i) => {
+      const isPass = checksList.includes('check-' + (i + 1));
+      return `<div class="rubric-item">
+        <span class="box ${isPass ? 'checked' : ''}">[${isPass ? 'X' : ' '}]</span>
         <span>${text}</span>
-      </div>`
-  ).join('')}
+      </div>`;
+    }).join('')}
   </div>`;
 
   const ssHtml = screenshots.length > 0 ? `
