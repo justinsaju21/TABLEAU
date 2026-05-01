@@ -1012,11 +1012,12 @@ function injectReportButton() {
   };
 
 function computeGrade(labId, rp, reflectText, isCompleted) {
-  // Read exact marks from the XML Evaluator (already out of 100)
+  // Read exact marks from the XML Evaluator (scaled to 40% weight)
   const scoreEl = document.getElementById('scoreDisplay');
-  let rubricScore = scoreEl ? (parseInt(scoreEl.textContent, 10) || 0) : 0;
+  let rawRubric = scoreEl ? (parseInt(scoreEl.textContent, 10) || 0) : 0;
+  let rubricScore = Math.round((rawRubric / 100) * 40);
 
-  // Word-count based reflection scoring — mirrors Data Viz Lab pattern
+  // Word-count based reflection scoring (30% weight)
   let reflectScore = 0;
   if (reflectText && reflectText !== 'No reflection recorded.') {
     const words = reflectText.trim().split(/\s+/).filter(w => w.length > 2).length;
@@ -1025,7 +1026,22 @@ function computeGrade(labId, rp, reflectText, isCompleted) {
   }
   const reflectPass = reflectScore === 30;
 
-  return { rubric: rubricScore, reflectPass: reflectPass, reflectScore: reflectScore, total: rubricScore };
+  // Badge/Interaction scoring (30% weight)
+  let interactiveScore = 0;
+  const badgeKey = BADGE_MAP[labId];
+  if (badgeKey && localStorage.getItem(badgeKey) === '1') {
+    interactiveScore = 30;
+  } else if (isCompleted) {
+    interactiveScore = badgeKey ? 15 : 30;
+  }
+
+  return { 
+    rubric: rubricScore, 
+    reflectPass: reflectPass, 
+    reflectScore: reflectScore, 
+    interactive: interactiveScore,
+    total: rubricScore + reflectScore + interactiveScore 
+  };
 }
 
 async function generateReport(labId) {
@@ -1160,12 +1176,16 @@ async function generateReport(labId) {
       </div>
       <div style="display:flex; gap:2rem; text-align:right;">
         <div>
-          <div style="font-size:1.1rem; font-weight:700; color:#334155;">${grade.total}/100</div>
-          <div style="font-size:0.75rem; color:#64748b;">XML Evaluation</div>
+          <div style="font-size:1.1rem; font-weight:700; color:#334155;">${grade.rubric}/40</div>
+          <div style="font-size:0.75rem; color:#64748b;">XML Rubric</div>
         </div>
         <div>
-          <div style="font-size:1.1rem; font-weight:700; color:#334155;">${reflectStatus}</div>
-          <div style="font-size:0.75rem; color:#64748b;">Reflection Status</div>
+          <div style="font-size:1.1rem; font-weight:700; color:#334155;">${grade.reflectScore}/30</div>
+          <div style="font-size:0.75rem; color:#64748b;">Analytical Depth</div>
+        </div>
+        <div>
+          <div style="font-size:1.1rem; font-weight:700; color:#334155;">${grade.interactive}/30</div>
+          <div style="font-size:0.75rem; color:#64748b;">Interactive Log</div>
         </div>
       </div>
     </div>`;
