@@ -1001,24 +1001,13 @@ function injectReportButton() {
   };
 
 function computeGrade(labId, rp, reflectText, isCompleted) {
-  let rubricScore = rp.total > 0 ? Math.round((rp.checked / rp.total) * 40) : 40;
-
-  let reflectScore = 0;
-  if (reflectText && reflectText !== 'No reflection recorded.') {
-    const words = reflectText.trim().split(/\s+/).filter(w => w.length > 2).length;
-    if (words > 15) reflectScore = 30;
-    else if (words > 0) reflectScore = 15;
-  }
-
-  let interactiveScore = 0;
-  const badgeKey = BADGE_MAP[labId];
-  if (badgeKey && localStorage.getItem(badgeKey) === '1') {
-    interactiveScore = 30;
-  } else if (isCompleted) {
-    interactiveScore = badgeKey ? 15 : 30;
-  }
-
-  return { rubric: rubricScore, reflect: reflectScore, interactive: interactiveScore, total: rubricScore + reflectScore + interactiveScore };
+  // Read exact marks from the XML Evaluator (already out of 100)
+  const scoreEl = document.getElementById('scoreDisplay');
+  let rubricScore = scoreEl ? (parseInt(scoreEl.textContent, 10) || 0) : 0;
+  
+  let reflectPass = (reflectText && reflectText !== 'No reflection recorded.' && reflectText.trim().length > 10);
+  
+  return { rubric: rubricScore, reflectPass: reflectPass, total: rubricScore };
 }
 
 async function generateReport(labId) {
@@ -1090,6 +1079,7 @@ async function generateReport(labId) {
 
   const grade = computeGrade(labId, rp, reflectText, completed);
   const gradeColor = grade.total >= 90 ? '#16a34a' : grade.total >= 70 ? '#f59e0b' : '#dc2626';
+  const reflectStatus = grade.reflectPass ? '<span style="color:#16a34a">PASS</span>' : '<span style="color:#dc2626">FAIL</span>';
 
   const gradeHtml = `
     <div style="display:flex; justify-content:space-between; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:1.5rem; margin-bottom:2rem;">
@@ -1099,16 +1089,12 @@ async function generateReport(labId) {
       </div>
       <div style="display:flex; gap:2rem; text-align:right;">
         <div>
-          <div style="font-size:1.1rem; font-weight:700; color:#334155;">${grade.rubric}/40</div>
-          <div style="font-size:0.75rem; color:#64748b;">Rubric Compliance</div>
+          <div style="font-size:1.1rem; font-weight:700; color:#334155;">${grade.total}/100</div>
+          <div style="font-size:0.75rem; color:#64748b;">XML Evaluation</div>
         </div>
         <div>
-          <div style="font-size:1.1rem; font-weight:700; color:#334155;">${grade.reflect}/30</div>
-          <div style="font-size:0.75rem; color:#64748b;">Analytical Depth</div>
-        </div>
-        <div>
-          <div style="font-size:1.1rem; font-weight:700; color:#334155;">${grade.interactive}/30</div>
-          <div style="font-size:0.75rem; color:#64748b;">Interactive Log</div>
+          <div style="font-size:1.1rem; font-weight:700; color:#334155;">${reflectStatus}</div>
+          <div style="font-size:0.75rem; color:#64748b;">Reflection Status</div>
         </div>
       </div>
     </div>`;
