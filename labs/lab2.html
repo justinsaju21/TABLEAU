@@ -116,7 +116,9 @@
     document.getElementById('scoreDisplay').textContent = totalScore;
     document.getElementById('score-bar').style.width = Math.round(totalScore / maxScore * 100) + '%';
     var allPass = true;
+    var passedIds = [];
     results.forEach(function(r) {
+      if (r.passed) passedIds.push(r.id);
       var el = document.getElementById(r.id);
       if (el) {
         el.className = 'check-item ' + (r.passed ? 'pass' : 'fail');
@@ -124,6 +126,10 @@
       }
       if (!r.passed) allPass = false;
     });
+    
+    // Save passed check IDs for report generation
+    localStorage.setItem('tvl_r_' + EID, JSON.stringify(passedIds));
+
     if (allPass) {
       localStorage.setItem('tvl_complete_' + EID, '1');
       // Set Badge Achievement if this lab has one
