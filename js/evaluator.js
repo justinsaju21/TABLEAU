@@ -101,8 +101,10 @@ ${rows}
   }
   static hasMarkType(xml, cls) {
     const marks = xml.getElementsByTagName('mark');
-    for (let i = 0; i < marks.length; i++)
-      if ((marks[i].getAttribute('class') || '') === cls) return true;
+    for (let i = 0; i < marks.length; i++) {
+      const markClass = (marks[i].getAttribute('class') || '').toLowerCase();
+      if (markClass === cls.toLowerCase()) return true;
+    }
     return false;
   }
   static hasFormulaKeyword(xml, ...keywords) {
@@ -143,7 +145,13 @@ ${rows}
     return false;
   }
   static hasNode(xml, tagName) {
-    return xml.getElementsByTagName(tagName).length > 0;
+    if (xml.getElementsByTagName(tagName).length > 0) return true;
+    // Fallback for labels which are often 'mark-labels' in Tableau
+    if (tagName.toLowerCase() === 'label') {
+       if (xml.getElementsByTagName('mark-labels').length > 0) return true;
+       if (xml.getElementsByTagName('mark-label').length > 0) return true;
+    }
+    return false;
   }
   static hasConnectionType(xml, cls) {
     const conns = xml.getElementsByTagName('connection');
