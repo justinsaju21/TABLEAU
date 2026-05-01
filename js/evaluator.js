@@ -108,28 +108,49 @@ ${rows}
   static hasMarkType(xml, cls, xmlString) {
     const target = cls.toLowerCase();
     const content = (xmlString || new XMLSerializer().serializeToString(xml)).toLowerCase();
+    
+    // Split into individual worksheet blocks
     const sheets = content.split('<worksheet');
     
     for (let s of sheets) {
-      // Check for Bar Chart (Category/Sales or Mark-Color)
+      // Extract the <cols> and <rows> shelf text — this is the definitive encoding
+      const colsMatch = s.match(/<cols>([^<]*)<\/cols>/);
+      const rowsMatch = s.match(/<rows>([^<]*)<\/rows>/);
+      const cols = colsMatch ? colsMatch[1] : '';
+      const rows = rowsMatch ? rowsMatch[1] : '';
+      
+      // BAR CHART: dimension (none:) on cols + measure (sum:sales) on rows
+      // OR: dimension (none:) on rows + measure (sum:sales) on cols (transposed)
       if (target === 'bar') {
-        const isBar = (s.includes('category') || s.includes('sub-category')) && s.includes('sales');
-        if (isBar && !s.includes('order date') && !s.includes('circle')) return true;
+        const barCheck = 
+          (cols.includes('none:category') || cols.includes('none:sub-category') || cols.includes('none:region') || cols.includes('none:segment'))
+          && (rows.includes('sum:sales') || rows.includes('sum:profit') || rows.includes('sum:quantity'))
+          || (rows.includes('none:category') || rows.includes('none:sub-category'))
+          && (cols.includes('sum:sales') || cols.includes('sum:profit'));
+        if (barCheck) return true;
       }
-      // Check for Line Chart (Order Date + Profit)
+      
+      // LINE CHART: date field on cols (mn: = month, yr: = year, qr: = quarter, dy: = day)
       if (target === 'line') {
-        if (s.includes('order date') && s.includes('profit')) return true;
+        const lineCheck = 
+          (cols.includes('mn:order date') || cols.includes('yr:order date') || cols.includes('qr:order date') || cols.includes('dy:order date') || cols.includes(':order date'))
+          && (rows.includes('sum:profit') || rows.includes('sum:sales'));
+        if (lineCheck) return true;
       }
-      // Check for Scatter Plot (Profit + Sales + Circle/Shape)
+      
+      // SCATTER PLOT: both axes are measures (sum:)
       if (target === 'circle' || target === 'scatter') {
-        if (s.includes('profit') && s.includes('sales') && (s.includes('circle') || s.includes('shape'))) return true;
+        const scatterCheck = 
+          (cols.includes('sum:sales') && rows.includes('sum:profit'))
+          || (cols.includes('sum:profit') && rows.includes('sum:sales'));
+        if (scatterCheck) return true;
       }
     }
-    // Final fallback: broad scan
-    if (target === 'bar') return content.includes('category') && content.includes('sales') && content.includes('mark-color');
-    if (target === 'line') return content.includes('order date') && content.includes('profit');
-    if (target === 'circle' || target === 'scatter') return content.includes('circle') || (content.includes('sales') && content.includes('profit') && content.includes('shape'));
     
+    // Fallback: broad content search
+    if (target === 'bar') return content.includes('none:category') && content.includes('sum:sales');
+    if (target === 'line') return content.includes(':order date') && content.includes('sum:profit');
+    if (target === 'circle' || target === 'scatter') return content.includes('sum:sales') && content.includes('sum:profit');
     return false;
   }
 
@@ -175,10 +196,14 @@ ${rows}
     const content = (xmlString || new XMLSerializer().serializeToString(xml)).toLowerCase();
     
     if (target === 'label' || target === 'mark-labels') {
-       return content.includes('mark-labels-show') || content.includes('mark-labels') || content.includes('labels-show');
+      // Tableau writes: attr='mark-labels-show' value='true'
+      return content.includes("mark-labels-show' value='true'") ||
+             content.includes('mark-labels-show" value="true"') ||
+             content.includes('mark-labels-show') ||
+             content.includes('labels-cull');
     }
     if (target === 'color') {
-       return content.includes('mark-color') || content.includes('<color') || content.includes('encoding=\'color\'');
+       return content.includes('mark-color') || content.includes('<color') || content.includes("encoding='color'");
     }
     return this.findNodes(xml, target).length > 0 || content.includes('<' + target);
   }
