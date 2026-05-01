@@ -446,20 +446,21 @@ TMPL = '''<!DOCTYPE html>
   const reflectInput = document.getElementById('reflection-text');
   const reflectStatus = document.getElementById('reflect-status');
 
+  function countWords(text) {{
+    return text.trim().split(/\s+/).filter(w => w.length > 2).length;
+  }}
+
   function updateReflectStatus() {{
-    const val = reflectInput.value.trim().toLowerCase();
-    const keywords = ['data', 'tableau', 'viz', 'analysis', 'observation', 'trend', 'pattern', 'insight', 'chart', 'sheet', 'hierarchy', 'drill', 'filter', 'dashboard'];
-    const hasKeywords = keywords.some(k => val.includes(k));
-    
-    if (val.length > 20 && hasKeywords) {{
-      reflectStatus.textContent = 'PASS';
-      reflectStatus.style.cssText = 'font-size: 0.85rem; padding: 2px 8px; border-radius: 4px; background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; font-weight:bold;';
-    }} else if (val.length <= 20) {{
-      reflectStatus.textContent = 'FAIL (Too Short)';
-      reflectStatus.style.cssText = 'font-size: 0.85rem; padding: 2px 8px; border-radius: 4px; background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; font-weight:bold;';
+    const words = countWords(reflectInput.value);
+    if (words > 15) {{
+      reflectStatus.textContent = '\u2714 PASS';
+      reflectStatus.style.cssText = 'font-size: 0.85rem; padding: 2px 10px; border-radius: 4px; background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; font-weight:bold;';
+    }} else if (words > 0) {{
+      reflectStatus.textContent = '\u26A0 Too Short (' + words + '/15 words)';
+      reflectStatus.style.cssText = 'font-size: 0.85rem; padding: 2px 10px; border-radius: 4px; background: #fff7ed; color: #9a3412; border: 1px solid #ffedd5; font-weight:bold;';
     }} else {{
-      reflectStatus.textContent = 'FAIL (Missing Key Insights)';
-      reflectStatus.style.cssText = 'font-size: 0.85rem; padding: 2px 8px; border-radius: 4px; background: #fff7ed; color: #9a3412; border: 1px solid #ffedd5; font-weight:bold;';
+      reflectStatus.textContent = '\u2717 FAIL';
+      reflectStatus.style.cssText = 'font-size: 0.85rem; padding: 2px 10px; border-radius: 4px; background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; font-weight:bold;';
     }}
   }}
 
@@ -478,17 +479,9 @@ TMPL = '''<!DOCTYPE html>
     a.download = 'tableau_exp{id}_notes.txt'; a.click();
   }});
   document.getElementById('complete-btn').addEventListener('click', function() {{
-    const val = reflectInput.value.trim().toLowerCase();
-    const keywords = ['data', 'tableau', 'viz', 'analysis', 'observation', 'trend', 'pattern', 'insight', 'chart', 'sheet', 'hierarchy', 'drill', 'filter', 'dashboard'];
-    const hasKeywords = keywords.some(k => val.includes(k));
-
-    if (val.length < 20) {{
-      showToast('\u26A0 Please write a more detailed reflection!');
-      reflectInput.focus();
-      return;
-    }}
-    if (!hasKeywords) {{
-      showToast('\u26A0 Reflection lacks technical depth. Try including keywords like "data", "analysis", or "trend".');
+    const words = countWords(reflectInput.value);
+    if (words <= 15) {{
+      showToast('\u26A0 Reflection too short — write at least 15 meaningful words (currently ' + words + ').');
       reflectInput.focus();
       return;
     }}
