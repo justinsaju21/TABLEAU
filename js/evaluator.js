@@ -28,7 +28,7 @@ class TableauEvaluator {
       const xml = parser.parseFromString(xmlString, 'text/xml');
       if (xml.getElementsByTagName('parsererror').length > 0)
         throw new Error('XML parse error in workbook.');
-      this.runChecks(xml);
+      this.runChecks(xml, xmlString);
     } catch (e) {
       console.error(e);
       const errEl = document.getElementById('eval-error');
@@ -37,12 +37,12 @@ class TableauEvaluator {
     }
   }
 
-  runChecks(xml) {
+  runChecks(xml, xmlString) {
     this.totalScore = 0;
     const results = [];
     this.checks.forEach(c => {
       let passed = false;
-      try { passed = c.evalFn(xml); } catch(e) { console.error(c.id, e); }
+      try { passed = c.evalFn(xml, xmlString); } catch(e) { console.error(c.id, e); }
       if (passed) this.totalScore += c.marks;
       results.push({ id: c.id, name: c.name, marks: passed ? c.marks : 0, maxMarks: c.marks, passed });
     });
@@ -105,26 +105,24 @@ ${rows}
     return false;
   }
 
-  static hasMarkType(xml, cls) {
-    const content = new XMLSerializer().serializeToString(xml);
+  static hasMarkType(xml, cls, xmlString) {
     const target = cls.toLowerCase();
+    const content = (xmlString || new XMLSerializer().serializeToString(xml)).toLowerCase();
     
     // 1. Check for explicit mark class
-    if (content.toLowerCase().includes(`class='${target}'`)) return true;
-    if (content.toLowerCase().includes(`class="${target}"`)) return true;
+    if (content.includes(`class='${target}'`)) return true;
+    if (content.includes(`class="${target}"`)) return true;
     
     // 2. Check for Automatic mark heuristics
     if (target === 'bar') {
-       // Bar charts often have color overrides or Sales/Category pills
-       return content.includes('mark-color') || content.includes('Category') || content.includes('Sales');
+       // Look for Category/Sales and marks that aren't circles or lines
+       return (content.includes('category') || content.includes('sales')) && !content.includes('mark-class=\'line\'');
     }
     if (target === 'line') {
-       // Line charts in this lab always use Profit and Order Date
-       return content.includes('Order Date') && content.includes('Profit');
+       return content.includes('order date') && content.includes('profit');
     }
-    if (target === 'circle') {
-       // Scatter plots are explicitly set to 'circle' shape
-       return content.toLowerCase().includes("value='circle'") || content.toLowerCase().includes('value="circle"');
+    if (target === 'circle' || target === 'scatter') {
+       return content.includes('value=\'circle\'') || content.includes('value="circle"') || content.includes('class=\'circle\'');
     }
     return false;
   }
@@ -166,13 +164,17 @@ ${rows}
       if (zones[i].getAttribute('type-v2') === 'text') return true;
     return false;
   }
-  static hasNode(xml, tagName) {
+  static hasNode(xml, tagName, xmlString) {
     const target = tagName.toLowerCase();
-    if (target === 'label') {
-       const content = new XMLSerializer().serializeToString(xml);
+    const content = (xmlString || new XMLSerializer().serializeToString(xml)).toLowerCase();
+    
+    if (target === 'label' || target === 'mark-labels') {
        return content.includes('mark-labels-show') || content.includes('mark-labels') || content.includes('<label');
     }
-    return this.findNodes(xml, target).length > 0;
+    if (target === 'color') {
+       return content.includes('mark-color') || content.includes('<color');
+    }
+    return this.findNodes(xml, target).length > 0 || content.includes('<' + target);
   }
   static hasConnectionType(xml, cls) {
     const conns = xml.getElementsByTagName('connection');

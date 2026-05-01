@@ -222,7 +222,9 @@ def checks_js(checks):
     lines = []
     for cid, name, fn, marks in checks:
         name_esc = name.replace('"', '\\"')
-        lines.append(f'  {{id:"{cid}",name:"{name_esc}",marks:{marks},evalFn:(xml)=>!!({fn})}}')
+        # Automatically inject xmlString into TableauEvaluator calls
+        js_fn = fn.replace('xml)', 'xml, xmlString)') if 'TableauEvaluator' in fn else fn
+        lines.append(f'  {{id:"{cid}",name:"{name_esc}",marks:{marks},evalFn:(xml, xmlString)=>!!({js_fn})}}')
     return ',\n'.join(lines)
 
 
@@ -453,18 +455,23 @@ TMPL = '''<!DOCTYPE html>
   function updateReflectStatus() {{
     const val = reflectInput.value.trim().toLowerCase();
     const words = countWords(val);
-    const keywords = ['data', 'tableau', 'viz', 'analysis', 'observation', 'trend', 'pattern', 'insight', 'chart', 'sheet', 'hierarchy', 'drill', 'filter', 'dashboard', 'comparison', 'relationship', 'distribution'];
-    const foundKeywords = keywords.filter(k => val.includes(k));
-    const hasTechnicalDepth = new Set(foundKeywords).size >= 2;
+    const labKeywords = {{
+      '1': ['datasource', 'connection', 'dimension', 'measure'],
+      '2': ['bar', 'line', 'scatter', 'marks', 'labels'],
+      '3': ['hierarchy', 'drill', 'group', 'set']
+    }};
+    const required = labKeywords[EID] || ['tableau', 'data', 'viz', 'analysis'];
+    const foundKeywords = required.filter(k => val.includes(k));
+    const hasTechnicalDepth = foundKeywords.length >= 2;
     
-    if (words > 15 && hasTechnicalDepth) {{
-      reflectStatus.textContent = '\u2714 PASS';
+    if (words >= 30 && hasTechnicalDepth) {{
+      reflectStatus.textContent = '\u2714 PASS (' + words + ' words)';
       reflectStatus.style.cssText = 'font-size: 0.85rem; padding: 2px 10px; border-radius: 4px; background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; font-weight:bold;';
-    }} else if (words <= 15) {{
-      reflectStatus.textContent = '\u26A0 Too Short (' + words + '/15 words)';
+    }} else if (words < 30) {{
+      reflectStatus.textContent = '\u26A0 Too Short (' + words + '/30 words)';
       reflectStatus.style.cssText = 'font-size: 0.85rem; padding: 2px 10px; border-radius: 4px; background: #fff7ed; color: #9a3412; border: 1px solid #ffedd5; font-weight:bold;';
     }} else {{
-      reflectStatus.textContent = '\u26A0 Lacks Technical Depth';
+      reflectStatus.textContent = '\u26A0 Lacks Lab Keywords';
       reflectStatus.style.cssText = 'font-size: 0.85rem; padding: 2px 10px; border-radius: 4px; background: #fff7ed; color: #9a3412; border: 1px solid #ffedd5; font-weight:bold;';
     }}
   }}
@@ -486,15 +493,20 @@ TMPL = '''<!DOCTYPE html>
   document.getElementById('complete-btn').addEventListener('click', function() {{
     const val = reflectInput.value.trim().toLowerCase();
     const words = countWords(val);
-    const keywords = ['data', 'tableau', 'viz', 'analysis', 'observation', 'trend', 'pattern', 'insight', 'chart', 'sheet', 'hierarchy', 'drill', 'filter', 'dashboard', 'comparison', 'relationship', 'distribution'];
-    const foundKeywords = keywords.filter(k => val.includes(k));
-    const hasTechnicalDepth = new Set(foundKeywords).size >= 2;
+    const labKeywords = {{
+      '1': ['datasource', 'connection', 'dimension', 'measure'],
+      '2': ['bar', 'line', 'scatter', 'marks', 'labels'],
+      '3': ['hierarchy', 'drill', 'group', 'set']
+    }};
+    const required = labKeywords[EID] || ['tableau', 'data', 'viz', 'analysis'];
+    const foundKeywords = required.filter(k => val.includes(k));
+    const hasTechnicalDepth = foundKeywords.length >= 2;
 
-    if (words <= 15) {{
-      showToast('\u26A0 Reflection too short — write at least 15 meaningful words (currently ' + words + ').');
+    if (words < 30) {{
+      showToast('\u26A0 Reflection too short — write at least 30 meaningful words (currently ' + words + ').');
       reflectInput.focus();
     }} else if (!hasTechnicalDepth) {{
-      showToast('\u26A0 Reflection lacks technical depth. Please use relevant terms like "data", "hierarchy", "insight", "viz", etc.');
+      showToast('\u26A0 Reflection lacks lab keywords. Please use terms like "' + required.join('", "') + '".');
       reflectInput.focus();
     }} else {{
       localStorage.setItem('tvl_complete_' + EID, '1');
