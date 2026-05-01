@@ -429,12 +429,23 @@
   function getRubricProgress(labId) {
     const lab = KB[labId];
     if (!lab) return { checked: 0, total: 4 };
-    const arr = JSON.parse(localStorage.getItem(lab.rubricKey) || '[]');
-    // Dynamically count how many check-N items exist on this page
+    
     let total = 0;
-    while (document.getElementById('check-' + (total + 1))) total++;
+    let domChecked = 0;
+    let hasDom = false;
+    while (document.getElementById('check-' + (total + 1))) {
+      hasDom = true;
+      if (document.getElementById('check-' + (total + 1)).classList.contains('pass')) {
+        domChecked++;
+      }
+      total++;
+    }
     if (total === 0) total = 4; // fallback for hub page
-    return { checked: arr.filter(Boolean).length, total };
+    
+    const arr = JSON.parse(localStorage.getItem(lab.rubricKey) || '[]');
+    let storageChecked = arr.filter(Boolean).length;
+    
+    return { checked: hasDom ? Math.max(domChecked, storageChecked) : storageChecked, total };
   }
 
   function isComplete(labId) {
@@ -1090,7 +1101,10 @@ async function generateReport(labId) {
   <div class="section-title">Rubric Validation (${rp.checked}/${rp.total})</div>
   <div style="margin-bottom: 2rem;">
     ${rubricTexts.slice(0, rp.total).map((text, i) => {
-      const isPass = checksList.includes('check-' + (i + 1));
+      const checkId = 'check-' + (i + 1);
+      const el = document.getElementById(checkId);
+      let isPass = checksList.includes(checkId);
+      if (el && el.classList.contains('pass')) isPass = true;
       return `<div class="rubric-item">
         <span class="box ${isPass ? 'checked' : ''}">[${isPass ? 'X' : ' '}]</span>
         <span>${text}</span>
