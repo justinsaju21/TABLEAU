@@ -447,7 +447,7 @@ TMPL = '''<!DOCTYPE html>
   const reflectStatus = document.getElementById('reflect-status');
 
   function countWords(text) {{
-    return text.trim().split(/\s+/).filter(w => w.length > 2).length;
+    return text.trim().split(/\\s+/).filter(w => w.length > 2).length;
   }}
 
   function updateReflectStatus() {{
