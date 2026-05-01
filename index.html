@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tableau Virtual Laboratory — Dashboard</title>
+  <meta name="description" content="15-experiment Tableau curriculum with automatic XML-based workbook evaluation.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root { --sidebar-w: 280px; --header-h: 60px; }
+    header {
+      height: var(--header-h); background: rgba(13,15,20,0.97); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); display: flex; align-items: center;
+      padding: 0 1.75rem; position: fixed; top:0; left:0; right:0; z-index:100; gap: 1rem;
+    }
+    .logo { display:flex; align-items:center; gap:0.6rem; font-weight:800; font-size:1.05rem;
+      background:linear-gradient(135deg,var(--blue),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .logo svg { width:26px; height:26px; flex-shrink:0; }
+    .overall-progress-wrap { display:flex; align-items:center; gap:0.6rem; margin-left:auto; }
+    .overall-progress-label { font-size:0.78rem; color:var(--text-2); white-space:nowrap; }
+    .overall-progress-bar { width:110px; height:5px; background:var(--border); border-radius:99px; overflow:hidden; }
+    .overall-progress-fill { height:100%; background:linear-gradient(90deg,var(--blue),var(--purple)); border-radius:99px; transition:width .4s ease; }
+    .overall-pct { font-size:0.78rem; font-weight:700; color:var(--blue); min-width:30px; }
+    .header-btns { display:flex; gap:0.4rem; margin-left:0.5rem; }
+    .header-btn { display:inline-flex; align-items:center; gap:0.3rem; padding:0.3rem 0.65rem; border-radius:7px;
+      font-size:0.72rem; font-weight:600; cursor:pointer; transition:all .15s;
+      border:1px solid var(--border-bright); background:transparent; color:var(--text-2); }
+    .header-btn:hover { background:var(--bg-hover,#1a1e2e); color:var(--text); }
+    .header-btn.accent { border-color:rgba(79,142,247,0.4); color:var(--blue); }
+
+    .app-layout { display:flex; margin-top:var(--header-h); min-height:calc(100vh - var(--header-h)); }
+
+    aside {
+      width:var(--sidebar-w); min-width:var(--sidebar-w); background:var(--bg-card);
+      border-right:1px solid var(--border); position:fixed; top:var(--header-h); left:0;
+      height:calc(100vh - var(--header-h)); overflow-y:auto; padding:1rem 0;
+    }
+    aside::-webkit-scrollbar { width:3px; }
+    aside::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
+
+    .sidebar-unit-header {
+      display:flex; align-items:center; gap:0.55rem; padding:0.55rem 1.1rem;
+      font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em;
+    }
+    .sidebar-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+    .sidebar-count { margin-left:auto; font-size:0.68rem; color:var(--text-3); }
+    .sidebar-mini-bar { height:2px; background:var(--border); margin:0 1.1rem .2rem; border-radius:99px; overflow:hidden; }
+    .sidebar-mini-fill { height:100%; border-radius:99px; transition:width .4s; }
+    .sidebar-lab-list { list-style:none; }
+    .sidebar-lab-link {
+      display:flex; align-items:center; padding:0.38rem 1.1rem 0.38rem 2rem;
+      text-decoration:none; color:var(--text-2); font-size:0.79rem; font-weight:500;
+      transition:all .15s; border-left:2px solid transparent; gap:0.5rem;
+    }
+    .sidebar-lab-link:hover { background:rgba(255,255,255,0.04); color:var(--text); }
+    .sidebar-check { width:14px; height:14px; border-radius:50%; border:1.5px solid var(--border-bright); margin-left:auto; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:0.55rem; color:transparent; transition:all .2s; }
+    .sidebar-lab-link.done .sidebar-check { background:var(--green); border-color:var(--green); color:#000; }
+    .sidebar-lab-link.done { color:rgba(232,234,240,0.6); }
+
+    main { margin-left:var(--sidebar-w); flex:1; padding:2rem 2.5rem 4rem; }
+
+    .hero { text-align:center; padding:2.5rem 1rem 3rem; position:relative; }
+    .hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 700px 350px at 50% -80px, rgba(79,142,247,0.1), transparent); pointer-events:none; }
+    .hero-badge { display:inline-flex; align-items:center; gap:0.4rem; padding:.3rem .85rem; border-radius:99px; background:rgba(79,142,247,0.1); border:1px solid rgba(79,142,247,0.25); font-size:.73rem; font-weight:600; color:var(--blue); margin-bottom:1.25rem; letter-spacing:.04em; }
+    .hero h1 { font-size:2.75rem; font-weight:800; letter-spacing:-.03em; background:linear-gradient(135deg,#e8eaf0 0%,#8892a4 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; line-height:1.15; margin-bottom:.85rem; }
+    .hero-desc { font-size:1rem; color:var(--text-2); max-width:560px; margin:0 auto 2rem; line-height:1.65; }
+    .hero-stats { display:flex; justify-content:center; gap:2.5rem; }
+    .hero-stat-num { font-size:1.85rem; font-weight:800; background:linear-gradient(135deg,var(--blue),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .hero-stat-label { font-size:0.77rem; color:var(--text-3); margin-top:.1rem; }
+
+    .quick-track { display:flex; align-items:center; gap:.75rem; padding:.9rem 1.25rem; background:rgba(245,158,11,0.07); border:1px solid rgba(245,158,11,0.22); border-radius:12px; margin-bottom:2.5rem; flex-wrap:wrap; }
+    .rec-label { font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--amber); white-space:nowrap; }
+    .rec-chip { padding:.22rem .7rem; background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.28); border-radius:99px; font-size:.77rem; font-weight:600; color:var(--amber); text-decoration:none; transition:all .15s; }
+    .rec-chip:hover { background:rgba(245,158,11,0.22); }
+    .rec-arrow { color:var(--text-3); font-size:.8rem; }
+
+    .unit-section { margin-bottom:2.5rem; }
+    .unit-section-header { display:flex; align-items:center; gap:.9rem; margin-bottom:1.25rem; }
+    .unit-badge { display:inline-flex; align-items:center; padding:.35rem .9rem; border-radius:8px; font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; }
+    .unit-section-title { font-size:1.15rem; font-weight:700; letter-spacing:-.01em; }
+    .unit-section-progress { margin-left:auto; display:flex; align-items:center; gap:.55rem; }
+    .unit-pbar { width:70px; height:5px; background:var(--border); border-radius:99px; overflow:hidden; }
+    .unit-pfill { height:100%; border-radius:99px; transition:width .4s; }
+    .unit-pct { font-size:.75rem; font-weight:600; color:var(--text-2); }
+
+    .labs-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:.9rem; }
+    .lab-card { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:1.15rem; display:flex; flex-direction:column; gap:.65rem; transition:all .2s; position:relative; overflow:hidden; }
+    .lab-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; opacity:0; transition:opacity .2s; }
+    .lab-card:hover { border-color:var(--border-bright); background:rgba(26,30,46,0.8); transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.3); }
+    .lab-card:hover::before { opacity:1; }
+    .lab-card.done { border-color:rgba(34,197,94,0.25); }
+    .lab-card-top { display:flex; align-items:flex-start; justify-content:space-between; gap:.5rem; }
+    .lab-id-badge { font-family:'JetBrains Mono',monospace; font-size:.68rem; font-weight:600; padding:.18rem .5rem; border-radius:6px; letter-spacing:.02em; }
+    .lab-title { font-size:.93rem; font-weight:700; letter-spacing:-.01em; line-height:1.35; }
+    .lab-objective { font-size:.79rem; color:var(--text-2); line-height:1.55; flex:1; }
+    .lab-card-footer { display:flex; align-items:center; justify-content:space-between; padding-top:.7rem; border-top:1px solid var(--border); }
+    .lab-time { font-size:.73rem; color:var(--text-3); }
+    .launch-btn { display:inline-flex; align-items:center; gap:.4rem; padding:.38rem .9rem; border-radius:8px; font-size:.79rem; font-weight:600; border:1px solid var(--border-bright); color:var(--text); background:rgba(255,255,255,0.04); cursor:pointer; transition:all .15s; text-decoration:none; }
+    .launch-btn:hover { border-color:var(--blue); color:var(--blue); background:rgba(79,142,247,0.1); }
+
+    .achievements-section { margin-top:1rem; }
+    .badge-grid { display:flex; gap:.75rem; flex-wrap:wrap; }
+    .badge-card { display:flex; align-items:center; gap:.75rem; padding:.8rem 1.2rem; background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(139,92,246,0.07)); border:1px solid rgba(245,158,11,0.3); border-radius:12px; }
+    .badge-card-icon { font-size:1.75rem; }
+    .badge-card-name { font-size:.85rem; font-weight:800; color:var(--amber); }
+    .badge-card-desc { font-size:.7rem; color:var(--text-2); margin-top:.1rem; }
+
+    ::-webkit-scrollbar { width:5px; }
+    ::-webkit-scrollbar-track { background:var(--bg); }
+    ::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
+    @media (max-width:1024px) { aside { display:none; } main { margin-left:0; padding:1.5rem; } }
+    @media (max-width:640px) { main { padding:1rem; } .hero h1 { font-size:2rem; } .labs-grid { grid-template-columns:1fr; } }
+  </style>
+  <script src="js/tutor.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <svg viewBox="0 0 26 26" fill="none"><rect x="2" y="13" width="5" height="11" rx="2" fill="#4f8ef7" opacity=".8"/><rect x="10" y="7" width="5" height="17" rx="2" fill="#8b5cf6" opacity=".8"/><rect x="18" y="2" width="5" height="22" rx="2" fill="#14b8a6" opacity=".8"/><path d="M4 9.5 L12.5 5.5 L20 2" stroke="#f59e0b" stroke-width="1.3" stroke-dasharray="2.5 2"/></svg>
+    Tableau VL
+  </div>
+  <div class="overall-progress-wrap">
+    <span class="overall-progress-label">Overall Progress</span>
+    <div class="overall-progress-bar"><div class="overall-progress-fill" id="overall-fill" style="width:0%"></div></div>
+    <span class="overall-pct" id="overall-pct">0%</span>
+  </div>
+  <div class="header-btns">
+    <button class="header-btn" onclick="exportReport()" title="Export progress report">💾 Export Report</button>
+    <button class="header-btn accent" onclick="restoreProgress()" title="Restore from backup">📂 Restore</button>
+    <input type="file" id="restore-input" accept=".json" style="display:none" onchange="handleRestore(this)">
+  </div>
+</header>
+
+<div class="app-layout">
+  <aside id="sidebar"></aside>
+  <main>
+    <section class="hero">
+      <div class="hero-badge">📊 Part 0 + 5 Parts · 15 Experiments · 1 Capstone</div>
+      <h1>Tableau Virtual<br>Laboratory</h1>
+      <p class="hero-desc">Master Tableau Public through structured experiments. Each submission is graded automatically by parsing the XML structure of your workbook — no screenshots required.</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-num">15</div><div class="hero-stat-label">Experiments</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">7</div><div class="hero-stat-label">Datasets</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">100%</div><div class="hero-stat-label">Auto-Graded</div></div>
+      </div>
+    </section>
+
+    <div class="quick-track">
+      <span class="rec-label">⚡ Recommended Path</span>
+      <a class="rec-chip" href="labs/lab0.html">Exp 0</a>
+      <span class="rec-arrow">→</span>
+      <a class="rec-chip" href="labs/lab1.html">Exp 1</a>
+      <span class="rec-arrow">→</span>
+      <a class="rec-chip" href="labs/lab2.html">Exp 2</a>
+      <span class="rec-arrow">→</span>
+      <a class="rec-chip" href="labs/lab3.html">Exp 3</a>
+      <span class="rec-arrow">→</span>
+      <a class="rec-chip" href="labs/lab4.html">Exp 4</a>
+      <span class="rec-arrow">→</span>
+      <span style="font-size:.77rem;color:var(--text-3)">Continue through all 15 → Capstone</span>
+    </div>
+
+    <div id="units-container"></div>
+    <div id="achievements-container"></div>
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const LAB_DATA = [
+  {
+    unit: 0, unitColor: '#55607a', unitName: 'Orientation',
+    labs: [{ id:'0', file:'lab0.html', title:'Part 0: Orientation & Setup', time:'30 min', objective:'Install Tableau Public and VS Code, explore the Superstore dataset, and understand how the XML evaluator works.' }]
+  },
+  {
+    unit: 1, unitColor: '#4f8ef7', unitName: 'Foundations of Tableau',
+    labs: [
+      { id:'1', file:'lab1.html', title:'Connecting and Preparing Data', time:'45 min', objective:"Connect to Superstore, rename fields, change datatypes, and inspect XML structure in VS Code." },
+      { id:'2', file:'lab2.html', title:'Basic Visualization and Formatting', time:'45 min', objective:'Create Bar, Line, and Scatter Plot charts with proper formatting, labels, and axis titles.' },
+      { id:'3', file:'lab3.html', title:'Calculated Fields Laboratory', time:'2 hrs', objective:'Master Aggregate, Logical, String, and Number calculations in Tableau.' },
+      { id:'4', file:'lab4.html', title:'Dashboard Development Studio', time:'1 hr', objective:'Build a linked multi-sheet dashboard with Category and Region quick filters.' }
+    ]
+  },
+  {
+    unit: 2, unitColor: '#8b5cf6', unitName: 'Visualization Analytics',
+    labs: [
+      { id:'5', file:'lab5.html', title:'Filtering and Parameter Analytics', time:'1 hr', objective:'Build a dynamic Top-N analysis using parameters and RANK calculated fields.' },
+      { id:'6', file:'lab6.html', title:'Statistical Visualization Lab', time:'1 hr', objective:'Create Histograms, Box Plots, Bubble Charts, and Treemaps across two datasets.' },
+      { id:'7', file:'lab7.html', title:'Business Intelligence Chart Lab', time:'2 hrs', objective:'Build Pareto, Waterfall, Funnel, and Bump charts with business captions.' },
+      { id:'8', file:'lab8.html', title:'Predictive Analytics and Forecasting', time:'1 hr', objective:"Apply Tableau's trend lines, forecasting, and clustering features." }
+    ]
+  },
+  {
+    unit: 3, unitColor: '#14b8a6', unitName: 'BI Workflow',
+    labs: [
+      { id:'9', file:'lab9.html', title:'Data Types, Hierarchy, and Metadata', time:'1 hr', objective:'Create field hierarchies, assign geographic roles, and document a Data Dictionary.' },
+      { id:'10', file:'lab10.html', title:'Extracts and Metadata Analysis', time:'1 hr', objective:'Compare live vs extract connections and use DATEDIFF to calculate shipping time.' }
+    ]
+  },
+  {
+    unit: 4, unitColor: '#f59e0b', unitName: 'Advanced Analytics',
+    labs: [
+      { id:'11', file:'lab11.html', title:'Geospatial Analytics Laboratory', time:'1 hr', objective:'Build Filled Maps and Symbol Maps, and use MAKEPOINT/DISTANCE calculations.' },
+      { id:'12', file:'lab12.html', title:'Performance Optimization Lab', time:'1 hr', objective:'Compare workbooks before/after LOD optimization and extract migration.' }
+    ]
+  },
+  {
+    unit: 5, unitColor: '#f43f5e', unitName: 'Tableau Public Publishing',
+    labs: [
+      { id:'13', file:'lab13.html', title:'Publishing and Sharing Workflow', time:'1 hr', objective:'Publish to Tableau Public and embed a dashboard using the Embedding API v3.' },
+      { id:'14', file:'lab14.html', title:'Dashboard Iteration and Versioning', time:'1 hr', objective:'Iterate on a published dashboard and document changes in a Version Log.' },
+      { id:'15', file:'lab15.html', title:'Data Pipeline Integration ⭐ Bonus', time:'2 hrs', objective:'Generate a CSV with Python and build a live monitoring dashboard. Optional +10 marks.' }
+    ]
+  },
+  {
+    unit: 'C', unitColor: '#22c55e', unitName: 'Capstone Project',
+    labs: [{ id:'Cap', file:'capstone.html', title:'Complete BI Solution', time:'1–2 weeks', objective:'Build a full multi-dashboard solution meeting 8 mandatory technical requirements.' }]
+  }
+];
+
+const key = id => `tvl_complete_${id}`;
+const done = id => localStorage.getItem(key(id)) === '1';
+
+function buildSidebar() {
+  const sb = document.getElementById('sidebar');
+  sb.innerHTML = '';
+  LAB_DATA.forEach(u => {
+    const comp = u.labs.filter(l => done(l.id)).length;
+    const pct = Math.round(comp / u.labs.length * 100);
+    const sec = document.createElement('div');
+    sec.innerHTML = `
+      <div class="sidebar-unit-header">
+        <div class="sidebar-dot" style="background:${u.unitColor}"></div>
+        <span style="color:${u.unitColor}">${u.unit === 'C' ? 'Capstone' : u.unit === 0 ? 'Orientation' : 'Part ' + u.unit}</span>
+        <span class="sidebar-count">${comp}/${u.labs.length}</span>
+      </div>
+      <div class="sidebar-mini-bar"><div class="sidebar-mini-fill" style="background:${u.unitColor};width:${pct}%"></div></div>
+      <ul class="sidebar-lab-list">
+        ${u.labs.map(l => `<li><a href="labs/${l.file}" class="sidebar-lab-link ${done(l.id)?'done':''}">
+          Exp ${l.id}: ${l.title.replace(' ⭐ Bonus','')}
+          <span class="sidebar-check">${done(l.id)?'✓':''}</span>
+        </a></li>`).join('')}
+      </ul>`;
+    sb.appendChild(sec);
+  });
+}
+
+function buildUnits() {
+  const cont = document.getElementById('units-container');
+  cont.innerHTML = '';
+  LAB_DATA.forEach(u => {
+    const comp = u.labs.filter(l => done(l.id)).length;
+    const pct = Math.round(comp / u.labs.length * 100);
+    const sec = document.createElement('section');
+    sec.className = 'unit-section';
+    sec.innerHTML = `
+      <div class="unit-section-header">
+        <div class="unit-badge" style="background:${u.unitColor}1a;color:${u.unitColor};border:1px solid ${u.unitColor}33">
+          ${u.unit === 'C' ? 'Capstone' : u.unit === 0 ? 'Orientation' : 'Part ' + u.unit}
+        </div>
+        <h2 class="unit-section-title">${u.unitName}</h2>
+        <div class="unit-section-progress">
+          <div class="unit-pbar"><div class="unit-pfill" style="background:${u.unitColor};width:${pct}%"></div></div>
+          <span class="unit-pct">${comp}/${u.labs.length}</span>
+        </div>
+      </div>
+      <div class="labs-grid">
+        ${u.labs.map(l => `
+          <div class="lab-card ${done(l.id)?'done':''}" style="--cc:${u.unitColor}">
+            <style>.lab-card[style*="--cc:${u.unitColor}"]::before{background:linear-gradient(90deg,${u.unitColor},transparent)}</style>
+            <div class="lab-card-top">
+              <span class="lab-id-badge" style="background:${u.unitColor}1a;color:${u.unitColor}">Exp ${l.id}</span>
+              ${done(l.id) ? '<span style="font-size:.8rem;color:var(--green)">✓ Done</span>' : ''}
+            </div>
+            <div class="lab-title">${l.title}</div>
+            <div class="lab-objective">${l.objective}</div>
+            <div class="lab-card-footer">
+              <span class="lab-time">🕐 ~${l.time}</span>
+              <a href="labs/${l.file}" class="launch-btn">Launch →</a>
+            </div>
+          </div>`).join('')}
+      </div>`;
+    cont.appendChild(sec);
+  });
+}
+
+function updateProgress() {
+  const all = LAB_DATA.flatMap(u => u.labs);
+  const d = all.filter(l => done(l.id)).length;
+  const pct = Math.round(d / all.length * 100);
+  document.getElementById('overall-fill').style.width = pct + '%';
+  document.getElementById('overall-pct').textContent = pct + '%';
+}
+
+function buildAchievements() {
+  const BADGES = [
+    { key:'tvl_badge_connected', icon:'🔌', name:'Data Connector', desc:'Completed Exp 1 — data connection mastered' },
+    { key:'tvl_badge_visualizer', icon:'📊', name:'Visualizer', desc:'Completed Exp 2 — three chart types built' },
+    { key:'tvl_badge_calculator', icon:'🧮', name:'Calculator', desc:'Completed Exp 3 — all four calc types done' },
+    { key:'tvl_badge_publisher', icon:'🌐', name:'Publisher', desc:'Completed Exp 13 — published to Tableau Public' },
+  ];
+  const earned = BADGES.filter(b => localStorage.getItem(b.key) === '1');
+  const el = document.getElementById('achievements-container');
+  if (!earned.length) { el.innerHTML = ''; return; }
+  el.innerHTML = `<div class="achievements-section">
+    <p class="section-label">🏆 Earned Badges</p>
+    <div class="badge-grid">${earned.map(b => `<div class="badge-card"><div class="badge-card-icon">${b.icon}</div><div><div class="badge-card-name">${b.name}</div><div class="badge-card-desc">${b.desc}</div></div></div>`).join('')}</div>
+  </div>`;
+}
+
+function exportReport() {
+  const data = {};
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith('tvl_')) data[k] = localStorage.getItem(k);
+  }
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `tableau_vl_backup_${new Date().toISOString().slice(0,10)}.json`;
+  a.click(); URL.revokeObjectURL(a.href);
+  showToast('Backup downloaded successfully 💾');
+}
+function restoreProgress() { document.getElementById('restore-input').click(); }
+function handleRestore(input) {
+  const f = input.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = ev => {
+    try {
+      const data = JSON.parse(ev.target.result); let n = 0;
+      Object.entries(data).forEach(([k,v]) => { if (k.startsWith('tvl_')) { localStorage.setItem(k,v); n++; } });
+      alert(`✅ Restored ${n} records. Reloading...`); location.reload();
+    } catch { alert('❌ Invalid backup file.'); }
+  };
+  r.readAsText(f);
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.className = 'toast show';
+  clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+buildSidebar(); buildUnits(); buildAchievements(); updateProgress();
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) { buildSidebar(); buildUnits(); buildAchievements(); updateProgress(); }
+});
+</script>
+</body>
+</html>

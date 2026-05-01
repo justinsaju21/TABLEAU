@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Exp 9 &mdash; Data Types, Hierarchy, and Metadata | Tableau VL</title>
+<link rel="stylesheet" href="../css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="../js/evaluator.js"></script>
+<script src="../js/tutor.js"></script>
+</head>
+<body>
+<div class="topbar">
+  <a href="../index.html" class="back-btn">&larr; Curriculum</a>
+  <span class="lab-badge">Exp 9</span>
+  <span class="topbar-title">Data Types, Hierarchy, and Metadata</span>
+  <span class="difficulty-chip">Part 3</span>
+  <button class="complete-btn" id="complete-btn">Mark Complete &#x2713;</button>
+</div>
+<div class="page">
+  <div class="objective-bar"><strong>Objective:</strong> Create field hierarchies, assign geographic roles, and document a Data Dictionary.</div>
+  
+  <div class="main-grid">
+    <div class="panel">
+      <div class="panel-header">&#128221; Tasks</div>
+      <div class="panel-body">
+        <div class="info-box"><strong>Refer to your lab manual</strong> for the full step-by-step tasks, dataset download links, and deliverable specifications for this experiment. Complete all tasks, save your workbook, then upload it to the evaluator.</div>
+        <div class="challenge-box" style="margin-top:1rem">
+          <div class="challenge-title">&#127919; Submission Checklist</div>
+          <div class="challenge-q">Before uploading: open your .twb in VS Code and verify the required XML nodes are present. The evaluator checks attribute values &mdash; not the visual output.</div>
+        </div>
+        <div class="section-label">Lab Instructions</div>
+        <div class="steps-list">
+<div class="step-item"><div class="step-num">1</div><div class="step-text">Create a <b>Hierarchy</b> for Product (Category -> Sub-Category -> Product Name).</div></div>
+<div class="step-item"><div class="step-num">2</div><div class="step-text">Assign <b>Geographic Roles</b> to State and City fields.</div></div>
+<div class="step-item"><div class="step-num">3</div><div class="step-text">Build a <b>Map Worksheet</b> and test the drill-down (+) capability.</div></div>
+<div class="step-item"><div class="step-num">4</div><div class="step-text">Create a <b>Dashboard</b> that serves as a <b>Data Dictionary</b>, explaining each field.</div></div>
+<div class="step-item"><div class="step-num">5</div><div class="step-text">Add <b>Default Properties -> Comments</b> to your fields for hover-over metadata.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-header">&#129514; XML Evaluator</div>
+      <div class="panel-body">
+        <div class="score-banner">
+          <div>
+            <div class="score-left">Auto-Evaluation Score</div>
+            <div class="score-bar" style="width:160px;margin-top:.4rem"><div class="score-bar-fill" id="score-bar" style="width:0%"></div></div>
+          </div>
+          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;10</div>
+        </div>
+        <div class="eval-error" id="eval-error"></div>
+        <div class="upload-zone" id="uploadZone">
+          <div class="upload-icon">&#128196;</div>
+          <div class="upload-title">Drop .twb / .twbx here</div>
+          <div class="upload-sub">or click to browse &mdash; we read the XML, not screenshots</div>
+          <div style="margin-top:.5rem;font-size:.73rem" id="file-label"></div>
+          <input type="file" id="fileInput" style="display:none" accept=".twb,.twbx">
+        </div>
+        <div class="section-label" style="margin-top:1.5rem">Graphical Evidence</div>
+        <div class="upload-zone" id="ssZone" style="height:140px;border-style:dashed;background:rgba(255,255,255,0.02)">
+          <img id="ss-preview" style="display:none;width:100%;height:100%;object-fit:contain;border-radius:6px">
+          <div id="ss-placeholder" style="text-align:center">
+            <div class="upload-icon" style="font-size:1.4rem">📸</div>
+            <div class="upload-title" style="font-size:0.8rem">Paste (Ctrl+V) or Upload Screenshot</div>
+            <div class="upload-sub" style="font-size:0.65rem">Included in final report</div>
+          </div>
+          <input type="file" id="ssInput" style="display:none" accept="image/*">
+        </div>
+        <div class="check-list" id="resultsList" style="margin-top:1rem">
+<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Drill Path Hierarchy</div></div><div class="check-marks">3 marks</div></div>
+<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Map Worksheet</div></div><div class="check-marks">3 marks</div></div>
+<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Geographic Role</div></div><div class="check-marks">2 marks</div></div>
+<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Data Dictionary Dashboard</div></div><div class="check-marks">2 marks</div></div>
+        </div>
+        <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
+          <button class="btn export" id="export-btn">&#128229; Export Report</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rubric-section">
+    <div class="rubric-title">&#128221; Reflection (auto-saved)</div>
+    <div class="reflection-area">
+      <label for="reflection-text" style="font-size:.82rem;color:var(--text-2)">Write your observations and answers to the lab reflection questions:</label>
+      <textarea id="reflection-text" placeholder="Describe what you learned, what surprised you, and how the XML changed after each step..."></textarea>
+    </div>
+    <div class="save-row">
+      <button class="btn" id="save-btn">&#128190; Save</button>
+      <button class="btn export" id="dl-btn">&#128228; Download Notes</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+(function() {
+  var EID = '9';
+  var TITLE = 'Exp 9 — Data Types, Hierarchy, and Metadata';
+
+  var labChecks = [
+  {id:"check-1",name:"Drill Path Hierarchy",marks:3,evalFn:(xml)=>!!(TableauEvaluator.hasDrillPath(xml,3))},
+  {id:"check-2",name:"Map Worksheet",marks:3,evalFn:(xml)=>!!(TableauEvaluator.hasMarkType(xml,"Map"))},
+  {id:"check-3",name:"Geographic Role",marks:2,evalFn:(xml)=>!!(TableauEvaluator.hasNode(xml,"drill-path"))},
+  {id:"check-4",name:"Data Dictionary Dashboard",marks:2,evalFn:(xml)=>!!(TableauEvaluator.hasTextObject(xml) && TableauEvaluator.dashboardCount(xml) > 0)}
+  ];
+
+  function showToast(m, type) {
+    var t = document.getElementById('toast');
+    t.textContent = m; t.className = 'toast show' + (type ? ' ' + type : '');
+    clearTimeout(t._x); t._x = setTimeout(function() { t.classList.remove('show'); }, 2800);
+  }
+
+  var evaluator = new TableauEvaluator(labChecks, function(results, totalScore, maxScore) {
+    document.getElementById('scoreDisplay').textContent = totalScore;
+    document.getElementById('score-bar').style.width = Math.round(totalScore / maxScore * 100) + '%';
+    var allPass = true;
+    results.forEach(function(r) {
+      var el = document.getElementById(r.id);
+      if (el) {
+        el.className = 'check-item ' + (r.passed ? 'pass' : 'fail');
+        el.querySelector('.check-icon').textContent = r.passed ? '\u2705' : '\u274C';
+      }
+      if (!r.passed) allPass = false;
+    });
+    if (allPass) {
+      localStorage.setItem('tvl_complete_' + EID, '1');
+      // Set Badge Achievement if this lab has one
+      const badges = { '1': 'tvl_badge_connected', '2': 'tvl_badge_visualizer', '3': 'tvl_badge_calculator', '13': 'tvl_badge_publisher' };
+      if (badges[EID]) localStorage.setItem(badges[EID], '1');
+
+      var btn = document.getElementById('complete-btn');
+      btn.classList.add('done'); btn.textContent = '✓ Completed!';
+      showToast('Exp ' + EID + ' Complete! 🥳');
+    }
+  });
+
+  setupUploadZone('uploadZone', 'fileInput', evaluator);
+
+  // --- Screenshot Handler ---
+  const ssZone = document.getElementById('ssZone');
+  const ssInput = document.getElementById('ssInput');
+  const ssPreview = document.getElementById('ss-preview');
+  const ssPlaceholder = document.getElementById('ss-placeholder');
+  const saveSS = (base64) => {
+    localStorage.setItem('tvl_ss_' + EID, base64);
+    ssPreview.src = base64; ssPreview.style.display = 'block'; ssPlaceholder.style.display = 'none';
+    showToast('Screenshot Captured! 📸');
+  };
+  const processImg = (file) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const MAX_W = 1000;
+        let w = img.width, h = img.height;
+        if (w > MAX_W) { h *= MAX_W / w; w = MAX_W; }
+        canvas.width = w; canvas.height = h;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, w, h);
+        saveSS(canvas.toDataURL('image/jpeg', 0.7));
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  };
+  ssZone.addEventListener('click', () => ssInput.click());
+  ssInput.addEventListener('change', (e) => { if (e.target.files[0]) processImg(e.target.files[0]); });
+  document.addEventListener('paste', (e) => {
+    const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].type.indexOf('image') !== -1) {
+        processImg(items[i].getAsFile()); break;
+      }
+    }
+  });
+  const savedSS = localStorage.getItem('tvl_ss_' + EID);
+  if (savedSS) { ssPreview.src = savedSS; ssPreview.style.display = 'block'; ssPlaceholder.style.display = 'none'; }
+
+  document.getElementById('export-btn').addEventListener('click', function() {
+    evaluator.exportReport(TITLE);
+  });
+
+  document.getElementById('save-btn').addEventListener('click', function() {
+    localStorage.setItem('tvl_reflect_' + EID, document.getElementById('reflection-text').value);
+    showToast('Saved \u2713');
+  });
+  document.getElementById('reflection-text').addEventListener('input', function() {
+    localStorage.setItem('tvl_reflect_' + EID, this.value);
+  });
+  document.getElementById('dl-btn').addEventListener('click', function() {
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([document.getElementById('reflection-text').value], {type: 'text/plain'}));
+    a.download = 'tableau_exp9_notes.txt'; a.click();
+  });
+  document.getElementById('complete-btn').addEventListener('click', function() {
+    localStorage.setItem('tvl_complete_' + EID, '1');
+    const badges = { '1': 'tvl_badge_connected', '2': 'tvl_badge_visualizer', '3': 'tvl_badge_calculator', '13': 'tvl_badge_publisher' };
+    if (badges[EID]) localStorage.setItem(badges[EID], '1');
+    this.classList.add('done'); this.textContent = '✓ Completed!';
+    showToast('Exp ' + EID + ' marked complete! ✅');
+  });
+
+  // Load saved state
+  var saved = localStorage.getItem('tvl_reflect_' + EID);
+  if (saved) document.getElementById('reflection-text').value = saved;
+  if (localStorage.getItem('tvl_complete_' + EID) === '1') {
+    document.getElementById('complete-btn').classList.add('done');
+    document.getElementById('complete-btn').textContent = '✓ Completed!';
+  }
+})();
+</script>
+</body>
+</html>
