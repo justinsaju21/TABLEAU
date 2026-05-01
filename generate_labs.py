@@ -472,11 +472,17 @@ TMPL = '''<!DOCTYPE html>
     a.download = 'tableau_exp{id}_notes.txt'; a.click();
   }});
   document.getElementById('complete-btn').addEventListener('click', function() {{
+    const val = reflectInput.value.trim();
+    if (val.length < 20) {{
+      showToast('\u26A0 Please write a detailed reflection first!');
+      reflectInput.focus();
+      return;
+    }}
     localStorage.setItem('tvl_complete_' + EID, '1');
     const badges = {{ '1': 'tvl_badge_connected', '2': 'tvl_badge_visualizer', '3': 'tvl_badge_calculator', '13': 'tvl_badge_publisher' }};
     if (badges[EID]) localStorage.setItem(badges[EID], '1');
     this.classList.add('done'); this.textContent = '\u2713 Completed!';
-    showToast('Exp ' + EID + ' marked complete! ✅');
+    showToast('Exp ' + EID + ' marked complete! \u2705');
   }});
 
   // Load saved state
