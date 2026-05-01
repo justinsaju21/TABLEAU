@@ -108,27 +108,28 @@ ${rows}
   static hasMarkType(xml, cls, xmlString) {
     const target = cls.toLowerCase();
     const content = (xmlString || new XMLSerializer().serializeToString(xml)).toLowerCase();
-    
-    // Split into worksheet blocks to avoid cross-talk between sheets
     const sheets = content.split('<worksheet');
     
     for (let s of sheets) {
+      // Check for Bar Chart (Category/Sales or Mark-Color)
       if (target === 'bar') {
-        // Bar: Category + Sales OR mark-color + Sales
-        if ((s.includes('category') && s.includes('sales')) || (s.includes('mark-color') && s.includes('sales'))) {
-           // Ensure it's not the line chart (which has order date) or scatter (which has circle)
-           if (!s.includes('order date') && !s.includes('circle')) return true;
-        }
+        const isBar = (s.includes('category') || s.includes('sub-category')) && s.includes('sales');
+        if (isBar && !s.includes('order date') && !s.includes('circle')) return true;
       }
+      // Check for Line Chart (Order Date + Profit)
       if (target === 'line') {
-        // Line: Order Date + Profit
         if (s.includes('order date') && s.includes('profit')) return true;
       }
+      // Check for Scatter Plot (Profit + Sales + Circle/Shape)
       if (target === 'circle' || target === 'scatter') {
-        // Scatter: Sales + Profit + Circle shape
-        if (s.includes('sales') && s.includes('profit') && (s.includes('circle') || s.includes('shape'))) return true;
+        if (s.includes('profit') && s.includes('sales') && (s.includes('circle') || s.includes('shape'))) return true;
       }
     }
+    // Final fallback: broad scan
+    if (target === 'bar') return content.includes('category') && content.includes('sales') && content.includes('mark-color');
+    if (target === 'line') return content.includes('order date') && content.includes('profit');
+    if (target === 'circle' || target === 'scatter') return content.includes('circle') || (content.includes('sales') && content.includes('profit') && content.includes('shape'));
+    
     return false;
   }
 
@@ -174,11 +175,10 @@ ${rows}
     const content = (xmlString || new XMLSerializer().serializeToString(xml)).toLowerCase();
     
     if (target === 'label' || target === 'mark-labels') {
-       // Labels are specific to marks
-       return content.includes('mark-labels-show="true"') || content.includes('mark-labels-show=\'true\'');
+       return content.includes('mark-labels-show') || content.includes('mark-labels') || content.includes('labels-show');
     }
     if (target === 'color') {
-       return content.includes('mark-color') || content.includes('<color');
+       return content.includes('mark-color') || content.includes('<color') || content.includes('encoding=\'color\'');
     }
     return this.findNodes(xml, target).length > 0 || content.includes('<' + target);
   }
