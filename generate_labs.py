@@ -481,10 +481,10 @@ TMPL = '''<!DOCTYPE html>
 
   // Load saved state
   var saved = localStorage.getItem('tvl_reflect_' + EID);
-  if (saved) { 
+  if (saved) {{ 
     reflectInput.value = saved; 
     updateReflectStatus(); 
-  }
+  }}
   if (localStorage.getItem('tvl_complete_' + EID) === '1') {{
     document.getElementById('complete-btn').classList.add('done');
     document.getElementById('complete-btn').textContent = '\u2713 Completed!';
