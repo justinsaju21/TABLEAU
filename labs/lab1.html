@@ -34,7 +34,7 @@
 <div class="step-item"><div class="step-num">2</div><div class="step-text">In the <b>Data Source tab</b>, right-click <b>Order ID</b> in the field list and choose <b>Rename</b>. Type "Transaction ID" and press Enter. Repeat for <b>Customer Name</b> — rename it to "Client Name". You will see the column headers update immediately in the preview grid.</div></div>
 <div class="step-item"><div class="step-num">3</div><div class="step-text">Find <b>Postal Code</b> in the field list. Its icon will show <b>#</b> (Number). Right-click it, go to <b>Change Data Type > String</b>. The icon changes to <b>Abc</b>. This is critical — ZIP codes must be strings to avoid arithmetic operations.</div></div>
 <div class="step-item"><div class="step-num">4</div><div class="step-text">Navigate to a blank worksheet (Sheet 1). Right-click any empty space in the <b>Data pane</b> and select <b>Create Calculated Field</b>. In the dialog name it "Shipping Time" and enter the formula: `DATEDIFF('day', [Order Date], [Ship Date])`. Click OK. The new field appears in the Measures pane.</div></div>
-<div class="step-item"><div class="step-num">5</div><div class="step-text">In the <b>Data pane</b>, right-click the <b>State</b> field, go to <b>Geographic Role > State/Province</b>. A small globe icon will appear on the field confirming the role assignment. Save the workbook as "Exp1_Data.twb" and upload it here.</div></div>
+<div class="step-item"><div class="step-num">5</div><div class="step-text">In the <b>Data pane</b>, select <b>Country/Region</b>, <b>State/Province</b>, and <b>City</b> by holding Ctrl (or Cmd) while clicking them. Right-click the selection, choose <b>Hierarchy > Create Hierarchy</b>, and name it "Location". A hierarchy structure will appear, allowing you to drill down in maps! Save the workbook as "Exp1_Data.twb" and upload it here.</div></div>
         </div>
       </div>
     </div>
@@ -70,7 +70,7 @@
 <div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Datasource Connected</div></div><div class="check-marks">25 marks</div></div>
 <div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Calculated Field (DATEDIFF)</div></div><div class="check-marks">25 marks</div></div>
 <div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Renamed Fields</div></div><div class="check-marks">25 marks</div></div>
-<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Geographic Role Assigned</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Geographic Hierarchy Created</div></div><div class="check-marks">25 marks</div></div>
         </div>
         <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
           <button class="btn export" id="export-btn">&#128229; Export Report</button>
@@ -100,8 +100,8 @@
   var labChecks = [
   {id:"check-1",name:"Datasource Connected",marks:25,evalFn:(xml)=>!!(TableauEvaluator.hasNode(xml,"datasource"))},
   {id:"check-2",name:"Calculated Field (DATEDIFF)",marks:25,evalFn:(xml)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"DATEDIFF"))},
-  {id:"check-3",name:"Renamed Fields",marks:25,evalFn:(xml)=>!!(TableauEvaluator.hasNode(xml,"column"))},
-  {id:"check-4",name:"Geographic Role Assigned",marks:25,evalFn:(xml)=>!!(TableauEvaluator.hasDrillPath(xml,3))}
+  {id:"check-3",name:"Renamed Fields",marks:25,evalFn:(xml)=>!!(TableauEvaluator.hasRenamedField(xml,"Transaction ID") || TableauEvaluator.hasRenamedField(xml,"Client Name"))},
+  {id:"check-4",name:"Geographic Hierarchy Created",marks:25,evalFn:(xml)=>!!(TableauEvaluator.hasDrillPath(xml,3))}
   ];
 
   function showToast(m, type) {
