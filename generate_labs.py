@@ -244,7 +244,7 @@ TMPL = '''<!DOCTYPE html>
 <title>Exp {id} &mdash; {title} | Tableau VL</title>
 <link rel="stylesheet" href="../css/style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="../js/evaluator.js"></script>
+<script src="../js/evaluator.js?v=1777629337"></script>
 <script src="../js/tutor.js"></script>
 </head>
 <body>
