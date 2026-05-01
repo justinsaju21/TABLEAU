@@ -464,11 +464,11 @@ TMPL = '''<!DOCTYPE html>
     const foundKeywords = required.filter(k => val.includes(k));
     const hasTechnicalDepth = foundKeywords.length >= 2;
     
-    if (words >= 30 && hasTechnicalDepth) {{
+    if (words >= 15 && hasTechnicalDepth) {{
       reflectStatus.textContent = '\u2714 PASS (' + words + ' words)';
       reflectStatus.style.cssText = 'font-size: 0.85rem; padding: 2px 10px; border-radius: 4px; background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; font-weight:bold;';
-    }} else if (words < 30) {{
-      reflectStatus.textContent = '\u26A0 Too Short (' + words + '/30 words)';
+    }} else if (words < 15) {{
+      reflectStatus.textContent = '\u26A0 Too Short (' + words + '/15 words)';
       reflectStatus.style.cssText = 'font-size: 0.85rem; padding: 2px 10px; border-radius: 4px; background: #fff7ed; color: #9a3412; border: 1px solid #ffedd5; font-weight:bold;';
     }} else {{
       reflectStatus.textContent = '\u26A0 Lacks Lab Keywords';
@@ -502,8 +502,8 @@ TMPL = '''<!DOCTYPE html>
     const foundKeywords = required.filter(k => val.includes(k));
     const hasTechnicalDepth = foundKeywords.length >= 2;
 
-    if (words < 30) {{
-      showToast('\u26A0 Reflection too short — write at least 30 meaningful words (currently ' + words + ').');
+    if (words < 15) {{
+      showToast('\u26A0 Reflection too short — write at least 15 meaningful words (currently ' + words + ').');
       reflectInput.focus();
     }} else if (!hasTechnicalDepth) {{
       showToast('\u26A0 Reflection lacks lab keywords. Please use terms like "' + required.join('", "') + '".');
