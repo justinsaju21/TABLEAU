@@ -103,10 +103,10 @@
 
   var labChecks = [
   {id:"check-1",name:"3 Worksheets Present",marks:20,evalFn:(xml, xmlString)=>!!(xml.getElementsByTagName("worksheet").length >= 3)},
-  {id:"check-2",name:"Bar Chart Mark",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasMarkType(xml,"Bar",xmlString))},
-  {id:"check-3",name:"Line Chart Mark",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasMarkType(xml,"Line",xmlString))},
-  {id:"check-4",name:"Scatter Plot Mark",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasMarkType(xml,"Circle",xmlString))},
-  {id:"check-5",name:"Labels Present",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasNode(xml,"label",xmlString))}
+  {id:"check-2",name:"Bar Chart Mark",marks:20,evalFn:(xml, xmlString)=>!!((function(x){var ss=x.toLowerCase().split("<worksheet");for(var s of ss){var cm=s.match(/<cols>([^<]*)<\/cols>/);var rm=s.match(/<rows>([^<]*)<\/rows>/);var c=cm?cm[1]:"";var r=rm?rm[1]:"";if((c.includes("none:category")||c.includes("none:sub-category"))&&(r.includes("sum:sales")||r.includes("sum:profit")))return true;if(r.includes("none:category")&&c.includes("sum:sales"))return true;}return false;})(xmlString))},
+  {id:"check-3",name:"Line Chart Mark",marks:20,evalFn:(xml, xmlString)=>!!((function(x){var ss=x.toLowerCase().split("<worksheet");for(var s of ss){var cm=s.match(/<cols>([^<]*)<\/cols>/);var rm=s.match(/<rows>([^<]*)<\/rows>/);var c=cm?cm[1]:"";var r=rm?rm[1]:"";if(c.includes(":order date")&&(r.includes("sum:profit")||r.includes("sum:sales")))return true;}return false;})(xmlString))},
+  {id:"check-4",name:"Scatter Plot Mark",marks:20,evalFn:(xml, xmlString)=>!!((function(x){var ss=x.toLowerCase().split("<worksheet");for(var s of ss){var cm=s.match(/<cols>([^<]*)<\/cols>/);var rm=s.match(/<rows>([^<]*)<\/rows>/);var c=cm?cm[1]:"";var r=rm?rm[1]:"";if(c.includes("sum:sales")&&r.includes("sum:profit"))return true;if(c.includes("sum:profit")&&r.includes("sum:sales"))return true;}return false;})(xmlString))},
+  {id:"check-5",name:"Labels Present",marks:20,evalFn:(xml, xmlString)=>!!(xmlString.toLowerCase().includes("mark-labels-show"))}
   ];
 
   function showToast(m, type) {
