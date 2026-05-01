@@ -77,8 +77,17 @@ ${rows}
   }
 
   // ── Static XML Helpers ──
+  static findNodes(xml, tagName) {
+    // Try standard search first, then namespace-agnostic search
+    let nodes = xml.getElementsByTagName(tagName);
+    if (nodes.length === 0) {
+      nodes = xml.getElementsByTagNameNS('*', tagName);
+    }
+    return nodes;
+  }
+
   static hasDatasource(xml, sub) {
-    const ds = xml.getElementsByTagName('datasource');
+    const ds = this.findNodes(xml, 'datasource');
     for (let i = 0; i < ds.length; i++) {
       const n = (ds[i].getAttribute('name') || '') + (ds[i].getAttribute('caption') || '');
       if (n.toLowerCase().includes(sub.toLowerCase())) return true;
@@ -86,13 +95,13 @@ ${rows}
     return false;
   }
   static hasRenamedField(xml, caption) {
-    const cols = xml.getElementsByTagName('column');
+    const cols = this.findNodes(xml, 'column');
     for (let i = 0; i < cols.length; i++)
       if ((cols[i].getAttribute('caption') || '').toLowerCase() === caption.toLowerCase()) return true;
     return false;
   }
   static hasDatatypeChange(xml, fieldName, dtype) {
-    const cols = xml.getElementsByTagName('column');
+    const cols = this.findNodes(xml, 'column');
     for (let i = 0; i < cols.length; i++) {
       const n = cols[i].getAttribute('name') || '';
       if (n.toLowerCase().includes(fieldName.toLowerCase()) && cols[i].getAttribute('datatype') === dtype) return true;
@@ -100,7 +109,7 @@ ${rows}
     return false;
   }
   static hasMarkType(xml, cls) {
-    const marks = xml.getElementsByTagName('mark');
+    const marks = this.findNodes(xml, 'mark');
     for (let i = 0; i < marks.length; i++) {
       const markClass = (marks[i].getAttribute('class') || '').toLowerCase();
       if (markClass === cls.toLowerCase()) return true;
@@ -108,7 +117,7 @@ ${rows}
     return false;
   }
   static hasFormulaKeyword(xml, ...keywords) {
-    const calcs = xml.getElementsByTagName('calculation');
+    const calcs = this.findNodes(xml, 'calculation');
     for (let i = 0; i < calcs.length; i++) {
       const f = (calcs[i].getAttribute('formula') || '').toUpperCase();
       if (keywords.every(k => f.includes(k.toUpperCase()))) return true;
@@ -116,22 +125,22 @@ ${rows}
     return false;
   }
   static hasParameter(xml) {
-    const cols = xml.getElementsByTagName('column');
+    const cols = this.findNodes(xml, 'column');
     for (let i = 0; i < cols.length; i++)
       if (cols[i].hasAttribute('param-domain-type')) return true;
     return false;
   }
   static worksheetCount(xml) {
-    return xml.getElementsByTagName('worksheet').length;
+    return this.findNodes(xml, 'worksheet').length;
   }
   static dashboardCount(xml) {
-    return xml.getElementsByTagName('dashboard').length;
+    return this.findNodes(xml, 'dashboard').length;
   }
   static hasDashboardZones(xml, minZones) {
-    const dashes = xml.getElementsByTagName('dashboard');
+    const dashes = this.findNodes(xml, 'dashboard');
     for (let i = 0; i < dashes.length; i++) {
       let ws = 0;
-      const zones = dashes[i].getElementsByTagName('zone');
+      const zones = dashes[i].getElementsByTagName('zone'); // zones are inside dashboard
       for (let j = 0; j < zones.length; j++)
         if (zones[j].getAttribute('type-v2') === 'worksheet') ws++;
       if (ws >= minZones) return true;
@@ -139,17 +148,17 @@ ${rows}
     return false;
   }
   static hasTextObject(xml) {
-    const zones = xml.getElementsByTagName('zone');
+    const zones = this.findNodes(xml, 'zone');
     for (let i = 0; i < zones.length; i++)
       if (zones[i].getAttribute('type-v2') === 'text') return true;
     return false;
   }
   static hasNode(xml, tagName) {
-    if (xml.getElementsByTagName(tagName).length > 0) return true;
+    if (this.findNodes(xml, tagName).length > 0) return true;
     // Fallback for labels which are often 'mark-labels' in Tableau
     if (tagName.toLowerCase() === 'label') {
-       if (xml.getElementsByTagName('mark-labels').length > 0) return true;
-       if (xml.getElementsByTagName('mark-label').length > 0) return true;
+       if (this.findNodes(xml, 'mark-labels').length > 0) return true;
+       if (this.findNodes(xml, 'mark-label').length > 0) return true;
     }
     return false;
   }
