@@ -23,18 +23,18 @@
     <div class="panel">
       <div class="panel-header">&#128221; Tasks</div>
       <div class="panel-body">
-        <div class="info-box"><strong>Refer to your lab manual</strong> for the full step-by-step tasks, dataset download links, and deliverable specifications for this experiment. Complete all tasks, save your workbook, then upload it to the evaluator.</div>
+        <div class="info-box"><strong>Follow the step-by-step instructions below.</strong> Complete every task in order, save your Tableau workbook as a <strong>.twb</strong> file, then upload it to the XML Evaluator on the right. The evaluator reads your workbook&rsquo;s XML structure &mdash; not screenshots.</div>
         <div class="challenge-box" style="margin-top:1rem">
           <div class="challenge-title">&#127919; Submission Checklist</div>
           <div class="challenge-q">Before uploading: open your .twb in VS Code and verify the required XML nodes are present. The evaluator checks attribute values &mdash; not the visual output.</div>
         </div>
         <div class="section-label">Lab Instructions</div>
         <div class="steps-list">
-<div class="step-item"><div class="step-num">1</div><div class="step-text">Create a <b>Bar Chart</b> showing Sales by Category.</div></div>
-<div class="step-item"><div class="step-num">2</div><div class="step-text">Create a <b>Line Chart</b> showing Profit over Time (Order Date).</div></div>
-<div class="step-item"><div class="step-num">3</div><div class="step-text">Create a <b>Scatter Plot</b> comparing Sales vs Profit, using Category on the Color card.</div></div>
-<div class="step-item"><div class="step-num">4</div><div class="step-text">Enable <b>Mark Labels</b> on all three charts.</div></div>
-<div class="step-item"><div class="step-num">5</div><div class="step-text">Format your axes to show <b>Currency</b> instead of standard numbers.</div></div>
+<div class="step-item"><div class="step-num">1</div><div class="step-text"><b>Bar Chart:</b> Click Sheet 1. Drag <b>Category</b> to Columns and <b>Sales</b> to Rows — Tableau creates a bar chart automatically. Right-click the sheet tab and rename it "Sales by Category". Click the <b>Color</b> button on the Marks card and choose a palette you like.</div></div>
+<div class="step-item"><div class="step-num">2</div><div class="step-text"><b>Line Chart:</b> Right-click a sheet tab at the bottom and add a new sheet (Sheet 2). Drag <b>Order Date</b> to Columns (Tableau will group by Year — click the pill and change to Month/Year via More > Month(Order Date)). Drag <b>Profit</b> to Rows. Tableau should show a line chart. If not, click the <b>Line</b> mark type in the Marks card dropdown.</div></div>
+<div class="step-item"><div class="step-num">3</div><div class="step-text"><b>Scatter Plot:</b> Add Sheet 3. Drag <b>Sales</b> to Columns and <b>Profit</b> to Rows. Tableau plots one aggregate point. To see individual marks, drag <b>Order ID</b> to the Detail card on the Marks card. Then drag <b>Category</b> to the <b>Color</b> card — you will see three color-coded clusters. Change mark type to <b>Circle</b> if not already set.</div></div>
+<div class="step-item"><div class="step-num">4</div><div class="step-text">On each sheet, click the <b>Show Mark Labels</b> button (the "T" icon in the toolbar) to add data labels to all marks. Labels appear automatically on bars, the line, and scatter points.</div></div>
+<div class="step-item"><div class="step-num">5</div><div class="step-text">On the Bar Chart, right-click the <b>Sales axis</b> and choose <b>Format</b>. In the Format pane go to <b>Numbers > Currency (Standard)</b>. Repeat for the Profit axis on the Line Chart. Save as "Exp2_Viz.twb" and upload.</div></div>
         </div>
       </div>
     </div>
@@ -56,13 +56,13 @@
           <div style="margin-top:.5rem;font-size:.73rem" id="file-label"></div>
           <input type="file" id="fileInput" style="display:none" accept=".twb,.twbx">
         </div>
-        <div class="section-label" style="margin-top:1.5rem">Graphical Evidence</div>
-        <div class="upload-zone" id="ssZone" style="height:140px;border-style:dashed;background:rgba(255,255,255,0.02)">
-          <img id="ss-preview" style="display:none;width:100%;height:100%;object-fit:contain;border-radius:6px">
+        <div class="section-label" style="margin-top:1.5rem">Graphical Evidence <span style="font-size:.68rem;font-weight:400;color:var(--text-3)">(up to 5 screenshots &mdash; file upload only)</span></div>
+        <div id="ss-gallery" style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.5rem"></div>
+        <div class="upload-zone" id="ssZone" style="height:100px;border-style:dashed;background:rgba(255,255,255,0.02)" title="Click to upload screenshot">
           <div id="ss-placeholder" style="text-align:center">
-            <div class="upload-icon" style="font-size:1.4rem">📸</div>
-            <div class="upload-title" style="font-size:0.8rem">Paste (Ctrl+V) or Upload Screenshot</div>
-            <div class="upload-sub" style="font-size:0.65rem">Included in final report</div>
+            <div class="upload-icon" style="font-size:1.2rem">📸</div>
+            <div class="upload-title" style="font-size:0.78rem">Click to Upload Screenshot</div>
+            <div class="upload-sub" style="font-size:0.63rem">JPEG / PNG &mdash; included in final report</div>
           </div>
           <input type="file" id="ssInput" style="display:none" accept="image/*">
         </div>
@@ -83,7 +83,8 @@
     <div class="rubric-title">&#128221; Reflection (auto-saved)</div>
     <div class="reflection-area">
       <label for="reflection-text" style="font-size:.82rem;color:var(--text-2)">Write your observations and answers to the lab reflection questions:</label>
-      <textarea id="reflection-text" placeholder="Describe what you learned, what surprised you, and how the XML changed after each step..."></textarea>
+      <textarea id="reflection-text" placeholder="Describe what you learned, what surprised you, and how the XML changed after each step..." oncopy="return false" oncut="return false" onpaste="return false"></textarea>
+      <div style="font-size:.7rem;color:var(--text-3);margin-top:.25rem">&#x26A0; Copy &amp; paste is disabled &mdash; type your reflection directly.</div>
     </div>
     <div class="save-row">
       <button class="btn" id="save-btn">&#128190; Save</button>
@@ -137,46 +138,72 @@
 
   setupUploadZone('uploadZone', 'fileInput', evaluator);
 
-  // --- Screenshot Handler ---
+  // --- Block all global paste ---
+  document.addEventListener('paste', (e) => { e.preventDefault(); });
+
+  // --- Multi-Screenshot Handler (file upload only, max 5) ---
+  const MAX_SS = 5;
   const ssZone = document.getElementById('ssZone');
   const ssInput = document.getElementById('ssInput');
-  const ssPreview = document.getElementById('ss-preview');
+  const ssGallery = document.getElementById('ss-gallery');
   const ssPlaceholder = document.getElementById('ss-placeholder');
-  const saveSS = (base64) => {
-    localStorage.setItem('tvl_ss_' + EID, base64);
-    ssPreview.src = base64; ssPreview.style.display = 'block'; ssPlaceholder.style.display = 'none';
-    showToast('Screenshot Captured! 📸');
-  };
-  const processImg = (file) => {
+
+  function loadScreenshots() {
+    const arr = JSON.parse(localStorage.getItem('tvl_ss_' + EID) || '[]');
+    return Array.isArray(arr) ? arr : (arr ? [arr] : []);
+  }
+  function saveScreenshots(arr) {
+    localStorage.setItem('tvl_ss_' + EID, JSON.stringify(arr));
+  }
+  function renderGallery() {
+    const arr = loadScreenshots();
+    ssGallery.innerHTML = '';
+    arr.forEach((src, idx) => {
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'position:relative;display:inline-block;width:110px;height:80px;border-radius:8px;overflow:hidden;border:1px solid var(--border-bright);background:#111';
+      const img = document.createElement('img');
+      img.src = src;
+      img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+      const del = document.createElement('button');
+      del.textContent = '✕';
+      del.title = 'Delete screenshot';
+      del.style.cssText = 'position:absolute;top:3px;right:3px;background:rgba(244,63,94,0.85);color:#fff;border:none;border-radius:50%;width:18px;height:18px;font-size:10px;cursor:pointer;line-height:1;padding:0;display:flex;align-items:center;justify-content:center;';
+      del.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const a = loadScreenshots(); a.splice(idx, 1); saveScreenshots(a); renderGallery();
+        showToast('Screenshot removed.');
+      });
+      wrap.appendChild(img); wrap.appendChild(del);
+      ssGallery.appendChild(wrap);
+    });
+    const remaining = MAX_SS - arr.length;
+    ssPlaceholder.querySelector('.upload-sub').textContent = remaining > 0 ? 'JPEG / PNG — ' + remaining + ' slot' + (remaining===1?'':'s') + ' remaining' : 'Maximum 5 screenshots reached';
+    ssZone.style.opacity = remaining > 0 ? '1' : '0.4';
+    ssZone.style.pointerEvents = remaining > 0 ? 'auto' : 'none';
+  }
+  function processImg(file) {
+    const arr = loadScreenshots();
+    if (arr.length >= MAX_SS) { showToast('Maximum 5 screenshots reached.', 'error'); return; }
     const reader = new FileReader();
     reader.onload = (e) => {
       const img = new Image();
       img.onload = () => {
         const canvas = document.createElement('canvas');
-        const MAX_W = 1000;
-        let w = img.width, h = img.height;
-        if (w > MAX_W) { h *= MAX_W / w; w = MAX_W; }
+        const MAX_W = 1000; let w = img.width, h = img.height;
+        if (w > MAX_W) { h = Math.round(h * MAX_W / w); w = MAX_W; }
         canvas.width = w; canvas.height = h;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0, w, h);
-        saveSS(canvas.toDataURL('image/jpeg', 0.7));
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        arr.push(canvas.toDataURL('image/jpeg', 0.7));
+        saveScreenshots(arr); renderGallery();
+        showToast('Screenshot added! 📸');
       };
       img.src = e.target.result;
     };
     reader.readAsDataURL(file);
-  };
+  }
   ssZone.addEventListener('click', () => ssInput.click());
-  ssInput.addEventListener('change', (e) => { if (e.target.files[0]) processImg(e.target.files[0]); });
-  document.addEventListener('paste', (e) => {
-    const items = (e.clipboardData || e.originalEvent.clipboardData).items;
-    for (let i = 0; i < items.length; i++) {
-      if (items[i].type.indexOf('image') !== -1) {
-        processImg(items[i].getAsFile()); break;
-      }
-    }
-  });
-  const savedSS = localStorage.getItem('tvl_ss_' + EID);
-  if (savedSS) { ssPreview.src = savedSS; ssPreview.style.display = 'block'; ssPlaceholder.style.display = 'none'; }
+  ssInput.addEventListener('change', (e) => { if (e.target.files[0]) { processImg(e.target.files[0]); ssInput.value=''; } });
+  renderGallery();
 
   document.getElementById('export-btn').addEventListener('click', function() {
     evaluator.exportReport(TITLE);
