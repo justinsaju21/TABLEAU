@@ -1017,11 +1017,18 @@ function computeGrade(labId, rp, reflectText, isCompleted) {
   let rawRubric = scoreEl ? (parseInt(scoreEl.textContent, 10) || 0) : 0;
   let rubricScore = Math.round((rawRubric / 100) * 40);
 
-  // Word-count based reflection scoring (30% weight)
+  // Word-count and keyword based reflection scoring (30% weight)
   let reflectScore = 0;
   if (reflectText && reflectText !== 'No reflection recorded.') {
-    const words = reflectText.trim().split(/\s+/).filter(w => w.length > 2).length;
-    if (words > 15) reflectScore = 30;
+    const val = reflectText.toLowerCase();
+    const words = val.trim().split(/\s+/).filter(w => w.length > 2).length;
+    
+    // Technical keyword check to prevent gibberish
+    const keywords = ['data', 'tableau', 'viz', 'analysis', 'observation', 'trend', 'pattern', 'insight', 'chart', 'sheet', 'hierarchy', 'drill', 'filter', 'dashboard', 'comparison', 'relationship', 'distribution'];
+    const foundKeywords = keywords.filter(k => val.includes(k));
+    const hasTechnicalDepth = new Set(foundKeywords).size >= 2;
+
+    if (words > 15 && hasTechnicalDepth) reflectScore = 30;
     else if (words > 0) reflectScore = 15;
   }
   const reflectPass = reflectScore === 30;

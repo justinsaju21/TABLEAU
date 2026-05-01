@@ -451,16 +451,21 @@ TMPL = '''<!DOCTYPE html>
   }}
 
   function updateReflectStatus() {{
-    const words = countWords(reflectInput.value);
-    if (words > 15) {{
+    const val = reflectInput.value.trim().toLowerCase();
+    const words = countWords(val);
+    const keywords = ['data', 'tableau', 'viz', 'analysis', 'observation', 'trend', 'pattern', 'insight', 'chart', 'sheet', 'hierarchy', 'drill', 'filter', 'dashboard', 'comparison', 'relationship', 'distribution'];
+    const foundKeywords = keywords.filter(k => val.includes(k));
+    const hasTechnicalDepth = new Set(foundKeywords).size >= 2;
+    
+    if (words > 15 && hasTechnicalDepth) {{
       reflectStatus.textContent = '\u2714 PASS';
       reflectStatus.style.cssText = 'font-size: 0.85rem; padding: 2px 10px; border-radius: 4px; background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; font-weight:bold;';
-    }} else if (words > 0) {{
+    }} else if (words <= 15) {{
       reflectStatus.textContent = '\u26A0 Too Short (' + words + '/15 words)';
       reflectStatus.style.cssText = 'font-size: 0.85rem; padding: 2px 10px; border-radius: 4px; background: #fff7ed; color: #9a3412; border: 1px solid #ffedd5; font-weight:bold;';
     }} else {{
-      reflectStatus.textContent = '\u2717 FAIL';
-      reflectStatus.style.cssText = 'font-size: 0.85rem; padding: 2px 10px; border-radius: 4px; background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; font-weight:bold;';
+      reflectStatus.textContent = '\u26A0 Lacks Technical Depth';
+      reflectStatus.style.cssText = 'font-size: 0.85rem; padding: 2px 10px; border-radius: 4px; background: #fff7ed; color: #9a3412; border: 1px solid #ffedd5; font-weight:bold;';
     }}
   }}
 
@@ -479,17 +484,25 @@ TMPL = '''<!DOCTYPE html>
     a.download = 'tableau_exp{id}_notes.txt'; a.click();
   }});
   document.getElementById('complete-btn').addEventListener('click', function() {{
-    const words = countWords(reflectInput.value);
+    const val = reflectInput.value.trim().toLowerCase();
+    const words = countWords(val);
+    const keywords = ['data', 'tableau', 'viz', 'analysis', 'observation', 'trend', 'pattern', 'insight', 'chart', 'sheet', 'hierarchy', 'drill', 'filter', 'dashboard', 'comparison', 'relationship', 'distribution'];
+    const foundKeywords = keywords.filter(k => val.includes(k));
+    const hasTechnicalDepth = new Set(foundKeywords).size >= 2;
+
     if (words <= 15) {{
       showToast('\u26A0 Reflection too short — write at least 15 meaningful words (currently ' + words + ').');
       reflectInput.focus();
-      return;
+    }} else if (!hasTechnicalDepth) {{
+      showToast('\u26A0 Reflection lacks technical depth. Please use relevant terms like "data", "hierarchy", "insight", "viz", etc.');
+      reflectInput.focus();
+    }} else {{
+      localStorage.setItem('tvl_complete_' + EID, '1');
+      const badges = {{ '1': 'tvl_badge_connected', '2': 'tvl_badge_visualizer', '3': 'tvl_badge_calculator', '13': 'tvl_badge_publisher' }};
+      if (badges[EID]) localStorage.setItem(badges[EID], '1');
+      this.classList.add('done'); this.textContent = '\u2713 Completed!';
+      showToast('Exp ' + EID + ' marked complete! \u2705');
     }}
-    localStorage.setItem('tvl_complete_' + EID, '1');
-    const badges = {{ '1': 'tvl_badge_connected', '2': 'tvl_badge_visualizer', '3': 'tvl_badge_calculator', '13': 'tvl_badge_publisher' }};
-    if (badges[EID]) localStorage.setItem(badges[EID], '1');
-    this.classList.add('done'); this.textContent = '\u2713 Completed!';
-    showToast('Exp ' + EID + ' marked complete! \u2705');
   }});
 
   // Load saved state
