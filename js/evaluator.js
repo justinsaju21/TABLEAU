@@ -109,10 +109,20 @@ ${rows}
     return false;
   }
   static hasMarkType(xml, cls) {
+    // Check direct mark class
     const marks = this.findNodes(xml, 'mark');
     for (let i = 0; i < marks.length; i++) {
       const markClass = (marks[i].getAttribute('class') || '').toLowerCase();
       if (markClass === cls.toLowerCase()) return true;
+    }
+    // Fallback: check style rules (common when mark is 'Automatic')
+    const formats = this.findNodes(xml, 'format');
+    for (let i = 0; i < formats.length; i++) {
+      const attr = (formats[i].getAttribute('attr') || '').toLowerCase();
+      const val = (formats[i].getAttribute('value') || '').toLowerCase();
+      if (attr === 'shape' && val === cls.toLowerCase()) return true;
+      // Many bar charts stay 'Automatic' but are visually bars
+      if (cls.toLowerCase() === 'bar' && attr === 'mark-color') return true; 
     }
     return false;
   }
@@ -140,7 +150,7 @@ ${rows}
     const dashes = this.findNodes(xml, 'dashboard');
     for (let i = 0; i < dashes.length; i++) {
       let ws = 0;
-      const zones = dashes[i].getElementsByTagName('zone'); // zones are inside dashboard
+      const zones = dashes[i].getElementsByTagName('zone');
       for (let j = 0; j < zones.length; j++)
         if (zones[j].getAttribute('type-v2') === 'worksheet') ws++;
       if (ws >= minZones) return true;
@@ -155,10 +165,13 @@ ${rows}
   }
   static hasNode(xml, tagName) {
     if (this.findNodes(xml, tagName).length > 0) return true;
-    // Fallback for labels which are often 'mark-labels' in Tableau
+    // Labels in Tableau are often style formats, not nodes
     if (tagName.toLowerCase() === 'label') {
        if (this.findNodes(xml, 'mark-labels').length > 0) return true;
-       if (this.findNodes(xml, 'mark-label').length > 0) return true;
+       const formats = this.findNodes(xml, 'format');
+       for (let i = 0; i < formats.length; i++) {
+         if (formats[i].getAttribute('attr') === 'mark-labels-show' && formats[i].getAttribute('value') === 'true') return true;
+       }
     }
     return false;
   }
