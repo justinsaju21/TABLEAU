@@ -1064,6 +1064,55 @@ async function generateReport(labId) {
   } catch (err) {
     console.warn("Could not capture all graphical evidence: ", err);
   }
+  
+  // Read multiple screenshots from JSON array
+  let screenshots = [];
+  try {
+    const rawSS = localStorage.getItem('tvl_ss_' + labId);
+    if (rawSS) screenshots = JSON.parse(rawSS);
+  } catch(e) {}
+
+  // Extract Experimental Steps from DOM
+  const stepsTexts = [];
+  const stepEls = document.querySelectorAll('.step-text');
+  stepEls.forEach((el, i) => {
+    stepsTexts.push(`<b>Step ${i + 1}:</b> ${el.innerHTML}`);
+  });
+
+  const stepsHtml = stepsTexts.length > 0 ? `
+    <div class="section-title">Experimental Steps</div>
+    <div style="margin-bottom: 2rem; font-size: 0.95rem; line-height: 1.6;">
+      ${stepsTexts.map(t => `<div style="margin-bottom: 0.8rem; padding: 0.8rem; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px;">${t}</div>`).join('')}
+    </div>
+  ` : '';
+
+  const rubricHtml = `
+  <div class="section-title">Rubric Validation (${rp.checked}/${rp.total})</div>
+  <div style="margin-bottom: 2rem;">
+    ${rubricTexts.slice(0, rp.total).map((text, i) =>
+    `<div class="rubric-item">
+        <span class="box ${checksList[i] ? 'checked' : ''}">[${checksList[i] ? 'X' : ' '}]</span>
+        <span>${text}</span>
+      </div>`
+  ).join('')}
+  </div>`;
+
+  const ssHtml = screenshots.length > 0 ? `
+    <div class="section-title">Visual Evidence</div>
+    <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; justify-content: center;">
+      ${screenshots.map(src => `
+        <div style="text-align:center; border:1px solid #eee; border-radius:8px; padding:10px; background:#fcfcfc; flex: 1 1 calc(50% - 1rem); min-width: 300px;">
+          <img src="${src}" style="max-width:100%; max-height: 400px; border-radius:4px; box-shadow:0 4px 12px rgba(0,0,0,0.1)">
+          <div style="font-size:0.75rem; color:#666; margin-top:8px; font-style:italic">Snapshot from student workspace</div>
+        </div>
+      `).join('')}
+    </div>
+  ` : `
+    <div class="section-title">Visual Evidence</div>
+    <div style="padding:20px; text-align:center; color:#999; border:2px dashed #eee; border-radius:8px; margin-top:1rem">
+      No graphical evidence attached to this submission.
+    </div>
+  `;
 
   const d = new Date();
   const dateStr = d.toLocaleDateString() + ' at ' + d.toLocaleTimeString();
@@ -1157,30 +1206,14 @@ async function generateReport(labId) {
   </table>
 
   ${challengeHtml}
+  
+  ${stepsHtml}
 
   ${chartHtml}
 
-  <div class="section-title">Rubric Validation (${rp.checked}/${rp.total})</div>
-  <div style="margin-bottom: 2rem;">
-    ${rubricTexts.slice(0, rp.total).map((text, i) =>
-    `<div class="rubric-item">
-        <span class="box ${checksList[i] ? 'checked' : ''}">[${checksList[i] ? 'X' : ' '}]</span>
-        <span>${text}</span>
-      </div>`
-  ).join('')}
-  </div>
+  ${rubricHtml}
 
-  <div class="section-title">Visual Evidence</div>
-  ${screenshot ? `
-    <div style="text-align:center; margin-top:1rem; border:1px solid #eee; border-radius:8px; padding:10px; background:#fcfcfc;">
-      <img src="${screenshot}" style="max-width:100%; border-radius:4px; box-shadow:0 4px 12px rgba(0,0,0,0.1)">
-      <div style="font-size:0.75rem; color:#666; margin-top:8px; font-style:italic">Direct visualization snapshot captured from student workspace</div>
-    </div>
-  ` : `
-    <div style="padding:20px; text-align:center; color:#999; border:2px dashed #eee; border-radius:8px; margin-top:1rem">
-      No graphical evidence attached to this submission.
-    </div>
-  `}
+  ${ssHtml}
 
   <div class="section-title">Student Reflection Synthesis</div>
   <div class="reflection-block">${reflectText}</div>
