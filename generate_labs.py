@@ -446,16 +446,16 @@ TMPL = '''<!DOCTYPE html>
   const reflectInput = document.getElementById('reflection-text');
   const reflectStatus = document.getElementById('reflect-status');
 
-  function updateReflectStatus() {
+  function updateReflectStatus() {{
     const val = reflectInput.value.trim();
-    if (val.length > 20) {
+    if (val.length > 20) {{
       reflectStatus.textContent = 'PASS';
       reflectStatus.style.cssText = 'font-size: 0.85rem; padding: 2px 8px; border-radius: 4px; background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; font-weight:bold;';
-    } else {
+    }} else {{
       reflectStatus.textContent = 'FAIL (Too Short)';
       reflectStatus.style.cssText = 'font-size: 0.85rem; padding: 2px 8px; border-radius: 4px; background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; font-weight:bold;';
-    }
-  }
+    }}
+  }}
 
   document.getElementById('save-btn').addEventListener('click', function() {{
     localStorage.setItem('tvl_reflect_' + EID, reflectInput.value);

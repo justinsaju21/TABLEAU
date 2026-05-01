@@ -81,7 +81,10 @@
     </div>
   </div>
   <div class="rubric-section">
-    <div class="rubric-title">&#128221; Reflection (auto-saved)</div>
+    <div class="rubric-title" style="display:flex; justify-content:space-between; align-items:center;">
+      <span>&#128221; Reflection (auto-saved)</span>
+      <span id="reflect-status" style="font-size: 0.85rem; padding: 2px 8px; border-radius: 4px; background: #fee2e2; color: #991b1b; border: 1px solid #fecaca;">FAIL (Too Short)</span>
+    </div>
     <div class="reflection-area">
       <label for="reflection-text" style="font-size:.82rem;color:var(--text-2)">Write your observations and answers to the lab reflection questions:</label>
       <textarea id="reflection-text" placeholder="Describe what you learned, what surprised you, and how the XML changed after each step..." oncopy="return false" oncut="return false" onpaste="return false"></textarea>
@@ -214,12 +217,28 @@
     evaluator.exportReport(TITLE);
   });
 
+  const reflectInput = document.getElementById('reflection-text');
+  const reflectStatus = document.getElementById('reflect-status');
+
+  function updateReflectStatus() {
+    const val = reflectInput.value.trim();
+    if (val.length > 20) {
+      reflectStatus.textContent = 'PASS';
+      reflectStatus.style.cssText = 'font-size: 0.85rem; padding: 2px 8px; border-radius: 4px; background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; font-weight:bold;';
+    } else {
+      reflectStatus.textContent = 'FAIL (Too Short)';
+      reflectStatus.style.cssText = 'font-size: 0.85rem; padding: 2px 8px; border-radius: 4px; background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; font-weight:bold;';
+    }
+  }
+
   document.getElementById('save-btn').addEventListener('click', function() {
-    localStorage.setItem('tvl_reflect_' + EID, document.getElementById('reflection-text').value);
-    showToast('Saved \u2713');
+    localStorage.setItem('tvl_reflect_' + EID, reflectInput.value);
+    showToast('Saved ✓');
+    updateReflectStatus();
   });
-  document.getElementById('reflection-text').addEventListener('input', function() {
+  reflectInput.addEventListener('input', function() {
     localStorage.setItem('tvl_reflect_' + EID, this.value);
+    updateReflectStatus();
   });
   document.getElementById('dl-btn').addEventListener('click', function() {
     var a = document.createElement('a');
@@ -236,7 +255,10 @@
 
   // Load saved state
   var saved = localStorage.getItem('tvl_reflect_' + EID);
-  if (saved) document.getElementById('reflection-text').value = saved;
+  if (saved) { 
+    reflectInput.value = saved; 
+    updateReflectStatus(); 
+  }
   if (localStorage.getItem('tvl_complete_' + EID) === '1') {
     document.getElementById('complete-btn').classList.add('done');
     document.getElementById('complete-btn').textContent = '✓ Completed!';
