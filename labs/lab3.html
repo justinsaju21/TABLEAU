@@ -222,13 +222,19 @@
   const reflectStatus = document.getElementById('reflect-status');
 
   function updateReflectStatus() {
-    const val = reflectInput.value.trim();
-    if (val.length > 20) {
+    const val = reflectInput.value.trim().toLowerCase();
+    const keywords = ['data', 'tableau', 'viz', 'analysis', 'observation', 'trend', 'pattern', 'insight', 'chart', 'sheet', 'hierarchy', 'drill', 'filter', 'dashboard'];
+    const hasKeywords = keywords.some(k => val.includes(k));
+    
+    if (val.length > 20 && hasKeywords) {
       reflectStatus.textContent = 'PASS';
       reflectStatus.style.cssText = 'font-size: 0.85rem; padding: 2px 8px; border-radius: 4px; background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; font-weight:bold;';
-    } else {
+    } else if (val.length <= 20) {
       reflectStatus.textContent = 'FAIL (Too Short)';
       reflectStatus.style.cssText = 'font-size: 0.85rem; padding: 2px 8px; border-radius: 4px; background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; font-weight:bold;';
+    } else {
+      reflectStatus.textContent = 'FAIL (Missing Key Insights)';
+      reflectStatus.style.cssText = 'font-size: 0.85rem; padding: 2px 8px; border-radius: 4px; background: #fff7ed; color: #9a3412; border: 1px solid #ffedd5; font-weight:bold;';
     }
   }
 
@@ -247,9 +253,17 @@
     a.download = 'tableau_exp3_notes.txt'; a.click();
   });
   document.getElementById('complete-btn').addEventListener('click', function() {
-    const val = reflectInput.value.trim();
+    const val = reflectInput.value.trim().toLowerCase();
+    const keywords = ['data', 'tableau', 'viz', 'analysis', 'observation', 'trend', 'pattern', 'insight', 'chart', 'sheet', 'hierarchy', 'drill', 'filter', 'dashboard'];
+    const hasKeywords = keywords.some(k => val.includes(k));
+
     if (val.length < 20) {
-      showToast('⚠ Please write a detailed reflection first!');
+      showToast('⚠ Please write a more detailed reflection!');
+      reflectInput.focus();
+      return;
+    }
+    if (!hasKeywords) {
+      showToast('⚠ Reflection lacks technical depth. Try including keywords like "data", "analysis", or "trend".');
       reflectInput.focus();
       return;
     }

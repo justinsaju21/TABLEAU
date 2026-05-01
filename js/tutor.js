@@ -1011,15 +1011,18 @@ function injectReportButton() {
     '13': 'tvl_badge_publisher'
   };
 
-function computeGrade(labId, rp, reflectText, isCompleted) {
+function computeGrade(labId, rp, reflectText, isCompleted) {{
   // Read exact marks from the XML Evaluator (already out of 100)
   const scoreEl = document.getElementById('scoreDisplay');
   let rubricScore = scoreEl ? (parseInt(scoreEl.textContent, 10) || 0) : 0;
   
-  let reflectPass = (reflectText && reflectText !== 'No reflection recorded.' && reflectText.trim().length > 10);
+  const val = (reflectText || '').toLowerCase();
+  const keywords = ['data', 'tableau', 'viz', 'analysis', 'observation', 'trend', 'pattern', 'insight', 'chart', 'sheet', 'hierarchy', 'drill', 'filter', 'dashboard'];
+  const hasKeywords = keywords.some(k => val.includes(k));
+  let reflectPass = (reflectText && reflectText !== 'No reflection recorded.' && reflectText.trim().length > 20 && hasKeywords);
   
-  return { rubric: rubricScore, reflectPass: reflectPass, total: rubricScore };
-}
+  return {{ rubric: rubricScore, reflectPass: reflectPass, total: rubricScore }};
+}}
 
 async function generateReport(labId) {
   const studentRaw = localStorage.getItem('tvl_student') || localStorage.getItem('dvlab_student');
