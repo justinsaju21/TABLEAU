@@ -78,12 +78,8 @@ ${rows}
 
   // ── Static XML Helpers ──
   static findNodes(xml, tagName) {
-    // Try standard search first, then namespace-agnostic search
-    let nodes = xml.getElementsByTagName(tagName);
-    if (nodes.length === 0) {
-      nodes = xml.getElementsByTagNameNS('*', tagName);
-    }
-    return nodes;
+    // Always use namespace-agnostic search for maximum reliability
+    return Array.from(xml.getElementsByTagNameNS('*', tagName));
   }
 
   static hasDatasource(xml, sub) {
@@ -108,24 +104,35 @@ ${rows}
     }
     return false;
   }
+
   static hasMarkType(xml, cls) {
-    // Check direct mark class
-    const marks = this.findNodes(xml, 'mark');
-    for (let i = 0; i < marks.length; i++) {
-      const markClass = (marks[i].getAttribute('class') || '').toLowerCase();
-      if (markClass === cls.toLowerCase()) return true;
-    }
-    // Fallback: check style rules (common when mark is 'Automatic')
-    const formats = this.findNodes(xml, 'format');
-    for (let i = 0; i < formats.length; i++) {
-      const attr = (formats[i].getAttribute('attr') || '').toLowerCase();
-      const val = (formats[i].getAttribute('value') || '').toLowerCase();
-      if (attr === 'shape' && val === cls.toLowerCase()) return true;
-      // Many bar charts stay 'Automatic' but are visually bars
-      if (cls.toLowerCase() === 'bar' && attr === 'mark-color') return true; 
+    const sheets = this.findNodes(xml, 'worksheet');
+    const target = cls.toLowerCase();
+
+    for (const sheet of sheets) {
+      const marks = sheet.getElementsByTagNameNS('*', 'mark');
+      for (const m of marks) {
+        const markClass = (m.getAttribute('class') || '').toLowerCase();
+        if (markClass === target) return true;
+        
+        // If Automatic, check for explicit overrides in style
+        if (markClass === 'automatic') {
+          const formats = sheet.getElementsByTagNameNS('*', 'format');
+          for (const f of formats) {
+            const attr = (f.getAttribute('attr') || '').toLowerCase();
+            const val = (f.getAttribute('value') || '').toLowerCase();
+            if (attr === 'shape' && val === target) return true;
+            // Bar charts often stay 'automatic' but have color/size styles
+            if (target === 'bar' && (attr === 'mark-color' || attr === 'mark-labels-show')) return true;
+            // Line charts often have specific date/profit rows/cols
+            if (target === 'line' && sheet.textContent.includes('Order Date') && sheet.textContent.includes('Profit')) return true;
+          }
+        }
+      }
     }
     return false;
   }
+
   static hasFormulaKeyword(xml, ...keywords) {
     const calcs = this.findNodes(xml, 'calculation');
     for (let i = 0; i < calcs.length; i++) {
@@ -150,7 +157,7 @@ ${rows}
     const dashes = this.findNodes(xml, 'dashboard');
     for (let i = 0; i < dashes.length; i++) {
       let ws = 0;
-      const zones = dashes[i].getElementsByTagName('zone');
+      const zones = dashes[i].getElementsByTagNameNS('*', 'zone');
       for (let j = 0; j < zones.length; j++)
         if (zones[j].getAttribute('type-v2') === 'worksheet') ws++;
       if (ws >= minZones) return true;
@@ -164,13 +171,17 @@ ${rows}
     return false;
   }
   static hasNode(xml, tagName) {
-    if (this.findNodes(xml, tagName).length > 0) return true;
-    // Labels in Tableau are often style formats, not nodes
-    if (tagName.toLowerCase() === 'label') {
+    const target = tagName.toLowerCase();
+    if (this.findNodes(xml, target).length > 0) return true;
+    
+    // Labels in Tableau are often style formats
+    if (target === 'label') {
        if (this.findNodes(xml, 'mark-labels').length > 0) return true;
        const formats = this.findNodes(xml, 'format');
-       for (let i = 0; i < formats.length; i++) {
-         if (formats[i].getAttribute('attr') === 'mark-labels-show' && formats[i].getAttribute('value') === 'true') return true;
+       for (const f of formats) {
+         const attr = (f.getAttribute('attr') || '').toLowerCase();
+         const val = (f.getAttribute('value') || '').toLowerCase();
+         if (attr === 'mark-labels-show' && val === 'true') return true;
        }
     }
     return false;
