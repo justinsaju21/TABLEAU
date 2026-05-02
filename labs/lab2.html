@@ -30,11 +30,56 @@
         </div>
         <div class="section-label">Lab Instructions</div>
         <div class="steps-list">
-<div class="step-item"><div class="step-num">1</div><div class="step-text"><b>Bar Chart:</b> Click Sheet 1. Drag <b>Category</b> to Columns and <b>Sales</b> to Rows — Tableau creates a bar chart automatically. Right-click the sheet tab and rename it "Sales by Category". Click the <b>Color</b> button on the Marks card and choose a palette you like.</div></div>
-<div class="step-item"><div class="step-num">2</div><div class="step-text"><b>Line Chart:</b> Right-click a sheet tab at the bottom and add a new sheet (Sheet 2). Drag <b>Order Date</b> to Columns (Tableau will group by Year — click the pill and change to Month/Year via More > Month(Order Date)). Drag <b>Profit</b> to Rows. Tableau should show a line chart. If not, click the <b>Line</b> mark type in the Marks card dropdown.</div></div>
-<div class="step-item"><div class="step-num">3</div><div class="step-text"><b>Scatter Plot:</b> Add Sheet 3. Drag <b>Sales</b> to Columns and <b>Profit</b> to Rows. Tableau plots one aggregate point. To see individual marks, drag <b>Order ID</b> to the Detail card on the Marks card. Then drag <b>Category</b> to the <b>Color</b> card — you will see three color-coded clusters. Change mark type to <b>Circle</b> if not already set.</div></div>
-<div class="step-item"><div class="step-num">4</div><div class="step-text">On each sheet, click the <b>Show Mark Labels</b> button (the "T" icon in the toolbar) to add data labels to all marks. Labels appear automatically on bars, the line, and scatter points.</div></div>
-<div class="step-item"><div class="step-num">5</div><div class="step-text">On the Bar Chart, right-click the <b>Sales axis</b> and choose <b>Format</b>. In the Format pane go to <b>Numbers > Currency (Standard)</b>. Repeat for the Profit axis on the Line Chart. Save as "Exp2_Viz.twb" and upload.</div></div>
+<div class="step-item" id="step-item-1">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="1" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction"><b>Bar Chart:</b> Click Sheet 1. Drag <b>Category</b> to Columns and <b>Sales</b> to Rows — Tableau creates a bar chart automatically. Right-click the sheet tab and rename it "Sales by Category". Click the <b>Color</b> button on the Marks card and choose a palette you like.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A bar chart with customized colours showing Sales per Category.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-2">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="2" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction"><b>Line Chart:</b> Right-click a sheet tab at the bottom and add a new sheet (Sheet 2). Drag <b>Order Date</b> to Columns (Tableau will group by Year — click the pill and change to Month/Year via More > Month(Order Date)). Drag <b>Profit</b> to Rows. Tableau should show a line chart. If not, click the <b>Line</b> mark type in the Marks card dropdown.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A line chart appears showing Profit trending over Months/Years.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-3">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="3" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction"><b>Scatter Plot:</b> Add Sheet 3. Drag <b>Sales</b> to Columns and <b>Profit</b> to Rows. Tableau plots one aggregate point. To see individual marks, drag <b>Order ID</b> to the Detail card on the Marks card. Then drag <b>Category</b> to the <b>Color</b> card — you will see three color-coded clusters. Change mark type to <b>Circle</b> if not already set.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A scatter plot with Circle marks coloured by Category appears.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-4">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="4" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">On each sheet, click the <b>Show Mark Labels</b> button (the "T" icon in the toolbar) to add data labels to all marks. Labels appear automatically on bars, the line, and scatter points.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>The exact numeric values appear directly on top of or next to the marks on each chart.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-5">
+          <div class="step-num">5</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="5" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">On the Bar Chart, right-click the <b>Sales axis</b> and choose <b>Format</b>. In the Format pane go to <b>Numbers > Currency (Standard)</b>. Repeat for the Profit axis on the Line Chart. Save as "Exp2_Viz.twb" and upload.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>The axis and mark labels display values with a currency symbol.</details></div>
+</div>
+        </div>
         </div>
       </div>
     </div>
@@ -302,5 +347,72 @@
   }
 })();
 </script>
+
+<style>
+/* UX Features */
+.step-item {
+  transition: background 0.3s ease, border-left 0.3s ease;
+  padding: 10px;
+  border-radius: 6px;
+  border-left: 4px solid transparent;
+}
+.step-item.active {
+  background: rgba(59, 130, 246, 0.05);
+  border-left: 4px solid var(--blue);
+}
+.step-item.completed .step-instruction {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+.step-item.completed pre,
+.step-item.completed .step-check,
+.step-item.completed code {
+  text-decoration: none !important;
+  opacity: 0.8;
+}
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const eid = '2';
+    const checkboxes = document.querySelectorAll('.step-cb');
+    const items = document.querySelectorAll('.step-item');
+    
+    function updateSteps() {
+        let activeFound = false;
+        checkboxes.forEach((cb, index) => {
+            const stepItem = cb.closest('.step-item');
+            const stepNum = cb.getAttribute('data-step');
+            
+            // Save state
+            localStorage.setItem(`tvl_step_${eid}_${stepNum}`, cb.checked ? '1' : '0');
+            
+            if (cb.checked) {
+                stepItem.classList.add('completed');
+                stepItem.classList.remove('active');
+            } else {
+                stepItem.classList.remove('completed');
+                if (!activeFound) {
+                    stepItem.classList.add('active');
+                    activeFound = true;
+                } else {
+                    stepItem.classList.remove('active');
+                }
+            }
+        });
+    }
+
+    // Load state
+    checkboxes.forEach(cb => {
+        const stepNum = cb.getAttribute('data-step');
+        if (localStorage.getItem(`tvl_step_${eid}_${stepNum}`) === '1') {
+            cb.checked = true;
+        }
+        cb.addEventListener('change', updateSteps);
+    });
+    
+    updateSteps();
+});
+</script>
+
 </body>
 </html>

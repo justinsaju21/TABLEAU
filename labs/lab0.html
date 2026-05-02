@@ -30,11 +30,56 @@
         </div>
         <div class="section-label">Lab Instructions</div>
         <div class="steps-list">
-<div class="step-item"><div class="step-num">1</div><div class="step-text">Go to <b>www.tableau.com/products/desktop-free/download</b>, create a free account, and install Tableau Public on your computer. During installation accept all defaults. Launch the application once installation completes.</div></div>
-<div class="step-item"><div class="step-num">2</div><div class="step-text">Go to <b>www.tableau.com/data-insights/dashboard-showcase/superstore</b> to see the final potential of the dataset. For our labs, however, open Tableau and select <b>File > New</b> to start a blank workspace. On the start screen, click the <b>Connect to Data</b> button (top left), select <b>To a File > Microsoft Excel</b>, and browse to your `Documents > My Tableau Repository > Datasources` folder to find <b>Sample - Superstore.xlsx</b>.</div></div>
-<div class="step-item"><div class="step-num">3</div><div class="step-text">In the <b>Data Source tab</b> (bottom left), ensure the <b>Orders</b> sheet is dragged onto the canvas area. Notice how Tableau displays field names, data types (Abc, #, calendar icon), and row counts in the preview grid. This metadata is what the XML evaluator reads.</div></div>
-<div class="step-item"><div class="step-num">4</div><div class="step-text">Click <b>Sheet 1</b> at the bottom to open the worksheet view. Spend a few minutes dragging fields to Rows and Columns shelves. Drag <b>Category</b> to Columns, <b>Sales</b> to Rows — Tableau auto-creates a bar chart. Click the <b>T icon</b> in the top toolbar to show labels. Undo after exploring.</div></div>
-<div class="step-item"><div class="step-num">5</div><div class="step-text">Go to <b>File > Save As (Local)</b>. Choose a folder you control, name the file "Exp0_Setup.twb", and <b>IMPORTANT</b>: Ensure you select ".twb" (not .twbx) in the save type dropdown. Open the saved file in VS Code to see the XML structure, then upload the .twb file here.</div></div>
+<div class="step-item" id="step-item-1">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="1" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">Go to <b>www.tableau.com/products/desktop-free/download</b>, create a free account, and install Tableau Public on your computer. During installation accept all defaults. Launch the application once installation completes.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>Tableau Public launches and shows the start screen with connection options.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-2">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="2" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">Go to <b>www.tableau.com/data-insights/dashboard-showcase/superstore</b> to see the final potential of the dataset. For our labs, however, open Tableau and select <b>File > New</b> to start a blank workspace. On the start screen, click the <b>Connect to Data</b> button (top left), select <b>To a File > Microsoft Excel</b>, and browse to your <pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block">Documents > My Tableau Repository > Datasources</code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre> folder to find <b>Sample - Superstore.xlsx</b>.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>The Data Source tab opens showing the "Sample - Superstore" connection.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-3">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="3" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">In the <b>Data Source tab</b> (bottom left), ensure the <b>Orders</b> sheet is dragged onto the canvas area. Notice how Tableau displays field names, data types (Abc, #, calendar icon), and row counts in the preview grid. This metadata is what the XML evaluator reads.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A data preview grid appears showing rows and columns with their respective data types.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-4">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="4" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">Click <b>Sheet 1</b> at the bottom to open the worksheet view. Spend a few minutes dragging fields to Rows and Columns shelves. Drag <b>Category</b> to Columns, <b>Sales</b> to Rows — Tableau auto-creates a bar chart. Click the <b>T icon</b> in the top toolbar to show labels. Undo after exploring.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A bar chart appears showing total Sales for each Category.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-5">
+          <div class="step-num">5</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="5" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">Go to <b>File > Save As (Local)</b>. Choose a folder you control, name the file "Exp0_Setup.twb", and <b>IMPORTANT</b>: Ensure you select ".twb" (not .twbx) in the save type dropdown. Open the saved file in VS Code to see the XML structure, then upload the .twb file here.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>The workbook is saved successfully as a .twb file on your computer.</details></div>
+</div>
+        </div>
         </div>
       </div>
     </div>
@@ -298,5 +343,72 @@
   }
 })();
 </script>
+
+<style>
+/* UX Features */
+.step-item {
+  transition: background 0.3s ease, border-left 0.3s ease;
+  padding: 10px;
+  border-radius: 6px;
+  border-left: 4px solid transparent;
+}
+.step-item.active {
+  background: rgba(59, 130, 246, 0.05);
+  border-left: 4px solid var(--blue);
+}
+.step-item.completed .step-instruction {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+.step-item.completed pre,
+.step-item.completed .step-check,
+.step-item.completed code {
+  text-decoration: none !important;
+  opacity: 0.8;
+}
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const eid = '0';
+    const checkboxes = document.querySelectorAll('.step-cb');
+    const items = document.querySelectorAll('.step-item');
+    
+    function updateSteps() {
+        let activeFound = false;
+        checkboxes.forEach((cb, index) => {
+            const stepItem = cb.closest('.step-item');
+            const stepNum = cb.getAttribute('data-step');
+            
+            // Save state
+            localStorage.setItem(`tvl_step_${eid}_${stepNum}`, cb.checked ? '1' : '0');
+            
+            if (cb.checked) {
+                stepItem.classList.add('completed');
+                stepItem.classList.remove('active');
+            } else {
+                stepItem.classList.remove('completed');
+                if (!activeFound) {
+                    stepItem.classList.add('active');
+                    activeFound = true;
+                } else {
+                    stepItem.classList.remove('active');
+                }
+            }
+        });
+    }
+
+    // Load state
+    checkboxes.forEach(cb => {
+        const stepNum = cb.getAttribute('data-step');
+        if (localStorage.getItem(`tvl_step_${eid}_${stepNum}`) === '1') {
+            cb.checked = true;
+        }
+        cb.addEventListener('change', updateSteps);
+    });
+    
+    updateSteps();
+});
+</script>
+
 </body>
 </html>

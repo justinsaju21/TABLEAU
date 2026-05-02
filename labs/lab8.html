@@ -30,25 +30,73 @@
         </div>
         <div class="section-label">Lab Instructions</div>
         <div class="steps-list">
-<div class="step-item"><div class="step-num">1</div><div class="step-text"><b>Trend Lines:</b> Build a Scatter Plot with Sales on Columns and Profit on Rows, Sub-Category on Detail. Go to the <b>Analytics pane</b> (the tab next to Data on the left). Drag <b>Trend Line</b> to the view and drop it on <b>Linear</b>. Tableau draws one trend line per color group. Right-click the trend line > <b>Edit Trend Lines</b> to see R-squared and p-value, which indicate statistical significance.</div></div>
-<div class="step-item"><div class="step-num">2</div><div class="step-text"><b>Forecast:</b> Create a Line Chart with Order Date (Month/Year, continuous) on Columns and SUM(Sales) on Rows. In the <b>Analytics pane</b>, drag <b>Forecast</b> to the view. Tableau adds a grey shaded prediction cone extending past your last data point. Right-click the forecast > <b>Forecast Options</b> to change model type (Automatic, Additive, Multiplicative) and prediction length.</div></div>
-<div class="step-item"><div class="step-num">3</div><div class="step-text"><b>Clustering:</b> On a Scatter Plot (Sales vs Profit), go to the <b>Analytics pane</b> and drag <b>Cluster</b> to the view. A dialog asks for number of clusters (try 3). Tableau colors the marks by cluster. Right-click the <b>Cluster</b> pill in the Marks card > <b>Describe Clusters</b> to see the cluster centroids and statistics.</div></div>
-<div class="step-item"><div class="step-num">4</div><div class="step-text"><b>Annotation:</b> Right-click any extreme outlier point on a scatter plot, choose <b>Annotate > Mark</b>. In the annotation editor type a custom label like "Q4 2023 Peak — Holiday Demand Spike". Drag the annotation box to avoid overlap. Annotations are saved in the XML as `<annotation>` nodes.</div></div>
-<div class="step-item"><div class="step-num">5</div><div class="step-text">Combine all three sheets (Trend Lines, Forecast, Clustering) into a dashboard. Save as "Exp8_Predictive.twb" and upload.</div></div>
+<div class="step-item" id="step-item-1">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="1" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction"><b>Trend Lines:</b> Build a Scatter Plot with Sales on Columns and Profit on Rows, Sub-Category on Detail. Go to the <b>Analytics pane</b> (the tab next to Data on the left). Drag <b>Trend Line</b> to the view and drop it on <b>Linear</b>. Tableau draws one trend line per color group. Right-click the trend line > <b>Edit Trend Lines</b> to see R-squared and p-value, which indicate statistical significance.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>Linear trend lines appear on the scatter plot, and a tooltip shows R-squared and p-value.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-2">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="2" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction"><b>Forecast:</b> Create a Line Chart with Order Date (Month/Year, continuous) on Columns and SUM(Sales) on Rows. In the <b>Analytics pane</b>, drag <b>Forecast</b> to the view. Tableau adds a grey shaded prediction cone extending past your last data point. Right-click the forecast > <b>Forecast Options</b> to change model type (Automatic, Additive, Multiplicative) and prediction length.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>The line chart extends with a shaded prediction area indicating the forecast.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-3">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="3" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction"><b>Clustering:</b> On a Scatter Plot (Sales vs Profit), go to the <b>Analytics pane</b> and drag <b>Cluster</b> to the view. A dialog asks for number of clusters (try 3). Tableau colors the marks by cluster. Right-click the <b>Cluster</b> pill in the Marks card > <b>Describe Clusters</b> to see the cluster centroids and statistics.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>Marks on the scatter plot are grouped into distinct colours representing clusters.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-4">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="4" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction"><b>Annotation:</b> Right-click any extreme outlier point on a scatter plot, choose <b>Annotate > Mark</b>. In the annotation editor type a custom label like "Q4 2023 Peak — Holiday Demand Spike". Drag the annotation box to avoid overlap. Annotations are saved in the XML as <pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block"><annotation></code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre> nodes.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A custom text annotation appears pointing to the specific extreme outlier mark.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-5">
+          <div class="step-num">5</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="5" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">Combine all three sheets (Trend Lines, Forecast, Clustering) into a dashboard. Save as "Exp8_Predictive.twb" and upload.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A new dashboard appears containing the Trend Lines, Forecast, and Clustering sheets.</details></div>
+</div>
+        </div>
         </div>
       </div>
     </div>
     <div class="panel">
       <div class="panel-header">&#129514; XML Evaluator</div>
       <div class="panel-body">
-        <div class="score-banner">
+        <div class="score-banner" style="flex-wrap:nowrap; align-items:center; gap:1rem;">
           <div>
             <div class="score-left">Auto-Evaluation Score</div>
             <div class="score-bar" style="width:160px;margin-top:.4rem"><div class="score-bar-fill" id="score-bar" style="width:0%"></div></div>
           </div>
-          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
+          <div class="score-value" style="white-space:nowrap; flex-shrink:0;"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
         </div>
         <div class="eval-error" id="eval-error"></div>
+        <div class="info-box" style="margin-bottom:1rem;">
+          <strong>Evaluator looks for:</strong> A &lt;trend-lines&gt; node (Analytics pane trend line), a &lt;forecast&gt; node (Forecast drag), a &lt;group&gt; element (Cluster groups), and a text/annotation object node in the workbook XML.
+        </div>
         <div class="upload-zone" id="uploadZone">
           <div class="upload-icon">&#128196;</div>
           <div class="upload-title">Drop .twb / .twbx here</div>
@@ -67,10 +115,10 @@
           <input type="file" id="ssInput" style="display:none" accept="image/*">
         </div>
         <div class="check-list" id="resultsList" style="margin-top:1rem">
-<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Trend Lines</div></div><div class="check-marks">25 marks</div></div>
-<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Forecast Node</div></div><div class="check-marks">25 marks</div></div>
-<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Cluster/Groups</div></div><div class="check-marks">25 marks</div></div>
-<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Annotation Text</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Trend Lines</div><div class="check-desc">Looks for a &lt;trend-lines&gt; XML node &mdash; generated by dragging Trend Line from the Analytics pane onto a scatter plot.</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Forecast Node</div><div class="check-desc">Checks for a &lt;forecast&gt; XML node &mdash; created when you drag Forecast from the Analytics pane onto a time-series line chart.</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Cluster/Groups</div><div class="check-desc">Verifies at least one &lt;group&gt; element exists &mdash; Tableau generates group nodes when you apply Cluster from the Analytics pane.</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Annotation Text</div><div class="check-desc">Confirms a text or annotation object is present in the XML &mdash; created by right-clicking a mark and choosing Annotate &gt; Mark.</div></div><div class="check-marks">25 marks</div></div>
         </div>
         <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
           <button class="btn export" id="export-btn">&#128229; Export Report</button>
@@ -300,5 +348,72 @@
   }
 })();
 </script>
+
+<style>
+/* UX Features */
+.step-item {
+  transition: background 0.3s ease, border-left 0.3s ease;
+  padding: 10px;
+  border-radius: 6px;
+  border-left: 4px solid transparent;
+}
+.step-item.active {
+  background: rgba(59, 130, 246, 0.05);
+  border-left: 4px solid var(--blue);
+}
+.step-item.completed .step-instruction {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+.step-item.completed pre,
+.step-item.completed .step-check,
+.step-item.completed code {
+  text-decoration: none !important;
+  opacity: 0.8;
+}
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const eid = '8';
+    const checkboxes = document.querySelectorAll('.step-cb');
+    const items = document.querySelectorAll('.step-item');
+    
+    function updateSteps() {
+        let activeFound = false;
+        checkboxes.forEach((cb, index) => {
+            const stepItem = cb.closest('.step-item');
+            const stepNum = cb.getAttribute('data-step');
+            
+            // Save state
+            localStorage.setItem(`tvl_step_${eid}_${stepNum}`, cb.checked ? '1' : '0');
+            
+            if (cb.checked) {
+                stepItem.classList.add('completed');
+                stepItem.classList.remove('active');
+            } else {
+                stepItem.classList.remove('completed');
+                if (!activeFound) {
+                    stepItem.classList.add('active');
+                    activeFound = true;
+                } else {
+                    stepItem.classList.remove('active');
+                }
+            }
+        });
+    }
+
+    // Load state
+    checkboxes.forEach(cb => {
+        const stepNum = cb.getAttribute('data-step');
+        if (localStorage.getItem(`tvl_step_${eid}_${stepNum}`) === '1') {
+            cb.checked = true;
+        }
+        cb.addEventListener('change', updateSteps);
+    });
+    
+    updateSteps();
+});
+</script>
+
 </body>
 </html>

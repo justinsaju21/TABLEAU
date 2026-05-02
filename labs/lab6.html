@@ -30,25 +30,73 @@
         </div>
         <div class="section-label">Lab Instructions</div>
         <div class="steps-list">
-<div class="step-item"><div class="step-num">1</div><div class="step-text"><b>Histogram:</b> On a new sheet, drag <b>Sales</b> to Columns. Tableau creates a horizontal axis. Right-click the <b>Sales</b> pill and choose <b>Dimension</b> (not Measure). Then go to <b>Show Me</b> and select <b>Histogram</b>. Tableau will auto-create bins. Right-click the <b>Sales (bin)</b> field in the Data pane and choose <b>Edit</b> to change bin size (try 500). Observe the distribution.</div></div>
-<div class="step-item"><div class="step-num">2</div><div class="step-text"><b>Box Plot:</b> New sheet — drag <b>Category</b> to Columns and <b>Profit</b> to Rows. In the <b>Show Me</b> panel select <b>Box-and-Whisker Plot</b>. Tableau distributes individual profit values and draws the median, quartiles, and whiskers. Right-click any outlier circle and choose <b>Annotate > Mark</b> to label it.</div></div>
-<div class="step-item"><div class="step-num">3</div><div class="step-text"><b>Treemap:</b> New sheet — from <b>Show Me</b> select <b>Treemap</b>. Drag <b>Category</b> to the <b>Color</b> card and <b>Sales</b> to the <b>Size</b> card. Drag <b>Sub-Category</b> to the <b>Label</b> card so each rectangle shows its name. The largest rectangles represent highest sales.</div></div>
-<div class="step-item"><div class="step-num">4</div><div class="step-text"><b>Bubble Chart:</b> New sheet — drag <b>Sub-Category</b> to Detail, <b>Sales</b> to Size, <b>Profit</b> to Color, and <b>Sub-Category</b> to Label. In the Marks card dropdown select <b>Circle</b>. You now have a bubble chart where bubble size = Sales and color = Profit (red = loss, blue = profit).</div></div>
-<div class="step-item"><div class="step-num">5</div><div class="step-text"><b>Second Datasource:</b> In the Data menu choose <b>New Data Source</b>. Connect to a simple CSV (e.g., a US state population CSV from data.gov). A second datasource appears in the Data pane. Create a new sheet using fields from this second source, then save the workbook as "Exp6_Stats.twb" and upload.</div></div>
+<div class="step-item" id="step-item-1">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="1" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction"><b>Histogram:</b> On a new sheet, drag <b>Sales</b> to Columns. Tableau creates a horizontal axis. Right-click the <b>Sales</b> pill and choose <b>Dimension</b> (not Measure). Then go to <b>Show Me</b> and select <b>Histogram</b>. Tableau will auto-create bins. Right-click the <b>Sales (bin)</b> field in the Data pane and choose <b>Edit</b> to change bin size (try 500). Observe the distribution.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A histogram appears with Sales bins on the x-axis and count of Sales on the y-axis.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-2">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="2" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction"><b>Box Plot:</b> New sheet — drag <b>Category</b> to Columns and <b>Profit</b> to Rows. In the <b>Show Me</b> panel select <b>Box-and-Whisker Plot</b>. Tableau distributes individual profit values and draws the median, quartiles, and whiskers. Right-click any outlier circle and choose <b>Annotate > Mark</b> to label it.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A box-and-whisker plot appears with a custom annotation on one of the outlier circles.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-3">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="3" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction"><b>Treemap:</b> New sheet — from <b>Show Me</b> select <b>Treemap</b>. Drag <b>Category</b> to the <b>Color</b> card and <b>Sales</b> to the <b>Size</b> card. Drag <b>Sub-Category</b> to the <b>Label</b> card so each rectangle shows its name. The largest rectangles represent highest sales.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A treemap appears with rectangles sized by Sales, coloured by Profit, and labelled by Sub-Category.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-4">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="4" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction"><b>Bubble Chart:</b> New sheet — drag <b>Sub-Category</b> to Detail, <b>Sales</b> to Size, <b>Profit</b> to Color, and <b>Sub-Category</b> to Label. In the Marks card dropdown select <b>Circle</b>. You now have a bubble chart where bubble size = Sales and color = Profit (red = loss, blue = profit).<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A bubble chart appears with circles sized by Sales and coloured by Profit (red/blue).</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-5">
+          <div class="step-num">5</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="5" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction"><b>Second Datasource:</b> In the Data menu choose <b>New Data Source</b>. Connect to a simple CSV (e.g., a US state population CSV from data.gov). A second datasource appears in the Data pane. Create a new sheet using fields from this second source, then save the workbook as "Exp6_Stats.twb" and upload.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A second data source icon appears in the Data pane with a different colour, and a new sheet uses it.</details></div>
+</div>
+        </div>
         </div>
       </div>
     </div>
     <div class="panel">
       <div class="panel-header">&#129514; XML Evaluator</div>
       <div class="panel-body">
-        <div class="score-banner">
+        <div class="score-banner" style="flex-wrap:nowrap; align-items:center; gap:1rem;">
           <div>
             <div class="score-left">Auto-Evaluation Score</div>
             <div class="score-bar" style="width:160px;margin-top:.4rem"><div class="score-bar-fill" id="score-bar" style="width:0%"></div></div>
           </div>
-          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
+          <div class="score-value" style="white-space:nowrap; flex-shrink:0;"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
         </div>
         <div class="eval-error" id="eval-error"></div>
+        <div class="info-box" style="margin-bottom:1rem;">
+          <strong>Evaluator looks for:</strong> A <code>Bar</code> mark type (Histogram), a <code>Circle</code> mark type (Box Plot), a <code>size</code> encoding node (Bubble chart), a <code>Square</code> mark type (Treemap), and 2 or more &lt;datasource&gt; nodes (second data source connected).
+        </div>
         <div class="upload-zone" id="uploadZone">
           <div class="upload-icon">&#128196;</div>
           <div class="upload-title">Drop .twb / .twbx here</div>
@@ -67,11 +115,11 @@
           <input type="file" id="ssInput" style="display:none" accept="image/*">
         </div>
         <div class="check-list" id="resultsList" style="margin-top:1rem">
-<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Histogram (Bar)</div></div><div class="check-marks">20 marks</div></div>
-<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Box Plot (Circle)</div></div><div class="check-marks">20 marks</div></div>
-<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Size Encoding</div></div><div class="check-marks">20 marks</div></div>
-<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Treemap (Square)</div></div><div class="check-marks">20 marks</div></div>
-<div class="check-item" id="check-5"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Second Datasource</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Histogram (Bar)</div><div class="check-desc">Verifies a mark type of <em>Bar</em> exists in the workbook XML — produced by Show Me &gt; Histogram.</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Box Plot (Circle)</div><div class="check-desc">Checks for a <em>Circle</em> mark type — the underlying encoding Tableau uses for box-and-whisker plots.</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Size Encoding</div><div class="check-desc">Confirms a &lt;size&gt; encoding node exists — created when you drag Sales to the Size card in a bubble chart.</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Treemap (Square)</div><div class="check-desc">Verifies a mark type of <em>Square</em> — the mark encoding Tableau uses internally for treemap charts.</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-5"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Second Datasource</div><div class="check-desc">Counts &lt;datasource&gt; nodes in the XML — requires at least 2, confirming a second data source was connected.</div></div><div class="check-marks">20 marks</div></div>
         </div>
         <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
           <button class="btn export" id="export-btn">&#128229; Export Report</button>
@@ -302,5 +350,72 @@
   }
 })();
 </script>
+
+<style>
+/* UX Features */
+.step-item {
+  transition: background 0.3s ease, border-left 0.3s ease;
+  padding: 10px;
+  border-radius: 6px;
+  border-left: 4px solid transparent;
+}
+.step-item.active {
+  background: rgba(59, 130, 246, 0.05);
+  border-left: 4px solid var(--blue);
+}
+.step-item.completed .step-instruction {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+.step-item.completed pre,
+.step-item.completed .step-check,
+.step-item.completed code {
+  text-decoration: none !important;
+  opacity: 0.8;
+}
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const eid = '6';
+    const checkboxes = document.querySelectorAll('.step-cb');
+    const items = document.querySelectorAll('.step-item');
+    
+    function updateSteps() {
+        let activeFound = false;
+        checkboxes.forEach((cb, index) => {
+            const stepItem = cb.closest('.step-item');
+            const stepNum = cb.getAttribute('data-step');
+            
+            // Save state
+            localStorage.setItem(`tvl_step_${eid}_${stepNum}`, cb.checked ? '1' : '0');
+            
+            if (cb.checked) {
+                stepItem.classList.add('completed');
+                stepItem.classList.remove('active');
+            } else {
+                stepItem.classList.remove('completed');
+                if (!activeFound) {
+                    stepItem.classList.add('active');
+                    activeFound = true;
+                } else {
+                    stepItem.classList.remove('active');
+                }
+            }
+        });
+    }
+
+    // Load state
+    checkboxes.forEach(cb => {
+        const stepNum = cb.getAttribute('data-step');
+        if (localStorage.getItem(`tvl_step_${eid}_${stepNum}`) === '1') {
+            cb.checked = true;
+        }
+        cb.addEventListener('change', updateSteps);
+    });
+    
+    updateSteps();
+});
+</script>
+
 </body>
 </html>

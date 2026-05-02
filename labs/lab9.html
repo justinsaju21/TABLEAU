@@ -30,25 +30,73 @@
         </div>
         <div class="section-label">Lab Instructions</div>
         <div class="steps-list">
-<div class="step-item"><div class="step-num">1</div><div class="step-text"><b>Hierarchy:</b> In the Data pane, drag <b>Sub-Category</b> and drop it directly on top of <b>Category</b> — Tableau creates a hierarchy and asks you to name it (type "Product"). Then drag <b>Product Name</b> into the hierarchy below Sub-Category. You now have a 3-level drill path: Category > Sub-Category > Product Name.</div></div>
-<div class="step-item"><div class="step-num">2</div><div class="step-text"><b>Geographic Roles:</b> Right-click <b>State</b> in the Data pane > Geographic Role > State/Province. Right-click <b>City</b> > Geographic Role > City. Both fields now show a globe icon. These roles allow Tableau to geocode the data and plot it on a map automatically.</div></div>
-<div class="step-item"><div class="step-num">3</div><div class="step-text"><b>Map Worksheet:</b> Drag <b>State</b> to the view — Tableau auto-generates a filled map. Click the (+) drill button on the State pill in the view to drill down to City. You should see circles appear for individual cities. Right-click a state and choose <b>View Data</b> to see the underlying rows. This is the drill-down capability.</div></div>
-<div class="step-item"><div class="step-num">4</div><div class="step-text"><b>Data Dictionary Dashboard:</b> Create a new dashboard. From the Objects panel, drag a <b>Text</b> object to the canvas. Double-click it and type a table listing each key field, its data type, and what it means (e.g., "Order ID — String — Unique transaction identifier"). Format using the built-in rich text tools. This becomes your workbook documentation.</div></div>
-<div class="step-item"><div class="step-num">5</div><div class="step-text">Right-click any field in the Data pane > <b>Default Properties > Comment</b>. Type a description. This comment appears as a tooltip when users hover over the field name in the view. Do this for at least 3 fields. Save as "Exp9_Hierarchy.twb" and upload.</div></div>
+<div class="step-item" id="step-item-1">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="1" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction"><b>Hierarchy:</b> In the Data pane, drag <b>Sub-Category</b> and drop it directly on top of <b>Category</b> — Tableau creates a hierarchy and asks you to name it (type "Product"). Then drag <b>Product Name</b> into the hierarchy below Sub-Category. You now have a 3-level drill path: Category > Sub-Category > Product Name.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A "Product" hierarchy is created in the Data pane containing Category, Sub-Category, and Product Name.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-2">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="2" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction"><b>Geographic Roles:</b> Right-click <b>State</b> in the Data pane > Geographic Role > State/Province. Right-click <b>City</b> > Geographic Role > City. Both fields now show a globe icon. These roles allow Tableau to geocode the data and plot it on a map automatically.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>The State and City fields in the Data pane now have a globe icon next to them.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-3">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="3" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction"><b>Map Worksheet:</b> Drag <b>State</b> to the view — Tableau auto-generates a filled map. Click the (+) drill button on the State pill in the view to drill down to City. You should see circles appear for individual cities. Right-click a state and choose <b>View Data</b> to see the underlying rows. This is the drill-down capability.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A map appears shading states, and clicking the (+) drill button reveals circles for cities.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-4">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="4" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction"><b>Data Dictionary Dashboard:</b> Create a new dashboard. From the Objects panel, drag a <b>Text</b> object to the canvas. Double-click it and type a table listing each key field, its data type, and what it means (e.g., "Order ID — String — Unique transaction identifier"). Format using the built-in rich text tools. This becomes your workbook documentation.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A dashboard is created containing a text table that defines the key fields and their data types.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-5">
+          <div class="step-num">5</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="5" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">Right-click any field in the Data pane > <b>Default Properties > Comment</b>. Type a description. This comment appears as a tooltip when users hover over the field name in the view. Do this for at least 3 fields. Save as "Exp9_Hierarchy.twb" and upload.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>Hovering over the modified fields in the Data pane displays your custom tooltip descriptions.</details></div>
+</div>
+        </div>
         </div>
       </div>
     </div>
     <div class="panel">
       <div class="panel-header">&#129514; XML Evaluator</div>
       <div class="panel-body">
-        <div class="score-banner">
+        <div class="score-banner" style="flex-wrap:nowrap; align-items:center; gap:1rem;">
           <div>
             <div class="score-left">Auto-Evaluation Score</div>
             <div class="score-bar" style="width:160px;margin-top:.4rem"><div class="score-bar-fill" id="score-bar" style="width:0%"></div></div>
           </div>
-          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
+          <div class="score-value" style="white-space:nowrap; flex-shrink:0;"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
         </div>
         <div class="eval-error" id="eval-error"></div>
+        <div class="info-box" style="margin-bottom:1rem;">
+          <strong>Evaluator looks for:</strong> A 3-level &lt;drill-path&gt; hierarchy, a <code>Map</code> mark type (geographic worksheet), a &lt;drill-path&gt; node confirming geographic role assignment, and both a dashboard and a text object (Data Dictionary).
+        </div>
         <div class="upload-zone" id="uploadZone">
           <div class="upload-icon">&#128196;</div>
           <div class="upload-title">Drop .twb / .twbx here</div>
@@ -67,10 +115,10 @@
           <input type="file" id="ssInput" style="display:none" accept="image/*">
         </div>
         <div class="check-list" id="resultsList" style="margin-top:1rem">
-<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Drill Path Hierarchy</div></div><div class="check-marks">25 marks</div></div>
-<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Map Worksheet</div></div><div class="check-marks">25 marks</div></div>
-<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Geographic Role</div></div><div class="check-marks">25 marks</div></div>
-<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Data Dictionary Dashboard</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Drill Path Hierarchy</div><div class="check-desc">Calls <code>hasDrillPath(xml, 3)</code> &mdash; verifies a &lt;drill-path&gt; containing 3 levels (Category &rsaquo; Sub-Category &rsaquo; Product Name).</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Map Worksheet</div><div class="check-desc">Checks for a mark type of <em>Map</em> &mdash; Tableau sets this automatically when you drag a geographic field to the view.</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Geographic Role</div><div class="check-desc">Looks for a &lt;drill-path&gt; node in the XML &mdash; present after geographic roles (State, City) are assigned in the Data pane.</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Data Dictionary Dashboard</div><div class="check-desc">Requires both a dashboard node and a text object &mdash; confirming the dictionary Text object was added to a dashboard canvas.</div></div><div class="check-marks">25 marks</div></div>
         </div>
         <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
           <button class="btn export" id="export-btn">&#128229; Export Report</button>
@@ -300,5 +348,72 @@
   }
 })();
 </script>
+
+<style>
+/* UX Features */
+.step-item {
+  transition: background 0.3s ease, border-left 0.3s ease;
+  padding: 10px;
+  border-radius: 6px;
+  border-left: 4px solid transparent;
+}
+.step-item.active {
+  background: rgba(59, 130, 246, 0.05);
+  border-left: 4px solid var(--blue);
+}
+.step-item.completed .step-instruction {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+.step-item.completed pre,
+.step-item.completed .step-check,
+.step-item.completed code {
+  text-decoration: none !important;
+  opacity: 0.8;
+}
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const eid = '9';
+    const checkboxes = document.querySelectorAll('.step-cb');
+    const items = document.querySelectorAll('.step-item');
+    
+    function updateSteps() {
+        let activeFound = false;
+        checkboxes.forEach((cb, index) => {
+            const stepItem = cb.closest('.step-item');
+            const stepNum = cb.getAttribute('data-step');
+            
+            // Save state
+            localStorage.setItem(`tvl_step_${eid}_${stepNum}`, cb.checked ? '1' : '0');
+            
+            if (cb.checked) {
+                stepItem.classList.add('completed');
+                stepItem.classList.remove('active');
+            } else {
+                stepItem.classList.remove('completed');
+                if (!activeFound) {
+                    stepItem.classList.add('active');
+                    activeFound = true;
+                } else {
+                    stepItem.classList.remove('active');
+                }
+            }
+        });
+    }
+
+    // Load state
+    checkboxes.forEach(cb => {
+        const stepNum = cb.getAttribute('data-step');
+        if (localStorage.getItem(`tvl_step_${eid}_${stepNum}`) === '1') {
+            cb.checked = true;
+        }
+        cb.addEventListener('change', updateSteps);
+    });
+    
+    updateSteps();
+});
+</script>
+
 </body>
 </html>

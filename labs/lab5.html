@@ -30,11 +30,56 @@
         </div>
         <div class="section-label">Lab Instructions</div>
         <div class="steps-list">
-<div class="step-item"><div class="step-num">1</div><div class="step-text">In the Data pane, right-click and choose <b>Create Parameter</b>. Name it "Top N". Set <b>Data type: Integer</b>, <b>Current value: 5</b>, <b>Allowable values: Range</b>, Min 1, Max 20, Step 1. Click OK. The parameter now appears at the bottom of the Data pane.</div></div>
-<div class="step-item"><div class="step-num">2</div><div class="step-text">Create a calculated field named "Rank by Sales" with the formula: `RANK(SUM([Sales]))`. This is a Table Calculation — it ranks rows relative to each other in the view. Drag <b>Sub-Category</b> to Rows and <b>SUM(Sales)</b> to Columns to build a bar chart first.</div></div>
-<div class="step-item"><div class="step-num">3</div><div class="step-text">Drag <b>Rank by Sales</b> to the Filters shelf. In the filter dialog, choose <b>At most</b> and set the value to <b>[Top N]</b> (type it or use the parameter option). Alternatively, set filter range 1 to [Top N]. Click <b>Compute Using > Sub-Category</b> so it ranks within the table.</div></div>
-<div class="step-item"><div class="step-num">4</div><div class="step-text">Right-click the <b>Top N</b> parameter in the Data pane and choose <b>Show Parameter Control</b>. A slider appears on the sheet. Change the slider from 5 to 10 — the bar chart should dynamically update to show only the top N sub-categories.</div></div>
-<div class="step-item"><div class="step-num">5</div><div class="step-text">Create a dashboard, drag this sheet in, and also drag a <b>Highlight Table</b> showing the complete sales breakdown for context. Save as "Exp5_Parameters.twb" and upload.</div></div>
+<div class="step-item" id="step-item-1">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="1" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">In the Data pane, right-click and choose <b>Create Parameter</b>. Name it "Top N". Set <b>Data type: Integer</b>, <b>Current value: 5</b>, <b>Allowable values: Range</b>, Min 1, Max 20, Step 1. Click OK. The parameter now appears at the bottom of the Data pane.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A parameter named "Top N" appears at the bottom of the Data pane.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-2">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="2" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">Create a calculated field named "Rank by Sales" with the formula: <pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block">RANK(SUM([Sales]))</code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre>. This is a Table Calculation — it ranks rows relative to each other in the view. Drag <b>Sub-Category</b> to Rows and <b>SUM(Sales)</b> to Columns to build a bar chart first.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A bar chart appears showing Sub-Categories and their Sales, with the Rank calculation on the Filter shelf.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-3">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="3" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">Drag <b>Rank by Sales</b> to the Filters shelf. In the filter dialog, choose <b>At most</b> and set the value to <b>[Top N]</b> (type it or use the parameter option). Alternatively, set filter range 1 to [Top N]. Click <b>Compute Using > Sub-Category</b> so it ranks within the table.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>The view filters to show only the top N Sub-Categories based on Sales.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-4">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="4" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">Right-click the <b>Top N</b> parameter in the Data pane and choose <b>Show Parameter Control</b>. A slider appears on the sheet. Change the slider from 5 to 10 — the bar chart should dynamically update to show only the top N sub-categories.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A slider control appears; moving it changes the number of bars displayed in the chart.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-5">
+          <div class="step-num">5</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="5" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">Create a dashboard, drag this sheet in, and also drag a <b>Highlight Table</b> showing the complete sales breakdown for context. Save as "Exp5_Parameters.twb" and upload.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A dashboard containing the dynamic bar chart and a highlight table is created.</details></div>
+</div>
+        </div>
         </div>
       </div>
     </div>
@@ -300,5 +345,72 @@
   }
 })();
 </script>
+
+<style>
+/* UX Features */
+.step-item {
+  transition: background 0.3s ease, border-left 0.3s ease;
+  padding: 10px;
+  border-radius: 6px;
+  border-left: 4px solid transparent;
+}
+.step-item.active {
+  background: rgba(59, 130, 246, 0.05);
+  border-left: 4px solid var(--blue);
+}
+.step-item.completed .step-instruction {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+.step-item.completed pre,
+.step-item.completed .step-check,
+.step-item.completed code {
+  text-decoration: none !important;
+  opacity: 0.8;
+}
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const eid = '5';
+    const checkboxes = document.querySelectorAll('.step-cb');
+    const items = document.querySelectorAll('.step-item');
+    
+    function updateSteps() {
+        let activeFound = false;
+        checkboxes.forEach((cb, index) => {
+            const stepItem = cb.closest('.step-item');
+            const stepNum = cb.getAttribute('data-step');
+            
+            // Save state
+            localStorage.setItem(`tvl_step_${eid}_${stepNum}`, cb.checked ? '1' : '0');
+            
+            if (cb.checked) {
+                stepItem.classList.add('completed');
+                stepItem.classList.remove('active');
+            } else {
+                stepItem.classList.remove('completed');
+                if (!activeFound) {
+                    stepItem.classList.add('active');
+                    activeFound = true;
+                } else {
+                    stepItem.classList.remove('active');
+                }
+            }
+        });
+    }
+
+    // Load state
+    checkboxes.forEach(cb => {
+        const stepNum = cb.getAttribute('data-step');
+        if (localStorage.getItem(`tvl_step_${eid}_${stepNum}`) === '1') {
+            cb.checked = true;
+        }
+        cb.addEventListener('change', updateSteps);
+    });
+    
+    updateSteps();
+});
+</script>
+
 </body>
 </html>

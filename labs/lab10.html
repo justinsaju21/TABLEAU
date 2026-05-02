@@ -30,25 +30,73 @@
         </div>
         <div class="section-label">Lab Instructions</div>
         <div class="steps-list">
-<div class="step-item"><div class="step-num">1</div><div class="step-text">In a new workbook, connect to the Superstore Excel file and verify the connection icon shows <b>Live</b> (no extract indicator). Note the loading speed when you interact with the view — this is your baseline. Go to the <b>Data Source tab</b> and check the connection type (should show excel-direct).</div></div>
-<div class="step-item"><div class="step-num">2</div><div class="step-text">To switch to an Extract, click the <b>Extract</b> radio button in the top-right of the Data Source tab. Click <b>Edit</b> to choose which tables to extract, then click <b>Save</b>. Tableau prompts you to save the extract file (.hyper) — choose a location. The icon in the Data pane changes to a cylinder, indicating extract.</div></div>
-<div class="step-item"><div class="step-num">3</div><div class="step-text">With the extract connection active, go to <b>Data > Extract > Edit Extract Filter</b>. Click <b>Add</b> and set a filter: e.g., Order Date Year = 2022. This limits the extract to only 2022 data, which reduces file size and speeds up queries significantly.</div></div>
-<div class="step-item"><div class="step-num">4</div><div class="step-text">Go to Sheet 1. In the Data pane, create a calculated field "Shipping Delay" with: `DATEDIFF('day', [Order Date], [Ship Date])`. Drag it to Rows alongside a bar chart of Categories. Now you can see average shipping delay per category.</div></div>
-<div class="step-item"><div class="step-num">5</div><div class="step-text">Go to <b>Help > Settings and Performance > Start Performance Recording</b>. Click around the view, filter, and drill down. Then stop recording. Tableau opens a performance workbook showing query times. Note which queries were slowest — include this observation in your reflection. Save as "Exp10_Extract.twb" and upload.</div></div>
+<div class="step-item" id="step-item-1">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="1" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">In a new workbook, connect to the Superstore Excel file and verify the connection icon shows <b>Live</b> (no extract indicator). Note the loading speed when you interact with the view — this is your baseline. Go to the <b>Data Source tab</b> and check the connection type (should show excel-direct).<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>The connection icon shows two cylinders with no arrows, indicating a Live connection.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-2">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="2" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">To switch to an Extract, click the <b>Extract</b> radio button in the top-right of the Data Source tab. Click <b>Edit</b> to choose which tables to extract, then click <b>Save</b>. Tableau prompts you to save the extract file (.hyper) — choose a location. The icon in the Data pane changes to a cylinder, indicating extract.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>The connection icon changes to a single cylinder with an arrow, and you save a .hyper file.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-3">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="3" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">With the extract connection active, go to <b>Data > Extract > Edit Extract Filter</b>. Click <b>Add</b> and set a filter: e.g., Order Date Year = 2022. This limits the extract to only 2022 data, which reduces file size and speeds up queries significantly.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>The extract dialog shows a filter applied for Order Date Year = 2022.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-4">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="4" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">Go to Sheet 1. In the Data pane, create a calculated field "Shipping Delay" with: <pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block">DATEDIFF('day', [Order Date], [Ship Date])</code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre>. Drag it to Rows alongside a bar chart of Categories. Now you can see average shipping delay per category.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A bar chart appears showing the average Shipping Delay in days for each Category.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-5">
+          <div class="step-num">5</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="5" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">Go to <b>Help > Settings and Performance > Start Performance Recording</b>. Click around the view, filter, and drill down. Then stop recording. Tableau opens a performance workbook showing query times. Note which queries were slowest — include this observation in your reflection. Save as "Exp10_Extract.twb" and upload.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A performance recording workbook opens showing query execution times in a Gantt chart.</details></div>
+</div>
+        </div>
         </div>
       </div>
     </div>
     <div class="panel">
       <div class="panel-header">&#129514; XML Evaluator</div>
       <div class="panel-body">
-        <div class="score-banner">
+        <div class="score-banner" style="flex-wrap:nowrap; align-items:center; gap:1rem;">
           <div>
             <div class="score-left">Auto-Evaluation Score</div>
             <div class="score-bar" style="width:160px;margin-top:.4rem"><div class="score-bar-fill" id="score-bar" style="width:0%"></div></div>
           </div>
-          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
+          <div class="score-value" style="white-space:nowrap; flex-shrink:0;"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
         </div>
         <div class="eval-error" id="eval-error"></div>
+        <div class="info-box" style="margin-bottom:1rem;">
+          <strong>Evaluator looks for:</strong> An excel/textscan connection class (Live), a hyper connection class (Extract), an &lt;extract&gt; node (Extract filter), and a formula containing the <code>DATEDIFF</code> keyword.
+        </div>
         <div class="upload-zone" id="uploadZone">
           <div class="upload-icon">&#128196;</div>
           <div class="upload-title">Drop .twb / .twbx here</div>
@@ -67,10 +115,10 @@
           <input type="file" id="ssInput" style="display:none" accept="image/*">
         </div>
         <div class="check-list" id="resultsList" style="margin-top:1rem">
-<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Live Connection</div></div><div class="check-marks">25 marks</div></div>
-<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Extract Connection</div></div><div class="check-marks">25 marks</div></div>
-<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Extract Filter Node</div></div><div class="check-marks">25 marks</div></div>
-<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">DATEDIFF Calculation</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Live Connection</div><div class="check-desc">Checks for an <em>excel</em> or <em>textscan</em> connection class in the XML — standard for live connections to spreadsheets.</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Extract Connection</div><div class="check-desc">Verifies the presence of a <em>hyper</em> connection class, indicating the data was extracted to a Tableau data engine file.</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Extract Filter Node</div><div class="check-desc">Looks for an &lt;extract&gt; XML node — generated when you apply an Extract Filter in the Data Source tab.</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">DATEDIFF Calculation</div><div class="check-desc">Confirms a calculated field uses the <em>DATEDIFF</em> keyword, used here to calculate shipping delay in days.</div></div><div class="check-marks">25 marks</div></div>
         </div>
         <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
           <button class="btn export" id="export-btn">&#128229; Export Report</button>
@@ -300,5 +348,72 @@
   }
 })();
 </script>
+
+<style>
+/* UX Features */
+.step-item {
+  transition: background 0.3s ease, border-left 0.3s ease;
+  padding: 10px;
+  border-radius: 6px;
+  border-left: 4px solid transparent;
+}
+.step-item.active {
+  background: rgba(59, 130, 246, 0.05);
+  border-left: 4px solid var(--blue);
+}
+.step-item.completed .step-instruction {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+.step-item.completed pre,
+.step-item.completed .step-check,
+.step-item.completed code {
+  text-decoration: none !important;
+  opacity: 0.8;
+}
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const eid = '10';
+    const checkboxes = document.querySelectorAll('.step-cb');
+    const items = document.querySelectorAll('.step-item');
+    
+    function updateSteps() {
+        let activeFound = false;
+        checkboxes.forEach((cb, index) => {
+            const stepItem = cb.closest('.step-item');
+            const stepNum = cb.getAttribute('data-step');
+            
+            // Save state
+            localStorage.setItem(`tvl_step_${eid}_${stepNum}`, cb.checked ? '1' : '0');
+            
+            if (cb.checked) {
+                stepItem.classList.add('completed');
+                stepItem.classList.remove('active');
+            } else {
+                stepItem.classList.remove('completed');
+                if (!activeFound) {
+                    stepItem.classList.add('active');
+                    activeFound = true;
+                } else {
+                    stepItem.classList.remove('active');
+                }
+            }
+        });
+    }
+
+    // Load state
+    checkboxes.forEach(cb => {
+        const stepNum = cb.getAttribute('data-step');
+        if (localStorage.getItem(`tvl_step_${eid}_${stepNum}`) === '1') {
+            cb.checked = true;
+        }
+        cb.addEventListener('change', updateSteps);
+    });
+    
+    updateSteps();
+});
+</script>
+
 </body>
 </html>

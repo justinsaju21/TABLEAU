@@ -30,11 +30,56 @@
         </div>
         <div class="section-label">Lab Instructions</div>
         <div class="steps-list">
-<div class="step-item"><div class="step-num">1</div><div class="step-text">Open Tableau, click <b>Microsoft Excel</b> under Connect, and browse to your Superstore file. Drag the <b>Orders</b> sheet onto the canvas. Verify you see a green tick on the data source name and a preview of rows in the lower pane.</div></div>
-<div class="step-item"><div class="step-num">2</div><div class="step-text">In the <b>Data Source tab</b>, right-click <b>Order ID</b> in the field list and choose <b>Rename</b>. Type "Transaction ID" and press Enter. Repeat for <b>Customer Name</b> — rename it to "Client Name". You will see the column headers update immediately in the preview grid.</div></div>
-<div class="step-item"><div class="step-num">3</div><div class="step-text">Find <b>Postal Code</b> in the field list. Its icon will show <b>#</b> (Number). Right-click it, go to <b>Change Data Type > String</b>. The icon changes to <b>Abc</b>. This is critical — ZIP codes must be strings to avoid arithmetic operations.</div></div>
-<div class="step-item"><div class="step-num">4</div><div class="step-text">Navigate to a blank worksheet (Sheet 1). Right-click any empty space in the <b>Data pane</b> and select <b>Create Calculated Field</b>. In the dialog name it "Shipping Time" and enter the formula: `DATEDIFF('day', [Order Date], [Ship Date])`. Click OK. The new field appears in the Measures pane.</div></div>
-<div class="step-item"><div class="step-num">5</div><div class="step-text">In the <b>Data pane</b>, select <b>Country/Region</b>, <b>State/Province</b>, and <b>City</b> by holding Ctrl (or Cmd) while clicking them. Right-click the selection, choose <b>Hierarchy > Create Hierarchy</b>, and name it "Location". A hierarchy structure will appear, allowing you to drill down in maps! Save the workbook as "Exp1_Data.twb" and upload it here.</div></div>
+<div class="step-item" id="step-item-1">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="1" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">Open Tableau, click <b>Microsoft Excel</b> under Connect, and browse to your Superstore file. Drag the <b>Orders</b> sheet onto the canvas. Verify you see a green tick on the data source name and a preview of rows in the lower pane.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>The Orders table is loaded with a green tick and a data preview grid appears.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-2">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="2" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">In the <b>Data Source tab</b>, right-click <b>Order ID</b> in the field list and choose <b>Rename</b>. Type "Transaction ID" and press Enter. Repeat for <b>Customer Name</b> — rename it to "Client Name". You will see the column headers update immediately in the preview grid.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>The fields are visibly renamed to "Transaction ID" and "Client Name" in the data pane.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-3">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="3" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">Find <b>Postal Code</b> in the field list. Its icon will show <b>#</b> (Number). Right-click it, go to <b>Change Data Type > String</b>. The icon changes to <b>Abc</b>. This is critical — ZIP codes must be strings to avoid arithmetic operations.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>The icon next to Postal Code changes from a '#' (number) to 'Abc' (string).</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-4">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="4" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">Navigate to a blank worksheet (Sheet 1). Right-click any empty space in the <b>Data pane</b> and select <b>Create Calculated Field</b>. In the dialog name it "Shipping Time" and enter the formula: <pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block">DATEDIFF('day', [Order Date], [Ship Date])</code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre>. Click OK. The new field appears in the Measures pane.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A new field "Shipping Time" appears with an '=' icon in the Data pane.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-5">
+          <div class="step-num">5</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="5" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">In the <b>Data pane</b>, select <b>Country/Region</b>, <b>State/Province</b>, and <b>City</b> by holding Ctrl (or Cmd) while clicking them. Right-click the selection, choose <b>Hierarchy > Create Hierarchy</b>, and name it "Location". A hierarchy structure will appear, allowing you to drill down in maps! Save the workbook as "Exp1_Data.twb" and upload it here.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A hierarchy named "Location" is created grouping the geographic fields together.</details></div>
+</div>
+        </div>
         </div>
       </div>
     </div>
@@ -300,5 +345,72 @@
   }
 })();
 </script>
+
+<style>
+/* UX Features */
+.step-item {
+  transition: background 0.3s ease, border-left 0.3s ease;
+  padding: 10px;
+  border-radius: 6px;
+  border-left: 4px solid transparent;
+}
+.step-item.active {
+  background: rgba(59, 130, 246, 0.05);
+  border-left: 4px solid var(--blue);
+}
+.step-item.completed .step-instruction {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+.step-item.completed pre,
+.step-item.completed .step-check,
+.step-item.completed code {
+  text-decoration: none !important;
+  opacity: 0.8;
+}
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const eid = '1';
+    const checkboxes = document.querySelectorAll('.step-cb');
+    const items = document.querySelectorAll('.step-item');
+    
+    function updateSteps() {
+        let activeFound = false;
+        checkboxes.forEach((cb, index) => {
+            const stepItem = cb.closest('.step-item');
+            const stepNum = cb.getAttribute('data-step');
+            
+            // Save state
+            localStorage.setItem(`tvl_step_${eid}_${stepNum}`, cb.checked ? '1' : '0');
+            
+            if (cb.checked) {
+                stepItem.classList.add('completed');
+                stepItem.classList.remove('active');
+            } else {
+                stepItem.classList.remove('completed');
+                if (!activeFound) {
+                    stepItem.classList.add('active');
+                    activeFound = true;
+                } else {
+                    stepItem.classList.remove('active');
+                }
+            }
+        });
+    }
+
+    // Load state
+    checkboxes.forEach(cb => {
+        const stepNum = cb.getAttribute('data-step');
+        if (localStorage.getItem(`tvl_step_${eid}_${stepNum}`) === '1') {
+            cb.checked = true;
+        }
+        cb.addEventListener('change', updateSteps);
+    });
+    
+    updateSteps();
+});
+</script>
+
 </body>
 </html>

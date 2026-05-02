@@ -33,25 +33,77 @@
         </div>
         <div class="section-label">Lab Instructions</div>
         <div class="steps-list">
-<div class="step-item"><div class="step-num">1</div><div class="step-text">Sign in to <b>Tableau Public</b> from within the app: go to <b>Server > Tableau Public > Save to Tableau Public As</b>. A browser window may open asking you to log in. If you do not have an account, create one free at public.tableau.com. Tableau will upload your entire workbook including datasource.</div></div>
-<div class="step-item"><div class="step-num">2</div><div class="step-text">Once uploaded, Tableau Public opens your browser to the published view. Copy the full URL from the address bar (it should look like `https://public.tableau.com/views/YourWorkbookName/Sheet1`). Keep this tab open.</div></div>
-<div class="step-item"><div class="step-num">3</div><div class="step-text">Paste the URL into the <b>Tableau Public URL</b> field above the evaluator panel on this page. This is required for full marks on this experiment.</div></div>
-<div class="step-item"><div class="step-num">4</div><div class="step-text">Back on the Tableau Public page, click the <b>Share</b> button at the bottom of the embedded view. Tableau shows an embed code snippet (`<script>` tag). Copy it and paste into a simple HTML file in VS Code — open the file in a browser to see the dashboard embedded in a webpage.</div></div>
-<div class="step-item"><div class="step-num">5</div><div class="step-text">Save the workbook one more time to Tableau Public with any small change (e.g., title update) to confirm you can re-publish. Then save as "Exp13_Publish.twb" locally and upload the .twb here.</div></div>
+<div class="step-item" id="step-item-1">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="1" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">Sign in to <b>Tableau Public</b> from within the app: go to <b>Server > Tableau Public > Save to Tableau Public As</b>. A browser window may open asking you to log in. If you do not have an account, create one free at public.tableau.com. Tableau will upload your entire workbook including datasource.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>Your browser opens to Tableau Public, showing your published workbook.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-2">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="2" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">Once uploaded, Tableau Public opens your browser to the published view. Copy the full URL from the address bar (it should look like <pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block">https://public.tableau.com/views/YourWorkbookName/Sheet1</code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre>). Keep this tab open.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>The URL is copied to your clipboard (ending with your Sheet or Dashboard name).</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-3">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="3" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">Paste the URL into the <b>Tableau Public URL</b> field above the evaluator panel on this page. This is required for full marks on this experiment.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>The URL is visible in the input field above the evaluator panel.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-4">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="4" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">Back on the Tableau Public page, click the <b>Share</b> button at the bottom of the embedded view. Tableau shows an embed code snippet (<pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block"><script></code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre> tag). Copy it and paste into a simple HTML file in VS Code — open the file in a browser to see the dashboard embedded in a webpage.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>Your dashboard appears embedded within a local HTML webpage in your browser.</details></div>
+</div>
+        </div>
+<div class="step-item" id="step-item-5">
+          <div class="step-num">5</div>
+          <div class="step-text">
+            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
+              <input type="checkbox" class="step-cb" data-step="5" style="cursor:pointer;width:14px;height:14px;">
+              Mark step as complete
+            </label>
+            <div class="step-instruction">Save the workbook one more time to Tableau Public with any small change (e.g., title update) to confirm you can re-publish. Then save as "Exp13_Publish.twb" locally and upload the .twb here.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>The updated workbook is successfully re-published to Tableau Public.</details></div>
+</div>
+        </div>
         </div>
       </div>
     </div>
     <div class="panel">
       <div class="panel-header">&#129514; XML Evaluator</div>
       <div class="panel-body">
-        <div class="score-banner">
+        <div class="score-banner" style="flex-wrap:nowrap; align-items:center; gap:1rem;">
           <div>
             <div class="score-left">Auto-Evaluation Score</div>
             <div class="score-bar" style="width:160px;margin-top:.4rem"><div class="score-bar-fill" id="score-bar" style="width:0%"></div></div>
           </div>
-          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
+          <div class="score-value" style="white-space:nowrap; flex-shrink:0;"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
         </div>
         <div class="eval-error" id="eval-error"></div>
+        <div class="info-box" style="margin-bottom:1rem;">
+          <strong>Evaluator looks for:</strong> A parseable .twb XML file, at least one dashboard, and a valid Tableau Public URL pasted into the designated input field above (you must paste the URL to get points).
+        </div>
+        <div style="margin-bottom: 1rem;">
+          <label style="font-size: 0.8rem; color: var(--text-2); display: block; margin-bottom: 0.2rem;">Tableau Public URL:</label>
+          <input type="text" id="urlInput" placeholder="https://public.tableau.com/views/..." style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border); color: #fff; border-radius: 4px;">
+        </div>
         <div class="upload-zone" id="uploadZone">
           <div class="upload-icon">&#128196;</div>
           <div class="upload-title">Drop .twb / .twbx here</div>
@@ -70,9 +122,9 @@
           <input type="file" id="ssInput" style="display:none" accept="image/*">
         </div>
         <div class="check-list" id="resultsList" style="margin-top:1rem">
-<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Valid Workbook Submitted</div></div><div class="check-marks">34 marks</div></div>
-<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Dashboard Exists</div></div><div class="check-marks">33 marks</div></div>
-<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Tableau Public URL</div></div><div class="check-marks">33 marks</div></div>
+<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Valid Workbook Submitted</div><div class="check-desc">Checks that a parseable .twb or .twbx XML file was successfully parsed.</div></div><div class="check-marks">34 marks</div></div>
+<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Dashboard Exists</div><div class="check-desc">Verifies that at least one dashboard node exists in the workbook, ready for publishing.</div></div><div class="check-marks">33 marks</div></div>
+<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Tableau Public URL</div><div class="check-desc">Validates that the URL you pasted in the field above contains <em>public.tableau.com</em>.</div></div><div class="check-marks">33 marks</div></div>
         </div>
         <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
           <button class="btn export" id="export-btn">&#128229; Export Report</button>
@@ -301,5 +353,72 @@
   }
 })();
 </script>
+
+<style>
+/* UX Features */
+.step-item {
+  transition: background 0.3s ease, border-left 0.3s ease;
+  padding: 10px;
+  border-radius: 6px;
+  border-left: 4px solid transparent;
+}
+.step-item.active {
+  background: rgba(59, 130, 246, 0.05);
+  border-left: 4px solid var(--blue);
+}
+.step-item.completed .step-instruction {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+.step-item.completed pre,
+.step-item.completed .step-check,
+.step-item.completed code {
+  text-decoration: none !important;
+  opacity: 0.8;
+}
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const eid = '13';
+    const checkboxes = document.querySelectorAll('.step-cb');
+    const items = document.querySelectorAll('.step-item');
+    
+    function updateSteps() {
+        let activeFound = false;
+        checkboxes.forEach((cb, index) => {
+            const stepItem = cb.closest('.step-item');
+            const stepNum = cb.getAttribute('data-step');
+            
+            // Save state
+            localStorage.setItem(`tvl_step_${eid}_${stepNum}`, cb.checked ? '1' : '0');
+            
+            if (cb.checked) {
+                stepItem.classList.add('completed');
+                stepItem.classList.remove('active');
+            } else {
+                stepItem.classList.remove('completed');
+                if (!activeFound) {
+                    stepItem.classList.add('active');
+                    activeFound = true;
+                } else {
+                    stepItem.classList.remove('active');
+                }
+            }
+        });
+    }
+
+    // Load state
+    checkboxes.forEach(cb => {
+        const stepNum = cb.getAttribute('data-step');
+        if (localStorage.getItem(`tvl_step_${eid}_${stepNum}`) === '1') {
+            cb.checked = true;
+        }
+        cb.addEventListener('change', updateSteps);
+    });
+    
+    updateSteps();
+});
+</script>
+
 </body>
 </html>
