@@ -276,9 +276,22 @@
     const val = reflectInput.value.trim().toLowerCase();
     const words = countWords(val);
     const labKeywords = {
+      '0': ['install', 'connect', 'interface', 'data'],
       '1': ['datasource', 'connection', 'dimension', 'measure'],
       '2': ['bar', 'line', 'scatter', 'marks', 'labels'],
-      '3': ['hierarchy', 'drill', 'group', 'set']
+      '3': ['hierarchy', 'drill', 'group', 'set'],
+      '4': ['filter', 'exclude', 'wildcard', 'condition'],
+      '5': ['sort', 'compute', 'running', 'percent'],
+      '6': ['dual', 'axis', 'synchronize', 'parameter'],
+      '7': ['dashboard', 'action', 'interactive', 'filter'],
+      '8': ['story', 'point', 'caption', 'presentation'],
+      '9': ['map', 'geographic', 'latitude', 'longitude'],
+      '10': ['extract', 'live', 'performance', 'hyper'],
+      '11': ['polygon', 'background', 'image', 'map'],
+      '12': ['lod', 'fixed', 'include', 'exclude'],
+      '13': ['publish', 'server', 'public', 'web'],
+      '14': ['forecast', 'trend', 'model', 'analytics'],
+      '15': ['python', 'tabpy', 'script', 'extension']
     };
     const required = labKeywords[EID] || ['tableau', 'data', 'viz', 'analysis'];
     const foundKeywords = required.filter(k => val.includes(k));
@@ -314,9 +327,22 @@
     const val = reflectInput.value.trim().toLowerCase();
     const words = countWords(val);
     const labKeywords = {
+      '0': ['install', 'connect', 'interface', 'data'],
       '1': ['datasource', 'connection', 'dimension', 'measure'],
       '2': ['bar', 'line', 'scatter', 'marks', 'labels'],
-      '3': ['hierarchy', 'drill', 'group', 'set']
+      '3': ['hierarchy', 'drill', 'group', 'set'],
+      '4': ['filter', 'exclude', 'wildcard', 'condition'],
+      '5': ['sort', 'compute', 'running', 'percent'],
+      '6': ['dual', 'axis', 'synchronize', 'parameter'],
+      '7': ['dashboard', 'action', 'interactive', 'filter'],
+      '8': ['story', 'point', 'caption', 'presentation'],
+      '9': ['map', 'geographic', 'latitude', 'longitude'],
+      '10': ['extract', 'live', 'performance', 'hyper'],
+      '11': ['polygon', 'background', 'image', 'map'],
+      '12': ['lod', 'fixed', 'include', 'exclude'],
+      '13': ['publish', 'server', 'public', 'web'],
+      '14': ['forecast', 'trend', 'model', 'analytics'],
+      '15': ['python', 'tabpy', 'script', 'extension']
     };
     const required = labKeywords[EID] || ['tableau', 'data', 'viz', 'analysis'];
     const foundKeywords = required.filter(k => val.includes(k));

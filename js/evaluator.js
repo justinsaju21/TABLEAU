@@ -1,4 +1,21 @@
 // ── TableauEvaluator ── XML-based grading engine for Tableau VL
+// Safe localStorage wrapper to prevent QuotaExceededError crashes
+const originalSetItem = localStorage.setItem;
+localStorage.setItem = function(key, value) {
+  try {
+    originalSetItem.apply(this, arguments);
+  } catch(e) {
+    if (e.name === 'QuotaExceededError' || e.name === 'NS_ERROR_DOM_QUOTA_REACHED') {
+      const errEl = document.getElementById('eval-error');
+      if (errEl) {
+        errEl.textContent = '⚠ Storage quota exceeded! Cannot save progress or screenshots. Please clear some previous labs.';
+        errEl.style.display = 'block';
+      }
+      console.error('localStorage quota exceeded', e);
+    }
+  }
+};
+
 class TableauEvaluator {
   constructor(checks, onResultUpdate) {
     this.checks = checks;
@@ -151,6 +168,8 @@ ${rows}
     if (target === 'bar') return content.includes('none:category') && content.includes('sum:sales');
     if (target === 'line') return content.includes(':order date') && content.includes('sum:profit');
     if (target === 'circle' || target === 'scatter') return content.includes('sum:sales') && content.includes('sum:profit');
+    if (target === 'map') return content.includes('filled-map') || content.includes("mark-type' value='map'") || content.includes('maptype');
+    if (target === 'square') return content.includes("mark-type' value='square'") || content.includes('<mark type="square"') || content.includes("type='square'");
     return false;
   }
 

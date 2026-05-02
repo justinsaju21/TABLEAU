@@ -98,12 +98,9 @@
         </div>
         <div class="eval-error" id="eval-error"></div>
         <div class="info-box" style="margin-bottom:1rem;">
-          <strong>Evaluator looks for:</strong> A parseable .twb XML file, at least one dashboard, and a valid Tableau Public URL pasted into the designated input field above (you must paste the URL to get points).
+          <strong>Evaluator looks for:</strong> A parseable .twb XML file, at least one dashboard, and a valid Tableau Public URL pasted into the designated input field above (you must paste the URL to get points).<br><br><span style="color:var(--orange)">⚠ <strong>Note:</strong> Paste your Tableau Public URL in the field above <em>before</em> uploading your .twb file.</span>
         </div>
-        <div style="margin-bottom: 1rem;">
-          <label style="font-size: 0.8rem; color: var(--text-2); display: block; margin-bottom: 0.2rem;">Tableau Public URL:</label>
-          <input type="text" id="urlInput" placeholder="https://public.tableau.com/views/..." style="width: 100%; padding: 0.4rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border); color: #fff; border-radius: 4px;">
-        </div>
+
         <div class="upload-zone" id="uploadZone">
           <div class="upload-icon">&#128196;</div>
           <div class="upload-title">Drop .twb / .twbx here</div>
@@ -280,9 +277,22 @@
     const val = reflectInput.value.trim().toLowerCase();
     const words = countWords(val);
     const labKeywords = {
+      '0': ['install', 'connect', 'interface', 'data'],
       '1': ['datasource', 'connection', 'dimension', 'measure'],
       '2': ['bar', 'line', 'scatter', 'marks', 'labels'],
-      '3': ['hierarchy', 'drill', 'group', 'set']
+      '3': ['hierarchy', 'drill', 'group', 'set'],
+      '4': ['filter', 'exclude', 'wildcard', 'condition'],
+      '5': ['sort', 'compute', 'running', 'percent'],
+      '6': ['dual', 'axis', 'synchronize', 'parameter'],
+      '7': ['dashboard', 'action', 'interactive', 'filter'],
+      '8': ['story', 'point', 'caption', 'presentation'],
+      '9': ['map', 'geographic', 'latitude', 'longitude'],
+      '10': ['extract', 'live', 'performance', 'hyper'],
+      '11': ['polygon', 'background', 'image', 'map'],
+      '12': ['lod', 'fixed', 'include', 'exclude'],
+      '13': ['publish', 'server', 'public', 'web'],
+      '14': ['forecast', 'trend', 'model', 'analytics'],
+      '15': ['python', 'tabpy', 'script', 'extension']
     };
     const required = labKeywords[EID] || ['tableau', 'data', 'viz', 'analysis'];
     const foundKeywords = required.filter(k => val.includes(k));
@@ -318,9 +328,22 @@
     const val = reflectInput.value.trim().toLowerCase();
     const words = countWords(val);
     const labKeywords = {
+      '0': ['install', 'connect', 'interface', 'data'],
       '1': ['datasource', 'connection', 'dimension', 'measure'],
       '2': ['bar', 'line', 'scatter', 'marks', 'labels'],
-      '3': ['hierarchy', 'drill', 'group', 'set']
+      '3': ['hierarchy', 'drill', 'group', 'set'],
+      '4': ['filter', 'exclude', 'wildcard', 'condition'],
+      '5': ['sort', 'compute', 'running', 'percent'],
+      '6': ['dual', 'axis', 'synchronize', 'parameter'],
+      '7': ['dashboard', 'action', 'interactive', 'filter'],
+      '8': ['story', 'point', 'caption', 'presentation'],
+      '9': ['map', 'geographic', 'latitude', 'longitude'],
+      '10': ['extract', 'live', 'performance', 'hyper'],
+      '11': ['polygon', 'background', 'image', 'map'],
+      '12': ['lod', 'fixed', 'include', 'exclude'],
+      '13': ['publish', 'server', 'public', 'web'],
+      '14': ['forecast', 'trend', 'model', 'analytics'],
+      '15': ['python', 'tabpy', 'script', 'extension']
     };
     const required = labKeywords[EID] || ['tableau', 'data', 'viz', 'analysis'];
     const foundKeywords = required.filter(k => val.includes(k));
