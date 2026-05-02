@@ -151,7 +151,7 @@
   var labChecks = [
   {id:"check-1",name:"Trend Lines",marks:25,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasNode(xml,"trend-lines"))},
   {id:"check-2",name:"Forecast Node",marks:25,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasNode(xml,"forecast"))},
-  {id:"check-3",name:"Cluster/Groups",marks:25,evalFn:(xml, xmlString)=>!!(xml.getElementsByTagName("group").length > 0)},
+  {id:"check-3",name:"Cluster/Groups",marks:25,evalFn:(xml, xmlString)=>!!(xml.getElementsByTagName("groupfilter").length > 0 || xml.querySelector("column > calculation[class='cluster']") !== null)},
   {id:"check-4",name:"Annotation Text",marks:25,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasTextObject(xml, xmlString))}
   ];
 

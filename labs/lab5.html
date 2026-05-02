@@ -148,7 +148,7 @@
   var labChecks = [
   {id:"check-1",name:"Parameter Node",marks:25,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasParameter(xml, xmlString))},
   {id:"check-2",name:"RANK Calculated Field",marks:25,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"RANK"))},
-  {id:"check-3",name:"Filter Present",marks:25,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasNode(xml,"filter"))},
+  {id:"check-3",name:"Filter Present",marks:25,evalFn:(xml, xmlString)=>!!(Array.from(xml.getElementsByTagName("filter")).some(f => f.hasAttribute("column") && !f.getAttribute("column").includes("__tableau_internal_object_id__") && !f.getAttribute("column").includes("Multiple Values")))},
   {id:"check-4",name:"Dashboard Exists",marks:25,evalFn:(xml, xmlString)=>!!(TableauEvaluator.dashboardCount(xml, xmlString) > 0)}
   ];
 

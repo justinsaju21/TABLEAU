@@ -151,7 +151,7 @@
   var TITLE = 'Exp 15 — Data Pipeline Integration (Bonus)';
 
   var labChecks = [
-  {id:"check-1",name:"Valid Workbook",marks:34,evalFn:(xml, xmlString)=>!!(xml !== null)},
+  {id:"check-1",name:"Valid Workbook",marks:34,evalFn:(xml, xmlString)=>!!(TableauEvaluator.worksheetCount(xml) > 0)},
   {id:"check-2",name:"Parameter for Sensor",marks:33,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasParameter(xml, xmlString))},
   {id:"check-3",name:"Line Chart (Time Series)",marks:33,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasMarkType(xml,"Line",xmlString))}
   ];

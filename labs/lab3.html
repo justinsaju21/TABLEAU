@@ -147,7 +147,7 @@
   var TITLE = 'Exp 3 — Calculated Fields Laboratory';
 
   var labChecks = [
-  {id:"check-1",name:"Aggregate Calc (SUM)",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"SUM"))},
+  {id:"check-1",name:"Aggregate Calc (SUM)",marks:20,evalFn:(xml, xmlString)=>!!(Array.from(xml.getElementsByTagName("column")).some(c => c.hasAttribute("caption") && c.querySelector("calculation[formula*='SUM']")))},
   {id:"check-2",name:"Logical Calc (IF)",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"IF","THEN","ELSE"))},
   {id:"check-3",name:"String Calc (UPPER)",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"UPPER"))},
   {id:"check-4",name:"Number Calc (ROUND)",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"ROUND"))},

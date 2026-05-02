@@ -150,7 +150,7 @@
   var TITLE = 'Exp 7 — Business Intelligence Chart Lab';
 
   var labChecks = [
-  {id:"check-1",name:"Dual Axis (Pareto)",marks:20,evalFn:(xml, xmlString)=>!!(xml.getElementsByTagName("pane").length >= 2)},
+  {id:"check-1",name:"Dual Axis (Pareto)",marks:20,evalFn:(xml, xmlString)=>!!(Array.from(xml.getElementsByTagName("worksheet")).some(w => w.getElementsByTagName("pane").length >= 2))},
   {id:"check-2",name:"RUNNING_SUM (Waterfall)",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"RUNNING_SUM"))},
   {id:"check-3",name:"Funnel IF/ELSEIF",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"ELSEIF"))},
   {id:"check-4",name:"RANK (Bump Chart)",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"RANK"))},
