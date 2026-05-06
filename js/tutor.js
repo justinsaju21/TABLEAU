@@ -1209,7 +1209,8 @@ async function generateReport(labId) {
     connHash: 'Not extracted',
     sheetCount: 0,
     dashCount: 0,
-    thumbCount: 0
+    thumbCount: 0,
+    lastModified: 'Not extracted'
   };
 
   const forensicHtml = `
@@ -1221,7 +1222,7 @@ async function generateReport(labId) {
         <ul style="list-style: none; padding: 0; margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #7c2d12;">
           <li style="margin-bottom: 4px;"><b>UUID:</b> ${securityMetadata.uuid}</li>
           <li style="margin-bottom: 4px;"><b>Conn Hash:</b> ${securityMetadata.connHash}</li>
-          <li style="margin-bottom: 4px;"><b>Source Path:</b> ${securityMetadata.userPath}</li>
+          <li style="margin-bottom: 4px;"><b>Saved At:</b> ${securityMetadata.lastModified}</li>
           <li style="margin-bottom: 4px;"><b>Origin:</b> ${securityMetadata.repoLoc}</li>
         </ul>
       </div>

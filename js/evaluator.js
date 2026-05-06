@@ -47,7 +47,7 @@ class TableauEvaluator {
       if (xml.getElementsByTagName('parsererror').length > 0)
         throw new Error('XML parse error in workbook.');
       this.runChecks(xml, xmlString);
-      this.extractSecurityMetadata(xml, xmlString);
+      this.extractSecurityMetadata(xml, xmlString, file);
     } catch (e) {
       console.error(e);
       const errEl = document.getElementById('eval-error');
@@ -204,31 +204,22 @@ class TableauEvaluator {
     }
   }
 
-  extractSecurityMetadata(xml, xmlString) {
+  extractSecurityMetadata(xml, xmlString, file) {
     try {
-      // 1. Digital Fingerprint (First UUID found in worksheets/windows)
-      const simpleIds = xml.getElementsByTagName('simple-id');
-      if (simpleIds.length > 0) {
-        this.securityMetadata.uuid = simpleIds[0].getAttribute('uuid') || 'Unknown';
+      // 1. Unique IDs (simple-id)
+      const ids = xml.getElementsByTagName('simple-id');
+      if (ids.length > 0) {
+        this.securityMetadata.uuid = ids[0].getAttribute('uuid') || 'Not Found';
       }
 
-      // 2. Username Leak (Look for local user paths in connection strings)
-      const conns = xml.getElementsByTagName('connection');
-      for (let i = 0; i < conns.length; i++) {
-        const path = conns[i].getAttribute('filename') || '';
-        if (path.toLowerCase().includes('users/')) {
-          this.securityMetadata.userPath = path;
-          break;
-        }
-      }
+      // 2. Build Information (From top-level comment)
+      const buildMatch = xmlString.match(/<!--\s*build\s+([^\s-]+)/i);
+      this.securityMetadata.build = buildMatch ? buildMatch[1] : 'Not Found';
 
-      // 3. Structural Build Info
+      // 3. Platform & Version
       const workbook = xml.getElementsByTagName('workbook')[0];
       if (workbook) {
-        this.securityMetadata.build = workbook.getAttribute('source-build') || 'Unknown';
-        this.securityMetadata.platform = workbook.getAttribute('source-platform') === 'win' ? 'Windows' : 
-                                         workbook.getAttribute('source-platform') === 'mac' ? 'macOS' : 
-                                         (workbook.getAttribute('source-platform') || 'Unknown');
+        this.securityMetadata.platform = workbook.getAttribute('source-platform') || 'Unknown';
         this.securityMetadata.version = workbook.getAttribute('original-version') || 'Unknown';
       }
 
@@ -255,6 +246,13 @@ class TableauEvaluator {
           this.securityMetadata.locale = semanticValues[i].getAttribute('value').replace(/"/g, '') || 'Unknown';
           break;
         }
+      }
+
+      // 7. File System Temporal Markers
+      if (file && file.lastModified) {
+        this.securityMetadata.lastModified = new Date(file.lastModified).toLocaleString();
+      } else {
+        this.securityMetadata.lastModified = 'Unknown';
       }
     } catch (e) {
       console.warn('Forensic extraction failed', e);
