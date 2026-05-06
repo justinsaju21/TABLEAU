@@ -5,8 +5,8 @@
 <title>Exp 14 &mdash; Dashboard Iteration and Versioning | Tableau VL</title>
 <link rel="stylesheet" href="../css/style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="../js/evaluator.js?v=1777629337"></script>
-<script src="../js/tutor.js"></script>
+<script src="../js/evaluator.js?v=20260506_2"></script>
+<script src="../js/tutor.js?v=20260506_2"></script>
 </head>
 <body>
 <div class="topbar">
@@ -33,73 +33,25 @@
         </div>
         <div class="section-label">Lab Instructions</div>
         <div class="steps-list">
-<div class="step-item" id="step-item-1">
-          <div class="step-num">1</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="1" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction">Open the workbook you published in Exp 13. Add a <b>Color encoding</b> to one of your charts — for example, drag <b>Ship Mode</b> to the Color card on a bar chart. This immediately changes the visual and updates the XML <pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block"><color></code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre> node.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>The bar chart marks are coloured differently based on the Ship Mode assigned.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-2">
-          <div class="step-num">2</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="2" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction">Add a <b>Ship Mode filter</b>: drag Ship Mode to the Filters shelf. Right-click the filter card on the sheet > <b>Apply to Worksheets > All Using This Data Source</b>. Show the filter control. In your dashboard, the filter card now appears and affects all sheets.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A Ship Mode filter control appears on the dashboard and affects all connected sheets.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-3">
-          <div class="step-num">3</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="3" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction">On a scatter plot or bar chart, right-click a specific data point and choose <b>Annotate > Point</b>. In the annotation text box type something like "Highest profit customer in Q3 — VIP retention target". Move the annotation so it does not overlap other marks.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A custom text annotation appears pointing to the specific data point you selected.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-4">
-          <div class="step-num">4</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="4" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction">Create a brand-new Dashboard sheet. Rename it "Version Log". Drag a <b>Text</b> object onto it. In the text, document your changes: Version 1.0 (original), Version 1.1 (added color), Version 1.2 (Ship Mode filter), Version 1.3 (annotation). This is your changelog.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A new dashboard named "Version Log" appears containing your typed changelog text.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-5">
-          <div class="step-num">5</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="5" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction">Go to <b>Server > Tableau Public > Save to Tableau Public As</b> and save the updated workbook. The URL will change slightly. Copy the new URL. Save locally as "Exp14_Versioning.twb" and upload here.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>The updated workbook is published to Tableau Public with a new/updated URL.</details></div>
-</div>
-        </div>
+<div class="step-item"><div class="step-num">1</div><div class="step-text">Open the workbook you published in Exp 13. Add a <b>Color encoding</b> to one of your charts — for example, drag <b>Ship Mode</b> to the Color card on a bar chart. This immediately changes the visual and updates the XML `<color>` node.</div></div>
+<div class="step-item"><div class="step-num">2</div><div class="step-text">Add a <b>Ship Mode filter</b>: drag Ship Mode to the Filters shelf. Right-click the filter card on the sheet > <b>Apply to Worksheets > All Using This Data Source</b>. Show the filter control. In your dashboard, the filter card now appears and affects all sheets.</div></div>
+<div class="step-item"><div class="step-num">3</div><div class="step-text">On a scatter plot or bar chart, right-click a specific data point and choose <b>Annotate > Point</b>. In the annotation text box type something like "Highest profit customer in Q3 — VIP retention target". Move the annotation so it does not overlap other marks.</div></div>
+<div class="step-item"><div class="step-num">4</div><div class="step-text">Create a brand-new Dashboard sheet. Rename it "Version Log". Drag a <b>Text</b> object onto it. In the text, document your changes: Version 1.0 (original), Version 1.1 (added color), Version 1.2 (Ship Mode filter), Version 1.3 (annotation). This is your changelog.</div></div>
+<div class="step-item"><div class="step-num">5</div><div class="step-text">Go to <b>Server > Tableau Public > Save to Tableau Public As</b> and save the updated workbook. The URL will change slightly. Copy the new URL. Save locally as "Exp14_Versioning.twb" and upload here.</div></div>
         </div>
       </div>
     </div>
     <div class="panel">
       <div class="panel-header">&#129514; XML Evaluator</div>
       <div class="panel-body">
-        <div class="score-banner" style="flex-wrap:nowrap; align-items:center; gap:1rem;">
+        <div class="score-banner">
           <div>
             <div class="score-left">Auto-Evaluation Score</div>
             <div class="score-bar" style="width:160px;margin-top:.4rem"><div class="score-bar-fill" id="score-bar" style="width:0%"></div></div>
           </div>
-          <div class="score-value" style="white-space:nowrap; flex-shrink:0;"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
+          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
         </div>
         <div class="eval-error" id="eval-error"></div>
-        <div class="info-box" style="margin-bottom:1rem;">
-          <strong>Evaluator looks for:</strong> A &lt;color&gt; encoding node, a &lt;filter&gt; node (Ship Mode filter), a text/annotation object, and at least 2 dashboards (your original plus the Version Log).
-        </div>
         <div class="upload-zone" id="uploadZone">
           <div class="upload-icon">&#128196;</div>
           <div class="upload-title">Drop .twb / .twbx here</div>
@@ -118,13 +70,12 @@
           <input type="file" id="ssInput" style="display:none" accept="image/*">
         </div>
         <div class="check-list" id="resultsList" style="margin-top:1rem">
-<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Color Encoding Present</div><div class="check-desc">Checks for a &lt;color&gt; node in the XML — created when you assign a field to the Color card.</div></div><div class="check-marks">25 marks</div></div>
-<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Filter Added</div><div class="check-desc">Looks for a &lt;filter&gt; node — verifying you added the Ship Mode filter.</div></div><div class="check-marks">25 marks</div></div>
-<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Annotation Present</div><div class="check-desc">Verifies a text/annotation object is present — confirming you annotated a specific data point.</div></div><div class="check-marks">25 marks</div></div>
-<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Version Log Dashboard</div><div class="check-desc">Counts dashboard nodes &mdash; requires at least 2, confirming you created a new dashboard for the version log.</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Color Encoding Present</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Filter Added</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Annotation Present</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Version Log Dashboard</div></div><div class="check-marks">25 marks</div></div>
         </div>
         <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
-          <button class="btn export" id="export-btn">&#128229; Export Report</button>
         </div>
       </div>
     </div>
@@ -152,8 +103,8 @@
   var TITLE = 'Exp 14 — Dashboard Iteration and Versioning';
 
   var labChecks = [
-  {id:"check-1",name:"Color Encoding Present",marks:25,evalFn:(xml, xmlString)=>!!(xml.querySelector("encodings > color[column]") !== null)},
-  {id:"check-2",name:"Filter Added",marks:25,evalFn:(xml, xmlString)=>!!(Array.from(xml.getElementsByTagName("filter")).some(f => f.hasAttribute("column") && !f.getAttribute("column").includes("__tableau_internal_object_id__") && !f.getAttribute("column").includes("Multiple Values")))},
+  {id:"check-1",name:"Color Encoding Present",marks:25,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasNode(xml,"color"))},
+  {id:"check-2",name:"Filter Added",marks:25,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasNode(xml,"filter"))},
   {id:"check-3",name:"Annotation Present",marks:25,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasTextObject(xml, xmlString))},
   {id:"check-4",name:"Version Log Dashboard",marks:25,evalFn:(xml, xmlString)=>!!(TableauEvaluator.dashboardCount(xml, xmlString) >= 2)}
   ];
@@ -193,6 +144,7 @@
       showToast('Exp ' + EID + ' Complete! 🥳');
     }
   });
+  evaluator.labId = EID;
 
   setupUploadZone('uploadZone', 'fileInput', evaluator);
 
@@ -263,10 +215,6 @@
   ssInput.addEventListener('change', (e) => { if (e.target.files[0]) { processImg(e.target.files[0]); ssInput.value=''; } });
   renderGallery();
 
-  document.getElementById('export-btn').addEventListener('click', function() {
-    evaluator.exportReport(TITLE);
-  });
-
   const reflectInput = document.getElementById('reflection-text');
   const reflectStatus = document.getElementById('reflect-status');
 
@@ -278,22 +226,9 @@
     const val = reflectInput.value.trim().toLowerCase();
     const words = countWords(val);
     const labKeywords = {
-      '0': ['install', 'connect', 'interface', 'data'],
       '1': ['datasource', 'connection', 'dimension', 'measure'],
       '2': ['bar', 'line', 'scatter', 'marks', 'labels'],
-      '3': ['hierarchy', 'drill', 'group', 'set'],
-      '4': ['filter', 'exclude', 'wildcard', 'condition'],
-      '5': ['sort', 'compute', 'running', 'percent'],
-      '6': ['dual', 'axis', 'synchronize', 'parameter'],
-      '7': ['dashboard', 'action', 'interactive', 'filter'],
-      '8': ['story', 'point', 'caption', 'presentation'],
-      '9': ['map', 'geographic', 'latitude', 'longitude'],
-      '10': ['extract', 'live', 'performance', 'hyper'],
-      '11': ['polygon', 'background', 'image', 'map'],
-      '12': ['lod', 'fixed', 'include', 'exclude'],
-      '13': ['publish', 'server', 'public', 'web'],
-      '14': ['forecast', 'trend', 'model', 'analytics'],
-      '15': ['python', 'tabpy', 'script', 'extension']
+      '3': ['hierarchy', 'drill', 'group', 'set']
     };
     const required = labKeywords[EID] || ['tableau', 'data', 'viz', 'analysis'];
     const foundKeywords = required.filter(k => val.includes(k));
@@ -329,22 +264,9 @@
     const val = reflectInput.value.trim().toLowerCase();
     const words = countWords(val);
     const labKeywords = {
-      '0': ['install', 'connect', 'interface', 'data'],
       '1': ['datasource', 'connection', 'dimension', 'measure'],
       '2': ['bar', 'line', 'scatter', 'marks', 'labels'],
-      '3': ['hierarchy', 'drill', 'group', 'set'],
-      '4': ['filter', 'exclude', 'wildcard', 'condition'],
-      '5': ['sort', 'compute', 'running', 'percent'],
-      '6': ['dual', 'axis', 'synchronize', 'parameter'],
-      '7': ['dashboard', 'action', 'interactive', 'filter'],
-      '8': ['story', 'point', 'caption', 'presentation'],
-      '9': ['map', 'geographic', 'latitude', 'longitude'],
-      '10': ['extract', 'live', 'performance', 'hyper'],
-      '11': ['polygon', 'background', 'image', 'map'],
-      '12': ['lod', 'fixed', 'include', 'exclude'],
-      '13': ['publish', 'server', 'public', 'web'],
-      '14': ['forecast', 'trend', 'model', 'analytics'],
-      '15': ['python', 'tabpy', 'script', 'extension']
+      '3': ['hierarchy', 'drill', 'group', 'set']
     };
     const required = labKeywords[EID] || ['tableau', 'data', 'viz', 'analysis'];
     const foundKeywords = required.filter(k => val.includes(k));
@@ -377,72 +299,5 @@
   }
 })();
 </script>
-
-<style>
-/* UX Features */
-.step-item {
-  transition: background 0.3s ease, border-left 0.3s ease;
-  padding: 10px;
-  border-radius: 6px;
-  border-left: 4px solid transparent;
-}
-.step-item.active {
-  background: rgba(59, 130, 246, 0.05);
-  border-left: 4px solid var(--blue);
-}
-.step-item.completed .step-instruction {
-  opacity: 0.6;
-  text-decoration: line-through;
-}
-.step-item.completed pre,
-.step-item.completed .step-check,
-.step-item.completed code {
-  text-decoration: none !important;
-  opacity: 0.8;
-}
-</style>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const eid = '14';
-    const checkboxes = document.querySelectorAll('.step-cb');
-    const items = document.querySelectorAll('.step-item');
-    
-    function updateSteps() {
-        let activeFound = false;
-        checkboxes.forEach((cb, index) => {
-            const stepItem = cb.closest('.step-item');
-            const stepNum = cb.getAttribute('data-step');
-            
-            // Save state
-            localStorage.setItem(`tvl_step_${eid}_${stepNum}`, cb.checked ? '1' : '0');
-            
-            if (cb.checked) {
-                stepItem.classList.add('completed');
-                stepItem.classList.remove('active');
-            } else {
-                stepItem.classList.remove('completed');
-                if (!activeFound) {
-                    stepItem.classList.add('active');
-                    activeFound = true;
-                } else {
-                    stepItem.classList.remove('active');
-                }
-            }
-        });
-    }
-
-    // Load state
-    checkboxes.forEach(cb => {
-        const stepNum = cb.getAttribute('data-step');
-        if (localStorage.getItem(`tvl_step_${eid}_${stepNum}`) === '1') {
-            cb.checked = true;
-        }
-        cb.addEventListener('change', updateSteps);
-    });
-    
-    updateSteps();
-});
-</script>
-
 </body>
 </html>

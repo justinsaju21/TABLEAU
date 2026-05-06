@@ -5,8 +5,8 @@
 <title>Exp 12 &mdash; Performance Optimization Lab | Tableau VL</title>
 <link rel="stylesheet" href="../css/style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="../js/evaluator.js?v=1777629337"></script>
-<script src="../js/tutor.js"></script>
+<script src="../js/evaluator.js?v=20260506_2"></script>
+<script src="../js/tutor.js?v=20260506_2"></script>
 </head>
 <body>
 <div class="topbar">
@@ -30,73 +30,25 @@
         </div>
         <div class="section-label">Lab Instructions</div>
         <div class="steps-list">
-<div class="step-item" id="step-item-1">
-          <div class="step-num">1</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="1" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction"><b>FIXED LOD:</b> Create a calculated field "Total Sales by Region" with: <pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block">{{FIXED [Region] : SUM([Sales])}}</code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre>. Drag it to the view alongside Region and SUM(Sales). Notice that FIXED ignores any dimension filters you have (except context filters) — it always computes at the Region level regardless of what else is on the shelf.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A new field "Total Sales by Region" appears; its values remain constant even if other dimensions are filtered.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-2">
-          <div class="step-num">2</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="2" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction"><b>INCLUDE LOD:</b> Create field "Avg Order Sales" with: <pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block">{{INCLUDE [Order ID] : SUM([Sales])}}</code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre>. Drag it to a view with Customer Segment on Rows. This includes Order ID in the computation even if it is not in the view, giving average sales per order per segment — finer granularity than just SUM(Sales)/COUNT(Orders).<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A new field "Avg Order Sales" appears, computing the average at the order level.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-3">
-          <div class="step-num">3</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="3" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction"><b>EXCLUDE LOD:</b> Create field "Profit Ex-Category" with: <pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block">{{EXCLUDE [Category] : SUM([Profit])}}</code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre>. Add it to a view that has Category on Rows. This gives the total profit across all categories, ignoring the Category dimension in the view — useful for creating % of total comparisons.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A new field "Profit Ex-Category" appears, computing total profit ignoring the Category dimension.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-4">
-          <div class="step-num">4</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="4" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction">Convert your Superstore connection to an Extract (see Exp 10). Then create the same views as above. Time how long the view takes to load. Note any difference in the status bar query time. Switch back to Live and compare again.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>The connection icon indicates an Extract, and the status bar shows faster query execution times.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-5">
-          <div class="step-num">5</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="5" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction">Create a dashboard with a <b>Text Object</b> summarizing your performance findings: e.g., "FIXED LOD with Extract reduced query time from 4.2s to 0.8s". This documentation counts as your optimization notes. Save as "Exp12_LOD.twb" and upload.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A dashboard appears containing a text object with your performance findings.</details></div>
-</div>
-        </div>
+<div class="step-item"><div class="step-num">1</div><div class="step-text"><b>FIXED LOD:</b> Create a calculated field "Total Sales by Region" with: `{{FIXED [Region] : SUM([Sales])}}`. Drag it to the view alongside Region and SUM(Sales). Notice that FIXED ignores any dimension filters you have (except context filters) — it always computes at the Region level regardless of what else is on the shelf.</div></div>
+<div class="step-item"><div class="step-num">2</div><div class="step-text"><b>INCLUDE LOD:</b> Create field "Avg Order Sales" with: `{{INCLUDE [Order ID] : SUM([Sales])}}`. Drag it to a view with Customer Segment on Rows. This includes Order ID in the computation even if it is not in the view, giving average sales per order per segment — finer granularity than just SUM(Sales)/COUNT(Orders).</div></div>
+<div class="step-item"><div class="step-num">3</div><div class="step-text"><b>EXCLUDE LOD:</b> Create field "Profit Ex-Category" with: `{{EXCLUDE [Category] : SUM([Profit])}}`. Add it to a view that has Category on Rows. This gives the total profit across all categories, ignoring the Category dimension in the view — useful for creating % of total comparisons.</div></div>
+<div class="step-item"><div class="step-num">4</div><div class="step-text">Convert your Superstore connection to an Extract (see Exp 10). Then create the same views as above. Time how long the view takes to load. Note any difference in the status bar query time. Switch back to Live and compare again.</div></div>
+<div class="step-item"><div class="step-num">5</div><div class="step-text">Create a dashboard with a <b>Text Object</b> summarizing your performance findings: e.g., "FIXED LOD with Extract reduced query time from 4.2s to 0.8s". This documentation counts as your optimization notes. Save as "Exp12_LOD.twb" and upload.</div></div>
         </div>
       </div>
     </div>
     <div class="panel">
       <div class="panel-header">&#129514; XML Evaluator</div>
       <div class="panel-body">
-        <div class="score-banner" style="flex-wrap:nowrap; align-items:center; gap:1rem;">
+        <div class="score-banner">
           <div>
             <div class="score-left">Auto-Evaluation Score</div>
             <div class="score-bar" style="width:160px;margin-top:.4rem"><div class="score-bar-fill" id="score-bar" style="width:0%"></div></div>
           </div>
-          <div class="score-value" style="white-space:nowrap; flex-shrink:0;"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
+          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
         </div>
         <div class="eval-error" id="eval-error"></div>
-        <div class="info-box" style="margin-bottom:1rem;">
-          <strong>Evaluator looks for:</strong> The presence of <code>FIXED</code>, <code>INCLUDE</code>, and <code>EXCLUDE</code> keywords in calculated fields, a <code>hyper</code> connection (Extract), and a text object in a dashboard (Optimization notes).
-        </div>
         <div class="upload-zone" id="uploadZone">
           <div class="upload-icon">&#128196;</div>
           <div class="upload-title">Drop .twb / .twbx here</div>
@@ -115,14 +67,13 @@
           <input type="file" id="ssInput" style="display:none" accept="image/*">
         </div>
         <div class="check-list" id="resultsList" style="margin-top:1rem">
-<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">FIXED LOD Expression</div><div class="check-desc">Verifies that a calculated field contains the <em>FIXED</em> keyword for level-of-detail computation.</div></div><div class="check-marks">20 marks</div></div>
-<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">INCLUDE LOD Expression</div><div class="check-desc">Looks for the <em>INCLUDE</em> keyword in a calculated field, adding granularity.</div></div><div class="check-marks">20 marks</div></div>
-<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">EXCLUDE LOD Expression</div><div class="check-desc">Checks for the <em>EXCLUDE</em> keyword, ensuring the dimension-ignoring calculation was created.</div></div><div class="check-marks">20 marks</div></div>
-<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Extract in After Version</div><div class="check-desc">Checks the connection class for <em>hyper</em> — confirming the data source was switched to an extract for performance.</div></div><div class="check-marks">20 marks</div></div>
-<div class="check-item" id="check-5"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Optimization Notes Dashboard</div><div class="check-desc">Ensures a text object exists (likely on a dashboard), containing your performance findings.</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">FIXED LOD Expression</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">INCLUDE LOD Expression</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">EXCLUDE LOD Expression</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Extract in After Version</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-5"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Optimization Notes Dashboard</div></div><div class="check-marks">20 marks</div></div>
         </div>
         <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
-          <button class="btn export" id="export-btn">&#128229; Export Report</button>
         </div>
       </div>
     </div>
@@ -192,6 +143,7 @@
       showToast('Exp ' + EID + ' Complete! 🥳');
     }
   });
+  evaluator.labId = EID;
 
   setupUploadZone('uploadZone', 'fileInput', evaluator);
 
@@ -262,10 +214,6 @@
   ssInput.addEventListener('change', (e) => { if (e.target.files[0]) { processImg(e.target.files[0]); ssInput.value=''; } });
   renderGallery();
 
-  document.getElementById('export-btn').addEventListener('click', function() {
-    evaluator.exportReport(TITLE);
-  });
-
   const reflectInput = document.getElementById('reflection-text');
   const reflectStatus = document.getElementById('reflect-status');
 
@@ -277,22 +225,9 @@
     const val = reflectInput.value.trim().toLowerCase();
     const words = countWords(val);
     const labKeywords = {
-      '0': ['install', 'connect', 'interface', 'data'],
       '1': ['datasource', 'connection', 'dimension', 'measure'],
       '2': ['bar', 'line', 'scatter', 'marks', 'labels'],
-      '3': ['hierarchy', 'drill', 'group', 'set'],
-      '4': ['filter', 'exclude', 'wildcard', 'condition'],
-      '5': ['sort', 'compute', 'running', 'percent'],
-      '6': ['dual', 'axis', 'synchronize', 'parameter'],
-      '7': ['dashboard', 'action', 'interactive', 'filter'],
-      '8': ['story', 'point', 'caption', 'presentation'],
-      '9': ['map', 'geographic', 'latitude', 'longitude'],
-      '10': ['extract', 'live', 'performance', 'hyper'],
-      '11': ['polygon', 'background', 'image', 'map'],
-      '12': ['lod', 'fixed', 'include', 'exclude'],
-      '13': ['publish', 'server', 'public', 'web'],
-      '14': ['forecast', 'trend', 'model', 'analytics'],
-      '15': ['python', 'tabpy', 'script', 'extension']
+      '3': ['hierarchy', 'drill', 'group', 'set']
     };
     const required = labKeywords[EID] || ['tableau', 'data', 'viz', 'analysis'];
     const foundKeywords = required.filter(k => val.includes(k));
@@ -328,22 +263,9 @@
     const val = reflectInput.value.trim().toLowerCase();
     const words = countWords(val);
     const labKeywords = {
-      '0': ['install', 'connect', 'interface', 'data'],
       '1': ['datasource', 'connection', 'dimension', 'measure'],
       '2': ['bar', 'line', 'scatter', 'marks', 'labels'],
-      '3': ['hierarchy', 'drill', 'group', 'set'],
-      '4': ['filter', 'exclude', 'wildcard', 'condition'],
-      '5': ['sort', 'compute', 'running', 'percent'],
-      '6': ['dual', 'axis', 'synchronize', 'parameter'],
-      '7': ['dashboard', 'action', 'interactive', 'filter'],
-      '8': ['story', 'point', 'caption', 'presentation'],
-      '9': ['map', 'geographic', 'latitude', 'longitude'],
-      '10': ['extract', 'live', 'performance', 'hyper'],
-      '11': ['polygon', 'background', 'image', 'map'],
-      '12': ['lod', 'fixed', 'include', 'exclude'],
-      '13': ['publish', 'server', 'public', 'web'],
-      '14': ['forecast', 'trend', 'model', 'analytics'],
-      '15': ['python', 'tabpy', 'script', 'extension']
+      '3': ['hierarchy', 'drill', 'group', 'set']
     };
     const required = labKeywords[EID] || ['tableau', 'data', 'viz', 'analysis'];
     const foundKeywords = required.filter(k => val.includes(k));
@@ -376,72 +298,5 @@
   }
 })();
 </script>
-
-<style>
-/* UX Features */
-.step-item {
-  transition: background 0.3s ease, border-left 0.3s ease;
-  padding: 10px;
-  border-radius: 6px;
-  border-left: 4px solid transparent;
-}
-.step-item.active {
-  background: rgba(59, 130, 246, 0.05);
-  border-left: 4px solid var(--blue);
-}
-.step-item.completed .step-instruction {
-  opacity: 0.6;
-  text-decoration: line-through;
-}
-.step-item.completed pre,
-.step-item.completed .step-check,
-.step-item.completed code {
-  text-decoration: none !important;
-  opacity: 0.8;
-}
-</style>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const eid = '12';
-    const checkboxes = document.querySelectorAll('.step-cb');
-    const items = document.querySelectorAll('.step-item');
-    
-    function updateSteps() {
-        let activeFound = false;
-        checkboxes.forEach((cb, index) => {
-            const stepItem = cb.closest('.step-item');
-            const stepNum = cb.getAttribute('data-step');
-            
-            // Save state
-            localStorage.setItem(`tvl_step_${eid}_${stepNum}`, cb.checked ? '1' : '0');
-            
-            if (cb.checked) {
-                stepItem.classList.add('completed');
-                stepItem.classList.remove('active');
-            } else {
-                stepItem.classList.remove('completed');
-                if (!activeFound) {
-                    stepItem.classList.add('active');
-                    activeFound = true;
-                } else {
-                    stepItem.classList.remove('active');
-                }
-            }
-        });
-    }
-
-    // Load state
-    checkboxes.forEach(cb => {
-        const stepNum = cb.getAttribute('data-step');
-        if (localStorage.getItem(`tvl_step_${eid}_${stepNum}`) === '1') {
-            cb.checked = true;
-        }
-        cb.addEventListener('change', updateSteps);
-    });
-    
-    updateSteps();
-});
-</script>
-
 </body>
 </html>

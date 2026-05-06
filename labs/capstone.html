@@ -5,8 +5,8 @@
 <title>Exp Cap &mdash; Complete BI Solution — Capstone | Tableau VL</title>
 <link rel="stylesheet" href="../css/style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="../js/evaluator.js?v=1777629337"></script>
-<script src="../js/tutor.js"></script>
+<script src="../js/evaluator.js?v=20260506_2"></script>
+<script src="../js/tutor.js?v=20260506_2"></script>
 </head>
 <body>
 <div class="topbar">
@@ -81,7 +81,6 @@
 <div class="check-item" id="check-8"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Tableau Public URL</div></div><div class="check-marks">12 marks</div></div>
         </div>
         <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
-          <button class="btn export" id="export-btn">&#128229; Export Report</button>
         </div>
       </div>
     </div>
@@ -154,6 +153,7 @@
       showToast('Exp ' + EID + ' Complete! 🥳');
     }
   });
+  evaluator.labId = EID;
 
   setupUploadZone('uploadZone', 'fileInput', evaluator);
 
@@ -224,10 +224,6 @@
   ssInput.addEventListener('change', (e) => { if (e.target.files[0]) { processImg(e.target.files[0]); ssInput.value=''; } });
   renderGallery();
 
-  document.getElementById('export-btn').addEventListener('click', function() {
-    evaluator.exportReport(TITLE);
-  });
-
   const reflectInput = document.getElementById('reflection-text');
   const reflectStatus = document.getElementById('reflect-status');
 
@@ -239,22 +235,9 @@
     const val = reflectInput.value.trim().toLowerCase();
     const words = countWords(val);
     const labKeywords = {
-      '0': ['install', 'connect', 'interface', 'data'],
       '1': ['datasource', 'connection', 'dimension', 'measure'],
       '2': ['bar', 'line', 'scatter', 'marks', 'labels'],
-      '3': ['hierarchy', 'drill', 'group', 'set'],
-      '4': ['filter', 'exclude', 'wildcard', 'condition'],
-      '5': ['sort', 'compute', 'running', 'percent'],
-      '6': ['dual', 'axis', 'synchronize', 'parameter'],
-      '7': ['dashboard', 'action', 'interactive', 'filter'],
-      '8': ['story', 'point', 'caption', 'presentation'],
-      '9': ['map', 'geographic', 'latitude', 'longitude'],
-      '10': ['extract', 'live', 'performance', 'hyper'],
-      '11': ['polygon', 'background', 'image', 'map'],
-      '12': ['lod', 'fixed', 'include', 'exclude'],
-      '13': ['publish', 'server', 'public', 'web'],
-      '14': ['forecast', 'trend', 'model', 'analytics'],
-      '15': ['python', 'tabpy', 'script', 'extension']
+      '3': ['hierarchy', 'drill', 'group', 'set']
     };
     const required = labKeywords[EID] || ['tableau', 'data', 'viz', 'analysis'];
     const foundKeywords = required.filter(k => val.includes(k));
@@ -290,22 +273,9 @@
     const val = reflectInput.value.trim().toLowerCase();
     const words = countWords(val);
     const labKeywords = {
-      '0': ['install', 'connect', 'interface', 'data'],
       '1': ['datasource', 'connection', 'dimension', 'measure'],
       '2': ['bar', 'line', 'scatter', 'marks', 'labels'],
-      '3': ['hierarchy', 'drill', 'group', 'set'],
-      '4': ['filter', 'exclude', 'wildcard', 'condition'],
-      '5': ['sort', 'compute', 'running', 'percent'],
-      '6': ['dual', 'axis', 'synchronize', 'parameter'],
-      '7': ['dashboard', 'action', 'interactive', 'filter'],
-      '8': ['story', 'point', 'caption', 'presentation'],
-      '9': ['map', 'geographic', 'latitude', 'longitude'],
-      '10': ['extract', 'live', 'performance', 'hyper'],
-      '11': ['polygon', 'background', 'image', 'map'],
-      '12': ['lod', 'fixed', 'include', 'exclude'],
-      '13': ['publish', 'server', 'public', 'web'],
-      '14': ['forecast', 'trend', 'model', 'analytics'],
-      '15': ['python', 'tabpy', 'script', 'extension']
+      '3': ['hierarchy', 'drill', 'group', 'set']
     };
     const required = labKeywords[EID] || ['tableau', 'data', 'viz', 'analysis'];
     const foundKeywords = required.filter(k => val.includes(k));

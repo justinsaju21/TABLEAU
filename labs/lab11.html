@@ -5,8 +5,8 @@
 <title>Exp 11 &mdash; Geospatial Analytics Laboratory | Tableau VL</title>
 <link rel="stylesheet" href="../css/style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="../js/evaluator.js?v=1777629337"></script>
-<script src="../js/tutor.js"></script>
+<script src="../js/evaluator.js?v=20260506_2"></script>
+<script src="../js/tutor.js?v=20260506_2"></script>
 </head>
 <body>
 <div class="topbar">
@@ -30,73 +30,25 @@
         </div>
         <div class="section-label">Lab Instructions</div>
         <div class="steps-list">
-<div class="step-item" id="step-item-1">
-          <div class="step-num">1</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="1" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction"><b>Filled Map:</b> Drag <b>State</b> to the view — Tableau auto-creates a filled map. Drag <b>Profit</b> to the <b>Color</b> card. Tableau shades each state from red (loss) to blue (profit). Click <b>Color > Edit Colors</b> to change the palette. Right-click the map background and choose <b>Map Layers</b> to toggle on/off terrain, roads, and county borders.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A map of the US appears with states shaded from red to blue based on Profit.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-2">
-          <div class="step-num">2</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="2" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction"><b>Symbol Map:</b> Add a new sheet. Drag <b>City</b> to the view — Tableau plots circles. Drag <b>Sales</b> to the <b>Size</b> card so larger cities show bigger circles. Drag <b>Category</b> to <b>Color</b> to see the dominant sales category per city. Change mark type to <b>Circle</b> if needed.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A map appears with circles of varying sizes (Sales) and colours (Category) for each city.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-3">
-          <div class="step-num">3</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="3" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction"><b>MAKEPOINT:</b> Create a calculated field named "Location" with: <pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block">MAKEPOINT([Latitude], [Longitude])</code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre>. (First add Latitude and Longitude fields — Tableau auto-generates them from geocoding. Find them under <b>Measures > Latitude</b> and <b>Longitude</b> generated fields.) Drag Location to the view — it acts as a spatial point.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A new spatial field "Location" appears with a globe icon in the Data pane.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-4">
-          <div class="step-num">4</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="4" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction"><b>DISTANCE:</b> Create a field "Distance to Chicago" with: <pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block">DISTANCE(MAKEPOINT([Latitude],[Longitude]), MAKEPOINT(41.8781,-87.6298), "mi")</code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre>. This calculates the distance from each city to Chicago in miles. Drag it to Color or Size to visualize proximity.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>Marks on the map are coloured or sized based on their calculated distance to Chicago.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-5">
-          <div class="step-num">5</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="5" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction">Build a dashboard with the Filled Map on the left and a Bar Chart (Sales by State) on the right. Go to the map sheet > <b>Worksheet > Actions > Add Action > Filter</b>. Set source sheet = map, target = bar chart. Now clicking a state on the map filters the bar. Save as "Exp11_Geo.twb" and upload.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A dashboard appears where clicking a state on the map filters the adjacent bar chart.</details></div>
-</div>
-        </div>
+<div class="step-item"><div class="step-num">1</div><div class="step-text"><b>Filled Map:</b> Drag <b>State</b> to the view — Tableau auto-creates a filled map. Drag <b>Profit</b> to the <b>Color</b> card. Tableau shades each state from red (loss) to blue (profit). Click <b>Color > Edit Colors</b> to change the palette. Right-click the map background and choose <b>Map Layers</b> to toggle on/off terrain, roads, and county borders.</div></div>
+<div class="step-item"><div class="step-num">2</div><div class="step-text"><b>Symbol Map:</b> Add a new sheet. Drag <b>City</b> to the view — Tableau plots circles. Drag <b>Sales</b> to the <b>Size</b> card so larger cities show bigger circles. Drag <b>Category</b> to <b>Color</b> to see the dominant sales category per city. Change mark type to <b>Circle</b> if needed.</div></div>
+<div class="step-item"><div class="step-num">3</div><div class="step-text"><b>MAKEPOINT:</b> Create a calculated field named "Location" with: `MAKEPOINT([Latitude], [Longitude])`. (First add Latitude and Longitude fields — Tableau auto-generates them from geocoding. Find them under <b>Measures > Latitude</b> and <b>Longitude</b> generated fields.) Drag Location to the view — it acts as a spatial point.</div></div>
+<div class="step-item"><div class="step-num">4</div><div class="step-text"><b>DISTANCE:</b> Create a field "Distance to Chicago" with: `DISTANCE(MAKEPOINT([Latitude],[Longitude]), MAKEPOINT(41.8781,-87.6298), "mi")`. This calculates the distance from each city to Chicago in miles. Drag it to Color or Size to visualize proximity.</div></div>
+<div class="step-item"><div class="step-num">5</div><div class="step-text">Build a dashboard with the Filled Map on the left and a Bar Chart (Sales by State) on the right. Go to the map sheet > <b>Worksheet > Actions > Add Action > Filter</b>. Set source sheet = map, target = bar chart. Now clicking a state on the map filters the bar. Save as "Exp11_Geo.twb" and upload.</div></div>
         </div>
       </div>
     </div>
     <div class="panel">
       <div class="panel-header">&#129514; XML Evaluator</div>
       <div class="panel-body">
-        <div class="score-banner" style="flex-wrap:nowrap; align-items:center; gap:1rem;">
+        <div class="score-banner">
           <div>
             <div class="score-left">Auto-Evaluation Score</div>
             <div class="score-bar" style="width:160px;margin-top:.4rem"><div class="score-bar-fill" id="score-bar" style="width:0%"></div></div>
           </div>
-          <div class="score-value" style="white-space:nowrap; flex-shrink:0;"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
+          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
         </div>
         <div class="eval-error" id="eval-error"></div>
-        <div class="info-box" style="margin-bottom:1rem;">
-          <strong>Evaluator looks for:</strong> A <code>Map</code> mark type (Filled map), a <code>Circle</code> mark type on geographic data (Symbol map), spatial functions (<code>DISTANCE</code> and <code>MAKEPOINT</code>), and a dashboard object indicating an action filter.
-        </div>
         <div class="upload-zone" id="uploadZone">
           <div class="upload-icon">&#128196;</div>
           <div class="upload-title">Drop .twb / .twbx here</div>
@@ -115,13 +67,12 @@
           <input type="file" id="ssInput" style="display:none" accept="image/*">
         </div>
         <div class="check-list" id="resultsList" style="margin-top:1rem">
-<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Filled Map</div><div class="check-desc">Checks for a mark type of <em>Map</em> &mdash; the encoding used when shading geographic boundaries.</div></div><div class="check-marks">25 marks</div></div>
-<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Symbol/Circle Map</div><div class="check-desc">Verifies a <em>Circle</em> mark type is used &mdash; confirming the creation of the symbol map plotting city locations.</div></div><div class="check-marks">25 marks</div></div>
-<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">DISTANCE and MAKEPOINT</div><div class="check-desc">Scans formulas for both <em>DISTANCE</em> and <em>MAKEPOINT</em> keywords, verifying your spatial calculations.</div></div><div class="check-marks">25 marks</div></div>
-<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Dashboard with Filter</div><div class="check-desc">Checks that at least one dashboard exists in the workbook, where you should have placed the maps and added the action filter.</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Filled Map</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Symbol/Circle Map</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">DISTANCE and MAKEPOINT</div></div><div class="check-marks">25 marks</div></div>
+<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Dashboard with Filter</div></div><div class="check-marks">25 marks</div></div>
         </div>
         <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
-          <button class="btn export" id="export-btn">&#128229; Export Report</button>
         </div>
       </div>
     </div>
@@ -150,7 +101,7 @@
 
   var labChecks = [
   {id:"check-1",name:"Filled Map",marks:25,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasMarkType(xml,"Map"))},
-  {id:"check-2",name:"Symbol/Circle Map",marks:25,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasMarkType(xml,"Circle",xmlString))},
+  {id:"check-2",name:"Symbol/Circle Map",marks:25,evalFn:(xml, xmlString)=>!!((function(x){var ss=x.toLowerCase().split('<worksheet');for(var s of ss){var cm=s.match(/<cols>([^<]*)<\/cols>/);var rm=s.match(/<rows>([^<]*)<\/rows>/);var c=cm?cm[1]:'';var r=rm?rm[1]:'';if(c.includes('sum:sales')&&r.includes('sum:profit'))return true;if(c.includes('sum:profit')&&r.includes('sum:sales'))return true;}return false;})(xmlString))},
   {id:"check-3",name:"DISTANCE and MAKEPOINT",marks:25,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"DISTANCE","MAKEPOINT"))},
   {id:"check-4",name:"Dashboard with Filter",marks:25,evalFn:(xml, xmlString)=>!!(TableauEvaluator.dashboardCount(xml, xmlString) > 0)}
   ];
@@ -190,6 +141,7 @@
       showToast('Exp ' + EID + ' Complete! 🥳');
     }
   });
+  evaluator.labId = EID;
 
   setupUploadZone('uploadZone', 'fileInput', evaluator);
 
@@ -260,10 +212,6 @@
   ssInput.addEventListener('change', (e) => { if (e.target.files[0]) { processImg(e.target.files[0]); ssInput.value=''; } });
   renderGallery();
 
-  document.getElementById('export-btn').addEventListener('click', function() {
-    evaluator.exportReport(TITLE);
-  });
-
   const reflectInput = document.getElementById('reflection-text');
   const reflectStatus = document.getElementById('reflect-status');
 
@@ -275,22 +223,9 @@
     const val = reflectInput.value.trim().toLowerCase();
     const words = countWords(val);
     const labKeywords = {
-      '0': ['install', 'connect', 'interface', 'data'],
       '1': ['datasource', 'connection', 'dimension', 'measure'],
       '2': ['bar', 'line', 'scatter', 'marks', 'labels'],
-      '3': ['hierarchy', 'drill', 'group', 'set'],
-      '4': ['filter', 'exclude', 'wildcard', 'condition'],
-      '5': ['sort', 'compute', 'running', 'percent'],
-      '6': ['dual', 'axis', 'synchronize', 'parameter'],
-      '7': ['dashboard', 'action', 'interactive', 'filter'],
-      '8': ['story', 'point', 'caption', 'presentation'],
-      '9': ['map', 'geographic', 'latitude', 'longitude'],
-      '10': ['extract', 'live', 'performance', 'hyper'],
-      '11': ['polygon', 'background', 'image', 'map'],
-      '12': ['lod', 'fixed', 'include', 'exclude'],
-      '13': ['publish', 'server', 'public', 'web'],
-      '14': ['forecast', 'trend', 'model', 'analytics'],
-      '15': ['python', 'tabpy', 'script', 'extension']
+      '3': ['hierarchy', 'drill', 'group', 'set']
     };
     const required = labKeywords[EID] || ['tableau', 'data', 'viz', 'analysis'];
     const foundKeywords = required.filter(k => val.includes(k));
@@ -326,22 +261,9 @@
     const val = reflectInput.value.trim().toLowerCase();
     const words = countWords(val);
     const labKeywords = {
-      '0': ['install', 'connect', 'interface', 'data'],
       '1': ['datasource', 'connection', 'dimension', 'measure'],
       '2': ['bar', 'line', 'scatter', 'marks', 'labels'],
-      '3': ['hierarchy', 'drill', 'group', 'set'],
-      '4': ['filter', 'exclude', 'wildcard', 'condition'],
-      '5': ['sort', 'compute', 'running', 'percent'],
-      '6': ['dual', 'axis', 'synchronize', 'parameter'],
-      '7': ['dashboard', 'action', 'interactive', 'filter'],
-      '8': ['story', 'point', 'caption', 'presentation'],
-      '9': ['map', 'geographic', 'latitude', 'longitude'],
-      '10': ['extract', 'live', 'performance', 'hyper'],
-      '11': ['polygon', 'background', 'image', 'map'],
-      '12': ['lod', 'fixed', 'include', 'exclude'],
-      '13': ['publish', 'server', 'public', 'web'],
-      '14': ['forecast', 'trend', 'model', 'analytics'],
-      '15': ['python', 'tabpy', 'script', 'extension']
+      '3': ['hierarchy', 'drill', 'group', 'set']
     };
     const required = labKeywords[EID] || ['tableau', 'data', 'viz', 'analysis'];
     const foundKeywords = required.filter(k => val.includes(k));
@@ -374,72 +296,5 @@
   }
 })();
 </script>
-
-<style>
-/* UX Features */
-.step-item {
-  transition: background 0.3s ease, border-left 0.3s ease;
-  padding: 10px;
-  border-radius: 6px;
-  border-left: 4px solid transparent;
-}
-.step-item.active {
-  background: rgba(59, 130, 246, 0.05);
-  border-left: 4px solid var(--blue);
-}
-.step-item.completed .step-instruction {
-  opacity: 0.6;
-  text-decoration: line-through;
-}
-.step-item.completed pre,
-.step-item.completed .step-check,
-.step-item.completed code {
-  text-decoration: none !important;
-  opacity: 0.8;
-}
-</style>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const eid = '11';
-    const checkboxes = document.querySelectorAll('.step-cb');
-    const items = document.querySelectorAll('.step-item');
-    
-    function updateSteps() {
-        let activeFound = false;
-        checkboxes.forEach((cb, index) => {
-            const stepItem = cb.closest('.step-item');
-            const stepNum = cb.getAttribute('data-step');
-            
-            // Save state
-            localStorage.setItem(`tvl_step_${eid}_${stepNum}`, cb.checked ? '1' : '0');
-            
-            if (cb.checked) {
-                stepItem.classList.add('completed');
-                stepItem.classList.remove('active');
-            } else {
-                stepItem.classList.remove('completed');
-                if (!activeFound) {
-                    stepItem.classList.add('active');
-                    activeFound = true;
-                } else {
-                    stepItem.classList.remove('active');
-                }
-            }
-        });
-    }
-
-    // Load state
-    checkboxes.forEach(cb => {
-        const stepNum = cb.getAttribute('data-step');
-        if (localStorage.getItem(`tvl_step_${eid}_${stepNum}`) === '1') {
-            cb.checked = true;
-        }
-        cb.addEventListener('change', updateSteps);
-    });
-    
-    updateSteps();
-});
-</script>
-
 </body>
 </html>

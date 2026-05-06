@@ -5,8 +5,8 @@
 <title>Exp 7 &mdash; Business Intelligence Chart Lab | Tableau VL</title>
 <link rel="stylesheet" href="../css/style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="../js/evaluator.js?v=1777629337"></script>
-<script src="../js/tutor.js"></script>
+<script src="../js/evaluator.js?v=20260506_2"></script>
+<script src="../js/tutor.js?v=20260506_2"></script>
 </head>
 <body>
 <div class="topbar">
@@ -30,73 +30,25 @@
         </div>
         <div class="section-label">Lab Instructions</div>
         <div class="steps-list">
-<div class="step-item" id="step-item-1">
-          <div class="step-num">1</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="1" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction"><b>Pareto Chart:</b> Drag Sub-Category to Columns, SUM(Sales) to Rows. Sort descending. Duplicate SUM(Sales) on Rows (Ctrl+drag). Right-click the second pill > <b>Add Table Calculation > Running Total</b>, then Add Secondary Calculation: <b>Percent of Total</b>. Right-click the second axis > <b>Dual Axis > Synchronize Axis</b>. Change the second mark type to <b>Line</b>. You now have bars + cumulative % line.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A dual-axis chart appears with bars for Sales and a line for cumulative Percent of Total.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-2">
-          <div class="step-num">2</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="2" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction"><b>Waterfall Chart:</b> New sheet — drag <b>Sub-Category</b> to Columns, <b>Profit</b> to Rows. Change mark type to <b>Gantt Bar</b>. Create a calculated field: <pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block">Negative Profit = -SUM([Profit])</code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre>. Drag it to the <b>Size</b> card. Right-click <b>SUM(Profit)</b> on Rows, choose <b>Add Table Calculation > Running Total</b>. The bars now cascade like a waterfall.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A waterfall chart appears with Gantt bars cascading from the running total of Profit.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-3">
-          <div class="step-num">3</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="3" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction"><b>Funnel Chart:</b> Create a calculated field "Stage" with: <pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block">IF [Sales]>5000 THEN "Large" ELSEIF [Sales]>1000 THEN "Medium" ELSEIF [Sales]>200 THEN "Small" ELSE "Micro" END</code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre>. Drag Stage to Rows, COUNT([Order ID]) to Columns. Sort rows by stage size descending. Narrow the bars using the Size slider to create a funnel shape.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A funnel-shaped chart appears with bars of decreasing width based on the Stage field.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-4">
-          <div class="step-num">4</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="4" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction"><b>Bump Chart:</b> New sheet — drag <b>Order Date</b> (as discrete Year) to Columns, <b>Category</b> to Rows and also Color. Create field: <pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block">Rank = RANK(SUM([Sales]))</code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre>. Add it to Rows. Set Table Calculation to Compute Using: Category. Change mark type to <b>Circle</b> and also add <b>Line</b> as a dual mark. The result shows rank position changing each year.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A bump chart appears showing coloured lines and circles tracking rank changes over years.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-5">
-          <div class="step-num">5</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="5" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction">On each worksheet, go to <b>Worksheet > Show Caption</b>. Double-click the caption box at the bottom of each chart and type a 1–2 sentence business insight (e.g., "Technology leads in sales but Office Supplies drives volume."). Save as "Exp7_BI.twb" and upload.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A caption box appears below each chart containing your typed business insight.</details></div>
-</div>
-        </div>
+<div class="step-item"><div class="step-num">1</div><div class="step-text"><b>Pareto Chart:</b> Drag Sub-Category to Columns, SUM(Sales) to Rows. Sort descending. Duplicate SUM(Sales) on Rows (Ctrl+drag). Right-click the second pill > <b>Add Table Calculation > Running Total</b>, then Add Secondary Calculation: <b>Percent of Total</b>. Right-click the second axis > <b>Dual Axis > Synchronize Axis</b>. Change the second mark type to <b>Line</b>. You now have bars + cumulative % line.</div></div>
+<div class="step-item"><div class="step-num">2</div><div class="step-text"><b>Waterfall Chart:</b> New sheet — drag <b>Sub-Category</b> to Columns, <b>Profit</b> to Rows. Change mark type to <b>Gantt Bar</b>. Create a calculated field: `Negative Profit = -SUM([Profit])`. Drag it to the <b>Size</b> card. Right-click <b>SUM(Profit)</b> on Rows, choose <b>Add Table Calculation > Running Total</b>. The bars now cascade like a waterfall.</div></div>
+<div class="step-item"><div class="step-num">3</div><div class="step-text"><b>Funnel Chart:</b> Create a calculated field "Stage" with: `IF [Sales]>5000 THEN "Large" ELSEIF [Sales]>1000 THEN "Medium" ELSEIF [Sales]>200 THEN "Small" ELSE "Micro" END`. Drag Stage to Rows, COUNT([Order ID]) to Columns. Sort rows by stage size descending. Narrow the bars using the Size slider to create a funnel shape.</div></div>
+<div class="step-item"><div class="step-num">4</div><div class="step-text"><b>Bump Chart:</b> New sheet — drag <b>Order Date</b> (as discrete Year) to Columns, <b>Category</b> to Rows and also Color. Create field: `Rank = RANK(SUM([Sales]))`. Add it to Rows. Set Table Calculation to Compute Using: Category. Change mark type to <b>Circle</b> and also add <b>Line</b> as a dual mark. The result shows rank position changing each year.</div></div>
+<div class="step-item"><div class="step-num">5</div><div class="step-text">On each worksheet, go to <b>Worksheet > Show Caption</b>. Double-click the caption box at the bottom of each chart and type a 1–2 sentence business insight (e.g., "Technology leads in sales but Office Supplies drives volume."). Save as "Exp7_BI.twb" and upload.</div></div>
         </div>
       </div>
     </div>
     <div class="panel">
       <div class="panel-header">&#129514; XML Evaluator</div>
       <div class="panel-body">
-        <div class="score-banner" style="flex-wrap:nowrap; align-items:center; gap:1rem;">
+        <div class="score-banner">
           <div>
             <div class="score-left">Auto-Evaluation Score</div>
             <div class="score-bar" style="width:160px;margin-top:.4rem"><div class="score-bar-fill" id="score-bar" style="width:0%"></div></div>
           </div>
-          <div class="score-value" style="white-space:nowrap; flex-shrink:0;"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
+          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
         </div>
         <div class="eval-error" id="eval-error"></div>
-        <div class="info-box" style="margin-bottom:1rem;">
-          <strong>Evaluator looks for:</strong> 2+ &lt;pane&gt; nodes (dual axis for Pareto), a <code>RUNNING_SUM</code> table calculation (Waterfall), an <code>ELSEIF</code> formula keyword (Funnel), a <code>RANK</code> formula keyword (Bump chart), and at least one caption text object.
-        </div>
         <div class="upload-zone" id="uploadZone">
           <div class="upload-icon">&#128196;</div>
           <div class="upload-title">Drop .twb / .twbx here</div>
@@ -115,14 +67,13 @@
           <input type="file" id="ssInput" style="display:none" accept="image/*">
         </div>
         <div class="check-list" id="resultsList" style="margin-top:1rem">
-<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Dual Axis (Pareto)</div><div class="check-desc">Checks for 2 or more &lt;pane&gt; nodes in the XML &mdash; the signature of a dual-axis view required for the Pareto chart.</div></div><div class="check-marks">20 marks</div></div>
-<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">RUNNING_SUM (Waterfall)</div><div class="check-desc">Scans calculated field formulas for the keyword <em>RUNNING_SUM</em> &mdash; the table calculation that produces the cascading waterfall effect.</div></div><div class="check-marks">20 marks</div></div>
-<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Funnel IF/ELSEIF</div><div class="check-desc">Looks for the keyword <em>ELSEIF</em> in a formula, verifying the multi-branch IF logic used to categorise orders into funnel stages.</div></div><div class="check-marks">20 marks</div></div>
-<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">RANK (Bump Chart)</div><div class="check-desc">Checks that a formula containing <em>RANK</em> exists &mdash; the table calculation that drives the bump chart&rsquo;s rank-over-year lines.</div></div><div class="check-marks">20 marks</div></div>
-<div class="check-item" id="check-5"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Caption Text Objects</div><div class="check-desc">Verifies that at least one caption/text object node exists &mdash; created by Worksheet &gt; Show Caption and typing an insight.</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Dual Axis (Pareto)</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">RUNNING_SUM (Waterfall)</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Funnel IF/ELSEIF</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-4"><div class="check-icon">&#x23F3;</div><div><div class="check-title">RANK (Bump Chart)</div></div><div class="check-marks">20 marks</div></div>
+<div class="check-item" id="check-5"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Caption Text Objects</div></div><div class="check-marks">20 marks</div></div>
         </div>
         <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
-          <button class="btn export" id="export-btn">&#128229; Export Report</button>
         </div>
       </div>
     </div>
@@ -150,7 +101,7 @@
   var TITLE = 'Exp 7 — Business Intelligence Chart Lab';
 
   var labChecks = [
-  {id:"check-1",name:"Dual Axis (Pareto)",marks:20,evalFn:(xml, xmlString)=>!!(Array.from(xml.getElementsByTagName("worksheet")).some(w => w.getElementsByTagName("pane").length >= 2))},
+  {id:"check-1",name:"Dual Axis (Pareto)",marks:20,evalFn:(xml, xmlString)=>!!(xml.getElementsByTagName("pane").length >= 2)},
   {id:"check-2",name:"RUNNING_SUM (Waterfall)",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"RUNNING_SUM"))},
   {id:"check-3",name:"Funnel IF/ELSEIF",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"ELSEIF"))},
   {id:"check-4",name:"RANK (Bump Chart)",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"RANK"))},
@@ -192,6 +143,7 @@
       showToast('Exp ' + EID + ' Complete! 🥳');
     }
   });
+  evaluator.labId = EID;
 
   setupUploadZone('uploadZone', 'fileInput', evaluator);
 
@@ -262,10 +214,6 @@
   ssInput.addEventListener('change', (e) => { if (e.target.files[0]) { processImg(e.target.files[0]); ssInput.value=''; } });
   renderGallery();
 
-  document.getElementById('export-btn').addEventListener('click', function() {
-    evaluator.exportReport(TITLE);
-  });
-
   const reflectInput = document.getElementById('reflection-text');
   const reflectStatus = document.getElementById('reflect-status');
 
@@ -277,22 +225,9 @@
     const val = reflectInput.value.trim().toLowerCase();
     const words = countWords(val);
     const labKeywords = {
-      '0': ['install', 'connect', 'interface', 'data'],
       '1': ['datasource', 'connection', 'dimension', 'measure'],
       '2': ['bar', 'line', 'scatter', 'marks', 'labels'],
-      '3': ['hierarchy', 'drill', 'group', 'set'],
-      '4': ['filter', 'exclude', 'wildcard', 'condition'],
-      '5': ['sort', 'compute', 'running', 'percent'],
-      '6': ['dual', 'axis', 'synchronize', 'parameter'],
-      '7': ['dashboard', 'action', 'interactive', 'filter'],
-      '8': ['story', 'point', 'caption', 'presentation'],
-      '9': ['map', 'geographic', 'latitude', 'longitude'],
-      '10': ['extract', 'live', 'performance', 'hyper'],
-      '11': ['polygon', 'background', 'image', 'map'],
-      '12': ['lod', 'fixed', 'include', 'exclude'],
-      '13': ['publish', 'server', 'public', 'web'],
-      '14': ['forecast', 'trend', 'model', 'analytics'],
-      '15': ['python', 'tabpy', 'script', 'extension']
+      '3': ['hierarchy', 'drill', 'group', 'set']
     };
     const required = labKeywords[EID] || ['tableau', 'data', 'viz', 'analysis'];
     const foundKeywords = required.filter(k => val.includes(k));
@@ -328,22 +263,9 @@
     const val = reflectInput.value.trim().toLowerCase();
     const words = countWords(val);
     const labKeywords = {
-      '0': ['install', 'connect', 'interface', 'data'],
       '1': ['datasource', 'connection', 'dimension', 'measure'],
       '2': ['bar', 'line', 'scatter', 'marks', 'labels'],
-      '3': ['hierarchy', 'drill', 'group', 'set'],
-      '4': ['filter', 'exclude', 'wildcard', 'condition'],
-      '5': ['sort', 'compute', 'running', 'percent'],
-      '6': ['dual', 'axis', 'synchronize', 'parameter'],
-      '7': ['dashboard', 'action', 'interactive', 'filter'],
-      '8': ['story', 'point', 'caption', 'presentation'],
-      '9': ['map', 'geographic', 'latitude', 'longitude'],
-      '10': ['extract', 'live', 'performance', 'hyper'],
-      '11': ['polygon', 'background', 'image', 'map'],
-      '12': ['lod', 'fixed', 'include', 'exclude'],
-      '13': ['publish', 'server', 'public', 'web'],
-      '14': ['forecast', 'trend', 'model', 'analytics'],
-      '15': ['python', 'tabpy', 'script', 'extension']
+      '3': ['hierarchy', 'drill', 'group', 'set']
     };
     const required = labKeywords[EID] || ['tableau', 'data', 'viz', 'analysis'];
     const foundKeywords = required.filter(k => val.includes(k));
@@ -376,72 +298,5 @@
   }
 })();
 </script>
-
-<style>
-/* UX Features */
-.step-item {
-  transition: background 0.3s ease, border-left 0.3s ease;
-  padding: 10px;
-  border-radius: 6px;
-  border-left: 4px solid transparent;
-}
-.step-item.active {
-  background: rgba(59, 130, 246, 0.05);
-  border-left: 4px solid var(--blue);
-}
-.step-item.completed .step-instruction {
-  opacity: 0.6;
-  text-decoration: line-through;
-}
-.step-item.completed pre,
-.step-item.completed .step-check,
-.step-item.completed code {
-  text-decoration: none !important;
-  opacity: 0.8;
-}
-</style>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const eid = '7';
-    const checkboxes = document.querySelectorAll('.step-cb');
-    const items = document.querySelectorAll('.step-item');
-    
-    function updateSteps() {
-        let activeFound = false;
-        checkboxes.forEach((cb, index) => {
-            const stepItem = cb.closest('.step-item');
-            const stepNum = cb.getAttribute('data-step');
-            
-            // Save state
-            localStorage.setItem(`tvl_step_${eid}_${stepNum}`, cb.checked ? '1' : '0');
-            
-            if (cb.checked) {
-                stepItem.classList.add('completed');
-                stepItem.classList.remove('active');
-            } else {
-                stepItem.classList.remove('completed');
-                if (!activeFound) {
-                    stepItem.classList.add('active');
-                    activeFound = true;
-                } else {
-                    stepItem.classList.remove('active');
-                }
-            }
-        });
-    }
-
-    // Load state
-    checkboxes.forEach(cb => {
-        const stepNum = cb.getAttribute('data-step');
-        if (localStorage.getItem(`tvl_step_${eid}_${stepNum}`) === '1') {
-            cb.checked = true;
-        }
-        cb.addEventListener('change', updateSteps);
-    });
-    
-    updateSteps();
-});
-</script>
-
 </body>
 </html>

@@ -5,8 +5,8 @@
 <title>Exp 3 &mdash; Calculated Fields Laboratory | Tableau VL</title>
 <link rel="stylesheet" href="../css/style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="../js/evaluator.js?v=1777629337"></script>
-<script src="../js/tutor.js"></script>
+<script src="../js/evaluator.js?v=20260506_2"></script>
+<script src="../js/tutor.js?v=20260506_2"></script>
 </head>
 <body>
 <div class="topbar">
@@ -30,56 +30,11 @@
         </div>
         <div class="section-label">Lab Instructions</div>
         <div class="steps-list">
-<div class="step-item" id="step-item-1">
-          <div class="step-num">1</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="1" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction"><b>Aggregate Calc:</b> Right-click in the Data pane, choose Create Calculated Field. Name it "Profit Margin" and enter: <pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block">SUM([Profit]) / SUM([Sales])</code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre>. Click OK. Drag it to Rows on Sheet 1 alongside Sales. Right-click the Profit Margin axis, choose Format > Numbers > Percentage to display it as a %.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A new field "Profit Margin" appears in the Data pane, formatted as a percentage.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-2">
-          <div class="step-num">2</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="2" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction"><b>Logical Calc:</b> Create a new calculated field named "Sales Tier" with formula: <pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block">IF [Sales] > 1000 THEN "High" ELSEIF [Sales] > 500 THEN "Medium" ELSE "Low" END</code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre>. Drag this to the <b>Color</b> card on a bar chart — Tableau will color bars by tier automatically. This is a row-level calculation, not an aggregate.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>Marks in the view are coloured based on whether Sales are High, Medium, or Low.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-3">
-          <div class="step-num">3</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="3" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction"><b>String Calc:</b> Create a field named "Clean Name" with formula: <pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block">UPPER([Customer Name])</code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre>. Drag it to a new sheet as a dimension. You can also try <pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block">LEFT([Customer Name], FIND([Customer Name], " ")-1)</code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre> to extract first names only. Observe results in the view.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A new field "Clean Name" appears, showing customer names in uppercase (or just first names).</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-4">
-          <div class="step-num">4</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="4" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction"><b>Number Calc:</b> Create a field named "Rounded Profit" with: <pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block">ROUND([Profit], 2)</code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre>. Add it to the Rows shelf alongside [Profit] on a text table — compare original vs rounded values using <b>Show Me > Text Table</b>.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A text table appears showing Profit values rounded to two decimal places.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-5">
-          <div class="step-num">5</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="5" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction"><b>Dashboard:</b> Click the <b>New Dashboard</b> button (grid icon at the bottom). Set the size to Automatic. Drag Sheet 1, Sheet 2, and Sheet 3 from the left panel onto the dashboard canvas. Use the <b>Layout</b> pane on the left to tile them. Save as "Exp3_Calcs.twb" and upload.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A dashboard is created containing all three sheets arranged in a tiled layout.</details></div>
-</div>
-        </div>
+<div class="step-item"><div class="step-num">1</div><div class="step-text"><b>Aggregate Calc:</b> Right-click in the Data pane, choose Create Calculated Field. Name it "Profit Margin" and enter: `SUM([Profit]) / SUM([Sales])`. Click OK. Drag it to Rows on Sheet 1 alongside Sales. Right-click the Profit Margin axis, choose Format > Numbers > Percentage to display it as a %.</div></div>
+<div class="step-item"><div class="step-num">2</div><div class="step-text"><b>Logical Calc:</b> Create a new calculated field named "Sales Tier" with formula: `IF [Sales] > 1000 THEN "High" ELSEIF [Sales] > 500 THEN "Medium" ELSE "Low" END`. Drag this to the <b>Color</b> card on a bar chart — Tableau will color bars by tier automatically. This is a row-level calculation, not an aggregate.</div></div>
+<div class="step-item"><div class="step-num">3</div><div class="step-text"><b>String Calc:</b> Create a field named "Clean Name" with formula: `UPPER([Customer Name])`. Drag it to a new sheet as a dimension. You can also try `LEFT([Customer Name], FIND([Customer Name], " ")-1)` to extract first names only. Observe results in the view.</div></div>
+<div class="step-item"><div class="step-num">4</div><div class="step-text"><b>Number Calc:</b> Create a field named "Rounded Profit" with: `ROUND([Profit], 2)`. Add it to the Rows shelf alongside [Profit] on a text table — compare original vs rounded values using <b>Show Me > Text Table</b>.</div></div>
+<div class="step-item"><div class="step-num">5</div><div class="step-text"><b>Dashboard:</b> Click the <b>New Dashboard</b> button (grid icon at the bottom). Set the size to Automatic. Drag Sheet 1, Sheet 2, and Sheet 3 from the left panel onto the dashboard canvas. Use the <b>Layout</b> pane on the left to tile them. Save as "Exp3_Calcs.twb" and upload.</div></div>
         </div>
       </div>
     </div>
@@ -119,7 +74,6 @@
 <div class="check-item" id="check-5"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Dashboard 3 Sheets</div></div><div class="check-marks">20 marks</div></div>
         </div>
         <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
-          <button class="btn export" id="export-btn">&#128229; Export Report</button>
         </div>
       </div>
     </div>
@@ -147,7 +101,7 @@
   var TITLE = 'Exp 3 — Calculated Fields Laboratory';
 
   var labChecks = [
-  {id:"check-1",name:"Aggregate Calc (SUM)",marks:20,evalFn:(xml, xmlString)=>!!(Array.from(xml.getElementsByTagName("column")).some(c => c.hasAttribute("caption") && c.querySelector("calculation[formula*='SUM']")))},
+  {id:"check-1",name:"Aggregate Calc (SUM)",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"SUM"))},
   {id:"check-2",name:"Logical Calc (IF)",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"IF","THEN","ELSE"))},
   {id:"check-3",name:"String Calc (UPPER)",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"UPPER"))},
   {id:"check-4",name:"Number Calc (ROUND)",marks:20,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasFormulaKeyword(xml,"ROUND"))},
@@ -189,6 +143,7 @@
       showToast('Exp ' + EID + ' Complete! 🥳');
     }
   });
+  evaluator.labId = EID;
 
   setupUploadZone('uploadZone', 'fileInput', evaluator);
 
@@ -259,10 +214,6 @@
   ssInput.addEventListener('change', (e) => { if (e.target.files[0]) { processImg(e.target.files[0]); ssInput.value=''; } });
   renderGallery();
 
-  document.getElementById('export-btn').addEventListener('click', function() {
-    evaluator.exportReport(TITLE);
-  });
-
   const reflectInput = document.getElementById('reflection-text');
   const reflectStatus = document.getElementById('reflect-status');
 
@@ -274,22 +225,9 @@
     const val = reflectInput.value.trim().toLowerCase();
     const words = countWords(val);
     const labKeywords = {
-      '0': ['install', 'connect', 'interface', 'data'],
       '1': ['datasource', 'connection', 'dimension', 'measure'],
       '2': ['bar', 'line', 'scatter', 'marks', 'labels'],
-      '3': ['hierarchy', 'drill', 'group', 'set'],
-      '4': ['filter', 'exclude', 'wildcard', 'condition'],
-      '5': ['sort', 'compute', 'running', 'percent'],
-      '6': ['dual', 'axis', 'synchronize', 'parameter'],
-      '7': ['dashboard', 'action', 'interactive', 'filter'],
-      '8': ['story', 'point', 'caption', 'presentation'],
-      '9': ['map', 'geographic', 'latitude', 'longitude'],
-      '10': ['extract', 'live', 'performance', 'hyper'],
-      '11': ['polygon', 'background', 'image', 'map'],
-      '12': ['lod', 'fixed', 'include', 'exclude'],
-      '13': ['publish', 'server', 'public', 'web'],
-      '14': ['forecast', 'trend', 'model', 'analytics'],
-      '15': ['python', 'tabpy', 'script', 'extension']
+      '3': ['hierarchy', 'drill', 'group', 'set']
     };
     const required = labKeywords[EID] || ['tableau', 'data', 'viz', 'analysis'];
     const foundKeywords = required.filter(k => val.includes(k));
@@ -325,22 +263,9 @@
     const val = reflectInput.value.trim().toLowerCase();
     const words = countWords(val);
     const labKeywords = {
-      '0': ['install', 'connect', 'interface', 'data'],
       '1': ['datasource', 'connection', 'dimension', 'measure'],
       '2': ['bar', 'line', 'scatter', 'marks', 'labels'],
-      '3': ['hierarchy', 'drill', 'group', 'set'],
-      '4': ['filter', 'exclude', 'wildcard', 'condition'],
-      '5': ['sort', 'compute', 'running', 'percent'],
-      '6': ['dual', 'axis', 'synchronize', 'parameter'],
-      '7': ['dashboard', 'action', 'interactive', 'filter'],
-      '8': ['story', 'point', 'caption', 'presentation'],
-      '9': ['map', 'geographic', 'latitude', 'longitude'],
-      '10': ['extract', 'live', 'performance', 'hyper'],
-      '11': ['polygon', 'background', 'image', 'map'],
-      '12': ['lod', 'fixed', 'include', 'exclude'],
-      '13': ['publish', 'server', 'public', 'web'],
-      '14': ['forecast', 'trend', 'model', 'analytics'],
-      '15': ['python', 'tabpy', 'script', 'extension']
+      '3': ['hierarchy', 'drill', 'group', 'set']
     };
     const required = labKeywords[EID] || ['tableau', 'data', 'viz', 'analysis'];
     const foundKeywords = required.filter(k => val.includes(k));
@@ -373,72 +298,5 @@
   }
 })();
 </script>
-
-<style>
-/* UX Features */
-.step-item {
-  transition: background 0.3s ease, border-left 0.3s ease;
-  padding: 10px;
-  border-radius: 6px;
-  border-left: 4px solid transparent;
-}
-.step-item.active {
-  background: rgba(59, 130, 246, 0.05);
-  border-left: 4px solid var(--blue);
-}
-.step-item.completed .step-instruction {
-  opacity: 0.6;
-  text-decoration: line-through;
-}
-.step-item.completed pre,
-.step-item.completed .step-check,
-.step-item.completed code {
-  text-decoration: none !important;
-  opacity: 0.8;
-}
-</style>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const eid = '3';
-    const checkboxes = document.querySelectorAll('.step-cb');
-    const items = document.querySelectorAll('.step-item');
-    
-    function updateSteps() {
-        let activeFound = false;
-        checkboxes.forEach((cb, index) => {
-            const stepItem = cb.closest('.step-item');
-            const stepNum = cb.getAttribute('data-step');
-            
-            // Save state
-            localStorage.setItem(`tvl_step_${eid}_${stepNum}`, cb.checked ? '1' : '0');
-            
-            if (cb.checked) {
-                stepItem.classList.add('completed');
-                stepItem.classList.remove('active');
-            } else {
-                stepItem.classList.remove('completed');
-                if (!activeFound) {
-                    stepItem.classList.add('active');
-                    activeFound = true;
-                } else {
-                    stepItem.classList.remove('active');
-                }
-            }
-        });
-    }
-
-    // Load state
-    checkboxes.forEach(cb => {
-        const stepNum = cb.getAttribute('data-step');
-        if (localStorage.getItem(`tvl_step_${eid}_${stepNum}`) === '1') {
-            cb.checked = true;
-        }
-        cb.addEventListener('change', updateSteps);
-    });
-    
-    updateSteps();
-});
-</script>
-
 </body>
 </html>

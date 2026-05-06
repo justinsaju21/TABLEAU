@@ -1197,6 +1197,46 @@ async function generateReport(labId) {
       </div>
     </div>`;
 
+  const secRaw = localStorage.getItem('tvl_security_' + labId);
+  const securityMetadata = secRaw ? JSON.parse(secRaw) : { 
+    uuid: 'Not extracted', 
+    userPath: 'Not extracted', 
+    build: 'Not extracted',
+    platform: 'Not extracted',
+    version: 'Not extracted',
+    repoLoc: 'Not extracted',
+    locale: 'Not extracted',
+    connHash: 'Not extracted',
+    sheetCount: 0,
+    dashCount: 0,
+    thumbCount: 0
+  };
+
+  const forensicHtml = `
+  <div class="section-title">Forensic Security Audit</div>
+  <div style="background: #fff7ed; border: 1px solid #ffedd5; padding: 20px; border-radius: 8px; margin-bottom: 2rem;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+      <div>
+        <h3 style="margin: 0 0 10px; font-size: 0.8rem; color: #9a3412; text-transform: uppercase; letter-spacing: 0.05em;">Digital Fingerprint</h3>
+        <ul style="list-style: none; padding: 0; margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #7c2d12;">
+          <li style="margin-bottom: 4px;"><b>UUID:</b> ${securityMetadata.uuid}</li>
+          <li style="margin-bottom: 4px;"><b>Conn Hash:</b> ${securityMetadata.connHash}</li>
+          <li style="margin-bottom: 4px;"><b>Source Path:</b> ${securityMetadata.userPath}</li>
+          <li style="margin-bottom: 4px;"><b>Origin:</b> ${securityMetadata.repoLoc}</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="margin: 0 0 10px; font-size: 0.8rem; color: #9a3412; text-transform: uppercase; letter-spacing: 0.05em;">Environment & Structure</h3>
+        <ul style="list-style: none; padding: 0; margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #7c2d12;">
+          <li style="margin-bottom: 4px;"><b>OS/Platform:</b> ${securityMetadata.platform} (${securityMetadata.locale || 'Default'})</li>
+          <li style="margin-bottom: 4px;"><b>Tableau Build:</b> ${securityMetadata.build}</li>
+          <li style="margin-bottom: 4px;"><b>Inventory:</b> ${securityMetadata.sheetCount} Sheets / ${securityMetadata.dashCount} Dash</li>
+          <li style="margin-bottom: 4px;"><b>Thumbnails:</b> ${securityMetadata.thumbCount} Rendered</li>
+        </ul>
+      </div>
+    </div>
+  </div>`;
+
   const html = `<!DOCTYPE html>
 <html>
 <head>
@@ -1266,6 +1306,8 @@ async function generateReport(labId) {
 
   <div class="section-title">Student Reflection Synthesis</div>
   <div class="reflection-block">${reflectText}</div>
+
+  ${forensicHtml}
 
   <div class="footer">
     Authored via Interactive Lab ${labId} &mdash; System Integrity Ver: ${Date.now().toString(36).toUpperCase()}<br>

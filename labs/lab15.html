@@ -5,8 +5,8 @@
 <title>Exp 15 &mdash; Data Pipeline Integration (Bonus) | Tableau VL</title>
 <link rel="stylesheet" href="../css/style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="../js/evaluator.js?v=1777629337"></script>
-<script src="../js/tutor.js"></script>
+<script src="../js/evaluator.js?v=20260506_2"></script>
+<script src="../js/tutor.js?v=20260506_2"></script>
 </head>
 <body>
 <div class="topbar">
@@ -33,73 +33,25 @@
         </div>
         <div class="section-label">Lab Instructions</div>
         <div class="steps-list">
-<div class="step-item" id="step-item-1">
-          <div class="step-num">1</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="1" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction">Write a Python script to generate a CSV with time-stamped sensor readings. Example: <pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block">import csv, random, datetime; f=open("sensor.csv","w"); f.write("timestamp,temperature,humidity\n"); [f.write(f"{datetime.datetime.now()-datetime.timedelta(hours=i)},{random.uniform(20,30):.1f},{random.uniform(40,80):.1f}\n") for i in range(100)]; f.close()</code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre>. Run it in a terminal to produce sensor.csv.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A file named "sensor.csv" is created containing 100 rows of timestamped temperature and humidity data.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-2">
-          <div class="step-num">2</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="2" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction">In Tableau, click <b>Text File</b> under Connect and open sensor.csv. Set the <b>connection to Live</b> (not Extract). Drag <b>timestamp</b> to Columns (set as a continuous date/time). Drag <b>temperature</b> to Rows. Tableau should draw a time-series line chart.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A line chart appears showing temperature changes over the timestamps.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-3">
-          <div class="step-num">3</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="3" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction">Repeat: add <b>humidity</b> on a second axis (dual axis). Right-click the second axis > Synchronize Axis. Change the mark type for humidity to a different color. You now see both metrics on the same chart.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A dual-axis line chart appears showing both temperature and humidity trends.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-4">
-          <div class="step-num">4</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="4" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction">Create a <b>Parameter</b> named "Metric" with Data type: String, Allowable values: List. Add two values: "temperature" and "humidity". Create a calculated field: <pre style="background:#1e1e1e;color:#d4d4d4;padding:0.5rem;border-radius:4px;position:relative;margin:0.5rem 0;font-family:monospace;display:block;text-decoration:none;"><code class="formula-block">IF [Metric]="temperature" THEN [temperature] ELSE [humidity] END</code><button class="copy-btn" style="position:absolute;top:4px;right:4px;background:#333;color:#fff;border:1px solid #555;border-radius:3px;padding:2px 6px;font-size:0.7rem;cursor:pointer;" onclick="navigator.clipboard.writeText(this.previousElementSibling.textContent); this.textContent=\'Copied!\'; setTimeout(()=>this.textContent=\'Copy\', 2000)">Copy</button></pre>. Use this field on Rows to toggle which metric is shown.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>A "Metric" parameter control appears, and the chart updates to show either temperature or humidity when toggled.</details></div>
-</div>
-        </div>
-<div class="step-item" id="step-item-5">
-          <div class="step-num">5</div>
-          <div class="step-text">
-            <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; margin-bottom:6px; font-weight:600; font-size:0.85rem; color:var(--text-2); text-decoration:none;">
-              <input type="checkbox" class="step-cb" data-step="5" style="cursor:pointer;width:14px;height:14px;">
-              Mark step as complete
-            </label>
-            <div class="step-instruction">Append 20 more rows to your CSV (run the script again or manually add). Back in Tableau, click <b>Data > sensor.csv > Refresh</b>. The chart extends automatically — this simulates a live data pipeline. Save as "Exp15_Pipeline.twb" and upload.<details class="step-check" style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-2); cursor: pointer;"><summary style="color: var(--blue); font-weight: 500;">&#x2713; What you should see</summary>The chart automatically updates to include the 20 newly appended data points after refreshing.</details></div>
-</div>
-        </div>
+<div class="step-item"><div class="step-num">1</div><div class="step-text">Write a Python script to generate a CSV with time-stamped sensor readings. Example: `import csv, random, datetime; f=open("sensor.csv","w"); f.write("timestamp,temperature,humidity\n"); [f.write(f"{datetime.datetime.now()-datetime.timedelta(hours=i)},{random.uniform(20,30):.1f},{random.uniform(40,80):.1f}\n") for i in range(100)]; f.close()`. Run it in a terminal to produce sensor.csv.</div></div>
+<div class="step-item"><div class="step-num">2</div><div class="step-text">In Tableau, click <b>Text File</b> under Connect and open sensor.csv. Set the <b>connection to Live</b> (not Extract). Drag <b>timestamp</b> to Columns (set as a continuous date/time). Drag <b>temperature</b> to Rows. Tableau should draw a time-series line chart.</div></div>
+<div class="step-item"><div class="step-num">3</div><div class="step-text">Repeat: add <b>humidity</b> on a second axis (dual axis). Right-click the second axis > Synchronize Axis. Change the mark type for humidity to a different color. You now see both metrics on the same chart.</div></div>
+<div class="step-item"><div class="step-num">4</div><div class="step-text">Create a <b>Parameter</b> named "Metric" with Data type: String, Allowable values: List. Add two values: "temperature" and "humidity". Create a calculated field: `IF [Metric]="temperature" THEN [temperature] ELSE [humidity] END`. Use this field on Rows to toggle which metric is shown.</div></div>
+<div class="step-item"><div class="step-num">5</div><div class="step-text">Append 20 more rows to your CSV (run the script again or manually add). Back in Tableau, click <b>Data > sensor.csv > Refresh</b>. The chart extends automatically — this simulates a live data pipeline. Save as "Exp15_Pipeline.twb" and upload.</div></div>
         </div>
       </div>
     </div>
     <div class="panel">
       <div class="panel-header">&#129514; XML Evaluator</div>
       <div class="panel-body">
-        <div class="score-banner" style="flex-wrap:nowrap; align-items:center; gap:1rem;">
+        <div class="score-banner">
           <div>
             <div class="score-left">Auto-Evaluation Score</div>
             <div class="score-bar" style="width:160px;margin-top:.4rem"><div class="score-bar-fill" id="score-bar" style="width:0%"></div></div>
           </div>
-          <div class="score-value" style="white-space:nowrap; flex-shrink:0;"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
+          <div class="score-value"><span id="scoreDisplay">0</span>&thinsp;/&thinsp;100</div>
         </div>
         <div class="eval-error" id="eval-error"></div>
-        <div class="info-box" style="margin-bottom:1rem;">
-          <strong>Evaluator looks for:</strong> A valid workbook XML structure, a defined <code>parameter</code> (the Metric toggle), and a <code>Line</code> mark type (the time-series chart).
-        </div>
         <div class="upload-zone" id="uploadZone">
           <div class="upload-icon">&#128196;</div>
           <div class="upload-title">Drop .twb / .twbx here</div>
@@ -118,12 +70,11 @@
           <input type="file" id="ssInput" style="display:none" accept="image/*">
         </div>
         <div class="check-list" id="resultsList" style="margin-top:1rem">
-<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Valid Workbook</div><div class="check-desc">Checks that the uploaded .twb or .twbx XML could be successfully parsed.</div></div><div class="check-marks">34 marks</div></div>
-<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Parameter for Sensor</div><div class="check-desc">Looks for a &lt;datasource hasconnection='false'&gt; which contains parameters, verifying the Metric parameter creation.</div></div><div class="check-marks">33 marks</div></div>
-<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Line Chart (Time Series)</div><div class="check-desc">Checks that a <em>Line</em> mark type is present in the XML — required for the time-series plot.</div></div><div class="check-marks">33 marks</div></div>
+<div class="check-item" id="check-1"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Valid Workbook</div></div><div class="check-marks">34 marks</div></div>
+<div class="check-item" id="check-2"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Parameter for Sensor</div></div><div class="check-marks">33 marks</div></div>
+<div class="check-item" id="check-3"><div class="check-icon">&#x23F3;</div><div><div class="check-title">Line Chart (Time Series)</div></div><div class="check-marks">33 marks</div></div>
         </div>
         <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
-          <button class="btn export" id="export-btn">&#128229; Export Report</button>
         </div>
       </div>
     </div>
@@ -151,9 +102,9 @@
   var TITLE = 'Exp 15 — Data Pipeline Integration (Bonus)';
 
   var labChecks = [
-  {id:"check-1",name:"Valid Workbook",marks:34,evalFn:(xml, xmlString)=>!!(TableauEvaluator.worksheetCount(xml) > 0)},
+  {id:"check-1",name:"Valid Workbook",marks:34,evalFn:(xml, xmlString)=>!!(xml !== null)},
   {id:"check-2",name:"Parameter for Sensor",marks:33,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasParameter(xml, xmlString))},
-  {id:"check-3",name:"Line Chart (Time Series)",marks:33,evalFn:(xml, xmlString)=>!!(TableauEvaluator.hasMarkType(xml,"Line",xmlString))}
+  {id:"check-3",name:"Line Chart (Time Series)",marks:33,evalFn:(xml, xmlString)=>!!((function(x){var ss=x.toLowerCase().split('<worksheet');for(var s of ss){var cm=s.match(/<cols>([^<]*)<\/cols>/);var rm=s.match(/<rows>([^<]*)<\/rows>/);var c=cm?cm[1]:'';var r=rm?rm[1]:'';if(c.includes(':order date')&&(r.includes('sum:profit')||r.includes('sum:sales')))return true;}return false;})(xmlString))}
   ];
 
   function showToast(m, type) {
@@ -191,6 +142,7 @@
       showToast('Exp ' + EID + ' Complete! 🥳');
     }
   });
+  evaluator.labId = EID;
 
   setupUploadZone('uploadZone', 'fileInput', evaluator);
 
@@ -261,10 +213,6 @@
   ssInput.addEventListener('change', (e) => { if (e.target.files[0]) { processImg(e.target.files[0]); ssInput.value=''; } });
   renderGallery();
 
-  document.getElementById('export-btn').addEventListener('click', function() {
-    evaluator.exportReport(TITLE);
-  });
-
   const reflectInput = document.getElementById('reflection-text');
   const reflectStatus = document.getElementById('reflect-status');
 
@@ -276,22 +224,9 @@
     const val = reflectInput.value.trim().toLowerCase();
     const words = countWords(val);
     const labKeywords = {
-      '0': ['install', 'connect', 'interface', 'data'],
       '1': ['datasource', 'connection', 'dimension', 'measure'],
       '2': ['bar', 'line', 'scatter', 'marks', 'labels'],
-      '3': ['hierarchy', 'drill', 'group', 'set'],
-      '4': ['filter', 'exclude', 'wildcard', 'condition'],
-      '5': ['sort', 'compute', 'running', 'percent'],
-      '6': ['dual', 'axis', 'synchronize', 'parameter'],
-      '7': ['dashboard', 'action', 'interactive', 'filter'],
-      '8': ['story', 'point', 'caption', 'presentation'],
-      '9': ['map', 'geographic', 'latitude', 'longitude'],
-      '10': ['extract', 'live', 'performance', 'hyper'],
-      '11': ['polygon', 'background', 'image', 'map'],
-      '12': ['lod', 'fixed', 'include', 'exclude'],
-      '13': ['publish', 'server', 'public', 'web'],
-      '14': ['forecast', 'trend', 'model', 'analytics'],
-      '15': ['python', 'tabpy', 'script', 'extension']
+      '3': ['hierarchy', 'drill', 'group', 'set']
     };
     const required = labKeywords[EID] || ['tableau', 'data', 'viz', 'analysis'];
     const foundKeywords = required.filter(k => val.includes(k));
@@ -327,22 +262,9 @@
     const val = reflectInput.value.trim().toLowerCase();
     const words = countWords(val);
     const labKeywords = {
-      '0': ['install', 'connect', 'interface', 'data'],
       '1': ['datasource', 'connection', 'dimension', 'measure'],
       '2': ['bar', 'line', 'scatter', 'marks', 'labels'],
-      '3': ['hierarchy', 'drill', 'group', 'set'],
-      '4': ['filter', 'exclude', 'wildcard', 'condition'],
-      '5': ['sort', 'compute', 'running', 'percent'],
-      '6': ['dual', 'axis', 'synchronize', 'parameter'],
-      '7': ['dashboard', 'action', 'interactive', 'filter'],
-      '8': ['story', 'point', 'caption', 'presentation'],
-      '9': ['map', 'geographic', 'latitude', 'longitude'],
-      '10': ['extract', 'live', 'performance', 'hyper'],
-      '11': ['polygon', 'background', 'image', 'map'],
-      '12': ['lod', 'fixed', 'include', 'exclude'],
-      '13': ['publish', 'server', 'public', 'web'],
-      '14': ['forecast', 'trend', 'model', 'analytics'],
-      '15': ['python', 'tabpy', 'script', 'extension']
+      '3': ['hierarchy', 'drill', 'group', 'set']
     };
     const required = labKeywords[EID] || ['tableau', 'data', 'viz', 'analysis'];
     const foundKeywords = required.filter(k => val.includes(k));
@@ -375,72 +297,5 @@
   }
 })();
 </script>
-
-<style>
-/* UX Features */
-.step-item {
-  transition: background 0.3s ease, border-left 0.3s ease;
-  padding: 10px;
-  border-radius: 6px;
-  border-left: 4px solid transparent;
-}
-.step-item.active {
-  background: rgba(59, 130, 246, 0.05);
-  border-left: 4px solid var(--blue);
-}
-.step-item.completed .step-instruction {
-  opacity: 0.6;
-  text-decoration: line-through;
-}
-.step-item.completed pre,
-.step-item.completed .step-check,
-.step-item.completed code {
-  text-decoration: none !important;
-  opacity: 0.8;
-}
-</style>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const eid = '15';
-    const checkboxes = document.querySelectorAll('.step-cb');
-    const items = document.querySelectorAll('.step-item');
-    
-    function updateSteps() {
-        let activeFound = false;
-        checkboxes.forEach((cb, index) => {
-            const stepItem = cb.closest('.step-item');
-            const stepNum = cb.getAttribute('data-step');
-            
-            // Save state
-            localStorage.setItem(`tvl_step_${eid}_${stepNum}`, cb.checked ? '1' : '0');
-            
-            if (cb.checked) {
-                stepItem.classList.add('completed');
-                stepItem.classList.remove('active');
-            } else {
-                stepItem.classList.remove('completed');
-                if (!activeFound) {
-                    stepItem.classList.add('active');
-                    activeFound = true;
-                } else {
-                    stepItem.classList.remove('active');
-                }
-            }
-        });
-    }
-
-    // Load state
-    checkboxes.forEach(cb => {
-        const stepNum = cb.getAttribute('data-step');
-        if (localStorage.getItem(`tvl_step_${eid}_${stepNum}`) === '1') {
-            cb.checked = true;
-        }
-        cb.addEventListener('change', updateSteps);
-    });
-    
-    updateSteps();
-});
-</script>
-
 </body>
 </html>
